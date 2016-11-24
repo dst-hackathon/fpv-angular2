@@ -1,18 +1,20 @@
 <div *ngIf="user">
   <p>Login as : {{user.firstName}}</p>
   <button (click)="logout()">Logout</button>
-  
 </div>
 
-<form (ngSubmit)="onSubmit()" #loginForm="ngForm" *ngIf="user==null">
-  <div class="form-group">
-    <label for="username">Username</label>
+<form class="form-signin" (ngSubmit)="onSubmit()" #loginForm="ngForm" *ngIf="user==null">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <label for="username" class="sr-only">Username</label>
     <input type="text" class="form-control" id="username" required [(ngModel)]="username" name="username">
-  </div>
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" required [(ngModel)]="password" name="password">
-  </div>
 
-  <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Submit</button>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" class="form-control" id="password" required [(ngModel)]="password" name="password">
+
+    <div class="checkbox">
+      <label>
+         <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!loginForm.form.valid">Sign in</button>
 </form>
