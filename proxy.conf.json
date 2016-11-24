@@ -2,9 +2,5 @@
    "/api": {
       "target": "http://localhost:8080",
       "secure": false
-   },
-   "/be": {
-      "target": "http://localhost:8080",
-      "secure": false
    }
 }
