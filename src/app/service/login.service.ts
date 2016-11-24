@@ -13,14 +13,14 @@ export class LoginService {
   constructor(private http: Http) { }
 
 
-  login(username,password): Observable<any> {
+  login(username,password,rememberMe): Observable<any> {
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers }); // Create a request option
 
     let urlSearchParams = new URLSearchParams();
     urlSearchParams.append('j_username', username);
     urlSearchParams.append('j_password', password);
-    urlSearchParams.append('remember-me', 'true');
+    urlSearchParams.append('remember-me', rememberMe);
     let body = urlSearchParams.toString()
 
     return this.http.post(this.serverUrl, body, options)

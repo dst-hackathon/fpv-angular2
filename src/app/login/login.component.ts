@@ -8,6 +8,7 @@ import { LoginService } from '../service/login.service';
 export class LoginComponent implements OnInit {
   username;
   password;
+  rememberMe;
   user;
 
   constructor(public loginService: LoginService) { }
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    this.loginService.login(this.username,this.password)
+    this.loginService.login(this.username,this.password,this.rememberMe)
       .subscribe(
           json => {
             console.log("login success" + json)
