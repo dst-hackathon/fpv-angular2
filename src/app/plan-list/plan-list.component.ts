@@ -5,11 +5,12 @@ import { Plan } from '../model/plan';
 @Component({
   selector: 'plan-list',
   templateUrl: './plan-list.component.html',
-  styleUrls: ['./plan-list.component.css']
+  styleUrls: ['./plan-list.component.css'],
 })
 export class PlanListComponent implements OnInit {
   title = "View Master Plan";
   planList: Plan[];
+  selectedPlan: Plan;
 
   constructor(public planService: PlanService) { }
 
@@ -20,6 +21,12 @@ export class PlanListComponent implements OnInit {
   getAllPlan()
   {
     this.planService.getAllPlans().subscribe(planList => this.planList = planList, err => console.log(err))
+  }
+
+  onClick(plan)
+  {
+    this.selectedPlan = plan; 
+//    alert(this.selectedPlan.name);
   }
 
 }
