@@ -6,9 +6,10 @@
 </nav>
 
 <app-login></app-login>
-
-<desk-card [employee]="employee"></desk-card>
-
+  <div *ngIf="user">
+    <plan-list></plan-list>
+    <desk-card [employee]="employee"></desk-card>
+  </div>
 <div class="container">
   <hr/>
   <footer>
