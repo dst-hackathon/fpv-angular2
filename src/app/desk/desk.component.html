@@ -1,6 +1,7 @@
-<div *ngIf="deskAssignment == null">
+<div class="deskItem" *ngIf="deskAssignment == null" placement="right" ngbPopover="Empty Desk" popoverTitle="Empty Desk Title">
   <img src="{{emptyDeskUrl}}" alt="empty desk">
 </div> 
-<div *ngIf="deskAssignment != null">
+<div class="deskItem" *ngIf="deskAssignment != null" placement="right" [ngbPopover]="popContent" popoverTitle="Employee Title">
   <img src="{{assignedDeskUrl}}" alt="assigned desk">
 </div> 
+<template #popContent><desk-card [employee]="employee"></desk-card></template>
