@@ -6,17 +6,22 @@
 </nav>
 
 <app-login [(user)]="user"></app-login>
-  <div *ngIf="user">
-    <plan-list></plan-list>
-    <desk-card [employee]="employee"></desk-card>
-  </div>
-  <p>empty desk</p>
-  <desk></desk> 
-  <p>assigned desk</p>
-  <desk [deskAssignment]="getDeskAssignment()"></desk>
-  <!--<div *ngIf="">-->
-    <!--<desk-card [employee]="employee"></desk-card>-->
-  <!--</div>-->
+<div *ngIf="user">
+  <plan-list></plan-list>
+  
+  <!--show employee card-->
+  <desk-card [employee]="employee"></desk-card>
+  <!--show floor-->
+  <floor [floor]="floor"></floor>
+</div>
+
+<p>empty desk</p>
+<desk></desk>
+<p>assigned desk</p>
+<desk [deskAssignment]="getDeskAssignment()"></desk>
+<!--<div *ngIf="">-->
+<!--<desk-card [employee]="employee"></desk-card>-->
+<!--</div>-->
 <div class="container">
   <hr/>
   <footer>
