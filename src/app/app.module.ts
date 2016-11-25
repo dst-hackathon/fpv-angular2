@@ -11,6 +11,7 @@ import { DeskComponent } from './desk/desk.component';
 import { LoginService } from './service/login.service';
 import { PlanService } from './service/plan.service';
 import { PlanListComponent } from './plan-list/plan-list.component';
+import { PlanDialogService } from './service/plandialog.service';
 import { EmployeeService } from './service/employee.service';
 import { DeskCardComponent } from './desk-card/desk-card.component';
 
@@ -30,7 +31,7 @@ import { DeskCardComponent } from './desk-card/desk-card.component';
     HttpModule
   ],
   providers: [
-    LoginService,EmployeeService,PlanService
+    LoginService,PlanDialogService,EmployeeService,PlanService
   ],
   bootstrap: [AppComponent]
 })
