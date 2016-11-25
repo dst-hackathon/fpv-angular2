@@ -41,7 +41,11 @@ import { FloorSelectorService } from './service/floorselector.service';
     NgbModule.forRoot()
   ],
   providers: [
-    LoginService,PlanDialogService,EmployeeService,PlanService,FloorSelectorService,DeskService
+<<<<<<< HEAD
+    LoginService,EmployeeService,PlanService,DeskService
+=======
+    LoginService,PlanDialogService,EmployeeService,PlanService,FloorSelectorService
+>>>>>>> 2c1e678d07ef1454c1b53f2adf0d6acdc35f8f43
   ],
   bootstrap: [AppComponent]
 })
