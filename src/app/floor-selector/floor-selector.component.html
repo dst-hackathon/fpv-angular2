@@ -1,3 +1,9 @@
 <p>
-  floor-selector works!
+	Floor :
+	<select>
+		<option>--Select--</option>
+		<option *ngFor='let floorItem of floorList' value='{{ floorItem.id }}'>
+			{{ floorItem.name }}
+		</option>
+	</select>
 </p>

@@ -1,0 +1,30 @@
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import { Desk } from '../model/Desk';
+@Injectable()
+export class DeskService {
+
+  private serverUrl = '/api/desks';
+
+  constructor(private http: Http) { }
+
+  getDesks(floorId: String): Observable<Desk[]> {
+    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+    let options = new RequestOptions({ headers: headers }); // Create a request option
+
+    return this.http.get("/api/desks", options)
+      .map((res: Response) => {
+        let desks: Desk[] = [];
+        for (let obj of res.json()) {
+          desks.push(Desk.fromJson(obj));
+        }
+
+        return desks;
+      })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+}

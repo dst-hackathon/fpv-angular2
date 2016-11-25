@@ -5,7 +5,7 @@
   </a>
 </nav>
 
-<app-login></app-login>
+<app-login [(user)]="user"></app-login>
   <div *ngIf="user">
     <plan-list></plan-list>
     <desk-card [employee]="employee"></desk-card>

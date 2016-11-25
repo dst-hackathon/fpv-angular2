@@ -7,12 +7,12 @@
   <div class="container">
     <h1 class="display-3">Floor Plan Visualizer</h1>
     <p class="lead">Move desks in a blink of an eye.</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Sign-In &raquo;</a></p>
+    <p class="btn-signin {{signInButtonClicked}}"><a class="btn btn-primary btn-lg" href="#" role="button" (click)="onSignInBtnClick()">Sign-In &raquo;</a></p>
   </div>
 </div>
 
 <form class="form-signin" (ngSubmit)="onSubmit()" #loginForm="ngForm" *ngIf="user==null">
-  <div class="container">
+  <div class="container" [@loginState]="signInButtonClicked">
 
     <div class="form-group">
       <label for="username">Username</label>
