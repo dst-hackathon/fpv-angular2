@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Employee } from '../model/employee';
-
-import { EmployeeService } from '../service/employee.service';
 
 @Component({
   selector: 'desk-card',
@@ -10,14 +8,11 @@ import { EmployeeService } from '../service/employee.service';
   styleUrls: ['./desk-card.component.css']
 })
 export class DeskCardComponent implements OnInit {
-  employee: Employee
+  @Input() employee: Employee
 
-  constructor(public employeeService: EmployeeService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.employeeService.getEmployee(1).subscribe(res => {
-      this.employee = res
-    })
   }
 
 }
