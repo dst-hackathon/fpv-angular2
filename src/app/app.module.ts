@@ -17,6 +17,7 @@ import { EmployeeService } from './service/employee.service';
 import { DeskCardComponent } from './desk-card/desk-card.component';
 import { FloorSelectorComponent } from './floor-selector/floor-selector.component';
 import { BuildingSelectorComponent } from './building-selector/building-selector.component';
+import { FloorSelectorService } from './service/floorselector.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { BuildingSelectorComponent } from './building-selector/building-selector
     NgbModule.forRoot()
   ],
   providers: [
-    LoginService,PlanDialogService,EmployeeService,PlanService
+    LoginService,PlanDialogService,EmployeeService,PlanService,FloorSelectorService
   ],
   bootstrap: [AppComponent]
 })
