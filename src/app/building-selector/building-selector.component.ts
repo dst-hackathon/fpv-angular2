@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BuildingSelectorService } from '../service/buildingselector.service';
+
 @Component({
   selector: 'building-selector',
-  templateUrl: `
-    <h2>Building</h2>
-    <select (change)="onSelect($event.target.value)">
-      <option value="0">--Select--</option>
-    </select>
-  `,
+  templateUrl: './building-selector.component.html',
   styleUrls: ['./building-selector.component.css']
 })
 export class BuildingSelectorComponent implements OnInit {
+  buildingList;
 
-  constructor() { }
+  constructor(public buildingSelectorService: BuildingSelectorService) { }
 
   ngOnInit() {
+    
+    this.buildingSelectorService.getBuildingList(1,null).subscribe(buildingList => this.buildingList = buildingList, err => console.log(err));
+    
   }
 
 }

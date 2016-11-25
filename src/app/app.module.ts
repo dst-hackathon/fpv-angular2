@@ -24,6 +24,8 @@ import { DeskCardComponent } from './desk-card/desk-card.component';
 import { FloorSelectorComponent } from './floor-selector/floor-selector.component';
 import { BuildingSelectorComponent } from './building-selector/building-selector.component';
 import { FloorSelectorService } from './service/floorselector.service';
+import { BuildingSelectorService } from './service/buildingselector.service';
+
 import { FloorComponent } from './floor/floor.component';
 
 import { AppRoutingModule  } from './app-routing.module';
@@ -41,6 +43,7 @@ import { AppRoutingModule  } from './app-routing.module';
     PlanListComponent,
     BuildingSelectorComponent,
     FloorComponent
+
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { AppRoutingModule  } from './app-routing.module';
     PlanService,
     FloorSelectorService,
     DeskAssignmentService,
+    BuildingSelectorService,
     DeskService
   ],
   bootstrap: [AppComponent]
