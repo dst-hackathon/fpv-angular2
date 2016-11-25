@@ -1,12 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate
-} from '@angular/core';
+import { trigger,state,style,transition,animate} from '@angular/core';
+import { Router } from '@angular/router';
+
 import { LoginService } from '../service/login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -31,23 +28,15 @@ export class LoginComponent implements OnInit {
   rememberMe;
   signInButtonClicked = 'none';
   
-  @Input() user;
-  @Output() userChange = new EventEmitter();
+  user;
 
-  constructor(public loginService: LoginService) { }
+  constructor(public loginService: LoginService, public router: Router) { }
 
-  ngOnInit() {
-    this.checkLoginUser()  
-  }
+  ngOnInit() {}
 
-  checkLoginUser(){
-    this.loginService.getAccount().subscribe(user => {
-      this.user = user
-      this.userChange.emit(this.user);
-    }, err => console.log(err))
-  }
+  onSignInBtnClick(event) {
+    event.preventDefault();
 
-  onSignInBtnClick() {
     this.signInButtonClicked = 'clicked';
     console.log(this.signInButtonClicked);
   }
@@ -57,17 +46,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
           json => {
             console.log("login success" + json)
-            this.checkLoginUser()
+            this.router.navigate(['home']);
           },
           err => {
               console.log(err);
           });
-  }
-
-  logout(){
-    this.loginService.logout().subscribe(res => {
-      this.user = null
-      this.userChange.emit(this.user);
-    })
   }
 }

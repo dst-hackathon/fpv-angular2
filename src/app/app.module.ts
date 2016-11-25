@@ -6,6 +6,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './login/logout.component';
+import { ProfileComponent } from './login/profile.component';
+
 import { PlanDialogComponent } from './plandialog/plandialog.component';
 import { DeskComponent } from './desk/desk.component';
 import { FloorPlanCanvasComponent } from './floor-plan-canvas/floor-plan-canvas.component';
@@ -28,7 +31,7 @@ import { AppRoutingModule  } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
+    LoginComponent,LogoutComponent,ProfileComponent,
     PlanDialogComponent,
     DeskComponent,
     FloorPlanCanvasComponent,

@@ -1,13 +1,8 @@
-<div *ngIf="user">
-  <p>Login as : {{user.firstName}}</p>
-  <button (click)="logout()">Logout</button>
-</div>
-
 <div class="jumbotron" *ngIf="user==null">
   <div class="container">
     <h1 class="display-3">Floor Plan Visualizer</h1>
     <p class="lead">Move desks in a blink of an eye.</p>
-    <p class="btn-signin {{signInButtonClicked}}"><a class="btn btn-primary btn-lg" href="#" role="button" (click)="onSignInBtnClick()">Sign-In &raquo;</a></p>
+    <p class="btn-signin {{signInButtonClicked}}"><a class="btn btn-primary btn-lg" role="button" (click)="onSignInBtnClick($event)">Sign-In &raquo;</a></p>
   </div>
 </div>
 

@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from './service/employee.service';
-import { Employee } from './model/employee';
-import { LoginService } from './service/login.service';
-import { FloorSelectorService } from './service/floorselector.service';
-import { DeskAssignment } from './model/desk-assignment';
+import { Router } from '@angular/router';
 
-import { Floor } from './model/floor';
+import { LoginService } from './service/login.service';
 
 @Component({
   selector: 'app-root',
@@ -13,33 +9,23 @@ import { Floor } from './model/floor';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app worksxxx!';
-  employee: Employee;
-  floor: Floor;
-
   user;
 
-  constructor(public employeeService: EmployeeService,
+  constructor(
     public loginService: LoginService,
-    public floorService: FloorSelectorService) { }
+    public router: Router) {}
 
   ngOnInit() {
-    this.employeeService.getEmployee(1).subscribe(res => {
-      this.employee = res
-    });
-
-    this.floorService.getFloor(1).subscribe(floor=> {
-      this.floor = floor
-    })
-
     this.checkLoginUser();
   }
 
   checkLoginUser() {
-    this.loginService.getAccount().subscribe(user => this.user = user, err => console.log(err))
-  }
-  
-  getDeskAssignment() {
-    return new DeskAssignment();
+    this.loginService.getAccount().subscribe(user => {
+      this.user = user
+      this.router.navigate(['home']);
+    }, err => {
+      console.log("User not logged in",err)
+      this.router.navigate(['login'])
+    })
   }
 }
