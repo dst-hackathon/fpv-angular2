@@ -24,9 +24,12 @@ export class PlanDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params
-    .switchMap((params: Params) => this.planDialogService.getPlan(params['id']))
-    .subscribe(plan => this.plan = plan, err => console.log(err));
+      this.route.params.subscribe(params => {
+        let planId = params['id'];
+
+        this.planDialogService.getPlan(planId)
+          .subscribe(plan => this.plan = plan, err => console.log(err));
+      })
   }
 
   logResponse(json){
