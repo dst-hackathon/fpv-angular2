@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PlanDialogComponent } from './plandialog/plandialog.component';
+import { DeskComponent } from './desk/desk.component';
 
 import { LoginService } from './service/login.service';
 import { PlanService } from './service/plan.service';
@@ -17,6 +18,8 @@ import { DeskCardComponent } from './desk-card/desk-card.component';
   declarations: [
     AppComponent,
     LoginComponent,
+    PlanDialogComponent,
+    DeskComponent,
     DeskCardComponent,
     PlanDialogComponent,
     PlanListComponent
