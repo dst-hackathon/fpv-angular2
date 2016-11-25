@@ -10,6 +10,7 @@ import { PlanDialogComponent } from './plandialog/plandialog.component';
 import { DeskComponent } from './desk/desk.component';
 
 import { LoginService } from './service/login.service';
+import { DeskAssignmentService } from './service/desk-assignment.service';
 import { PlanService } from './service/plan.service';
 import { PlanListComponent } from './plan-list/plan-list.component';
 import { PlanDialogService } from './service/plandialog.service';
@@ -37,7 +38,11 @@ import { BuildingSelectorComponent } from './building-selector/building-selector
     NgbModule.forRoot()
   ],
   providers: [
-    LoginService,PlanDialogService,EmployeeService,PlanService
+    LoginService,
+    PlanDialogService,
+    EmployeeService,
+    PlanService,
+    DeskAssignmentService
   ],
   bootstrap: [AppComponent]
 })
