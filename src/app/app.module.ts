@@ -29,6 +29,7 @@ import { BuildingSelectorService } from './service/buildingselector.service';
 import { FloorComponent } from './floor/floor.component';
 
 import { AppRoutingModule  } from './app-routing.module';
+import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AppRoutingModule  } from './app-routing.module';
     FloorSelectorComponent,
     PlanListComponent,
     BuildingSelectorComponent,
-    FloorComponent
+    FloorComponent,
+    FloorMarkerComponent
 
   ],
   imports: [
