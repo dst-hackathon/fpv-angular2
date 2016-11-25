@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { PlanDialogComponent } from './plandialog/plandialog.component';
+import { DeskComponent } from './desk/desk.component';
 
 import { LoginService } from './service/login.service';
 
@@ -13,7 +14,8 @@ import { LoginService } from './service/login.service';
   declarations: [
     AppComponent,
     LoginComponent,
-    PlanDialogComponent
+    PlanDialogComponent,
+    DeskComponent
   ],
   imports: [
     BrowserModule,

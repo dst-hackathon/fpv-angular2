@@ -1,0 +1,6 @@
+<div *ngIf="deskAssignment == null">
+  <img src="{{emptyDeskUrl}}" alt="empty desk">
+</div> 
+<div *ngIf="deskAssignment != null">
+  <img src="{{assignedDeskUrl}}" alt="assigned desk">
+</div> 
