@@ -9,6 +9,8 @@ import { PlanDialogComponent } from './plandialog/plandialog.component';
 import { DeskComponent } from './desk/desk.component';
 
 import { LoginService } from './service/login.service';
+import { PlanService } from './service/plan.service';
+import { PlanListComponent } from './plan-list/plan-list.component';
 import { EmployeeService } from './service/employee.service';
 import { DeskCardComponent } from './desk-card/desk-card.component';
 import { FloorSelectorComponent } from './floor-selector/floor-selector.component';
@@ -21,7 +23,8 @@ import { FloorSelectorComponent } from './floor-selector/floor-selector.componen
     DeskComponent,
     DeskCardComponent,
     PlanDialogComponent,
-    FloorSelectorComponent
+    FloorSelectorComponent,
+    PlanListComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,7 @@ import { FloorSelectorComponent } from './floor-selector/floor-selector.componen
     HttpModule
   ],
   providers: [
-    LoginService,EmployeeService
+    LoginService,EmployeeService,PlanService
   ],
   bootstrap: [AppComponent]
 })
