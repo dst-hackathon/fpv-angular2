@@ -52,7 +52,8 @@ import { AppRoutingModule  } from './app-routing.module';
     EmployeeService,
     PlanService,
     FloorSelectorService,
-    DeskAssignmentService
+    DeskAssignmentService,
+    DeskService
   ],
   bootstrap: [AppComponent]
 })
