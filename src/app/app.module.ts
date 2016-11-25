@@ -11,6 +11,7 @@ import { DeskComponent } from './desk/desk.component';
 import { LoginService } from './service/login.service';
 import { EmployeeService } from './service/employee.service';
 import { DeskCardComponent } from './desk-card/desk-card.component';
+import { FloorSelectorComponent } from './floor-selector/floor-selector.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { DeskCardComponent } from './desk-card/desk-card.component';
     PlanDialogComponent,
     DeskComponent,
     DeskCardComponent,
-    PlanDialogComponent
+    PlanDialogComponent,
+    FloorSelectorComponent
   ],
   imports: [
     BrowserModule,

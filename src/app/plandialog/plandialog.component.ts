@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+
+
 @Component({
-  selector: 'plan-dialog',
-  templateUrl: './plandialog.component.html',
+  selector: 'building-selector',
+  templateUrl: `
+    <h2>Building</h2>
+    <select (change)="onSelect($event.target.value)">
+      <option value="0">--Select--</option>
+    </select>
+  `,
   styleUrls: ['./plandialog.component.css']
 })
+
 export class PlanDialogComponent implements OnInit {
   planId;
   bulindingId;
@@ -17,3 +25,4 @@ export class PlanDialogComponent implements OnInit {
     return console.log(json)
   }
 }
+
