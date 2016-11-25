@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { PlanDialogComponent } from './plandialog/plandialog.component';
 
 import { LoginService } from './service/login.service';
+import { PlanService } from './service/plan.service';
+import { PlanListComponent } from './plan-list/plan-list.component';
 import { EmployeeService } from './service/employee.service';
 import { DeskCardComponent } from './desk-card/desk-card.component';
 
@@ -16,7 +18,8 @@ import { DeskCardComponent } from './desk-card/desk-card.component';
     AppComponent,
     LoginComponent,
     DeskCardComponent,
-    PlanDialogComponent
+    PlanDialogComponent,
+    PlanListComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { DeskCardComponent } from './desk-card/desk-card.component';
     HttpModule
   ],
   providers: [
-    LoginService,EmployeeService
+    LoginService,EmployeeService,PlanService
   ],
   bootstrap: [AppComponent]
 })
