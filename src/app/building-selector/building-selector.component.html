@@ -1,3 +1,7 @@
 <p>
-  building-selector works!
+  Building
+    <select (change)="onSelect($event.target.value)">
+      <option value="0">--Select Building--</option>
+      <option *ngFor="let buildingItem of buildingList" value="{{ item.id }}">{{ item.name }}</option>
+    </select>
 </p>
