@@ -3,13 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { PlanDialogService } from '../service/plandialog.service';
 
 @Component({
-  selector: 'building-selector',
-  templateUrl: `
-    <h2>Building</h2>
-    <select (change)="onSelect($event.target.value)">
-      <option value="0">--Select--</option>
-    </select>
-  `,
+  selector: 'plan-dialog',
+  templateUrl: './plandialog.component.html',
   styleUrls: ['./plandialog.component.css']
 })
 
