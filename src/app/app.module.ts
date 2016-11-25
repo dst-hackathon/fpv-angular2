@@ -23,6 +23,7 @@ import { BuildingSelectorComponent } from './building-selector/building-selector
 import { FloorSelectorService } from './service/floorselector.service';
 import { BuildingSelectorService } from './service/buildingselector.service';
 
+import { FloorComponent } from './floor/floor.component';
 
 import { AppRoutingModule  } from './app-routing.module';
 
@@ -38,6 +39,7 @@ import { AppRoutingModule  } from './app-routing.module';
     FloorSelectorComponent,
     PlanListComponent,
     BuildingSelectorComponent,
+    FloorComponent
 
   ],
   imports: [
@@ -54,7 +56,8 @@ import { AppRoutingModule  } from './app-routing.module';
     PlanService,
     FloorSelectorService,
     DeskAssignmentService,
-    BuildingSelectorService
+    BuildingSelectorService,
+    DeskService
   ],
   bootstrap: [AppComponent]
 })

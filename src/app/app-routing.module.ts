@@ -8,6 +8,8 @@ import { PlanDialogComponent } from './plandialog/plandialog.component';
 import { DeskComponent } from './desk/desk.component';
 
 const routes: Routes = [
+    { path: '', redirectTo: '/main', pathMatch: 'full' },
+    { path: 'main',  component: AppComponent },
     { path: 'plan/:id', component: PlanDialogComponent }
 ];
 
