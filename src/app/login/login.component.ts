@@ -34,8 +34,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSignInBtnClick(event) {
-    event.preventDefault();
+  onSignInBtnClick($event) {
+    $event.preventDefault();
+    $event.stopPropagation();
 
     this.signInButtonClicked = 'clicked';
     console.log(this.signInButtonClicked);

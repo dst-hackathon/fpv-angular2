@@ -14,11 +14,11 @@ export class BuildingSelectorService {
 
     constructor(private http: Http) { }
 
-    getBuildingList(planid, sort): Observable<Building[]> {
+    getBuildingList(planId): Observable<Building[]> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
 
-        return this.http.get(this.serverUrl + '?planid=' + planid, options)
+        return this.http.get(this.serverUrl + '?planid=' + planId, options)
             .map(res => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }

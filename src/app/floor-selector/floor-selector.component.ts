@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { FloorSelectorService } from '../service/floorselector.service';
 
@@ -14,6 +14,8 @@ export class FloorSelectorComponent implements OnInit {
   floorId;
   buildingId;
   sort;
+
+  @Input() building
 
   constructor(public floorSelectorService: FloorSelectorService) { }
 

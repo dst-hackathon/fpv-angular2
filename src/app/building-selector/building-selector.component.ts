@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { BuildingSelectorService } from '../service/buildingselector.service';
 
@@ -10,12 +10,15 @@ import { BuildingSelectorService } from '../service/buildingselector.service';
 export class BuildingSelectorComponent implements OnInit {
   buildingList;
 
+  @Input() planId
+
   constructor(public buildingSelectorService: BuildingSelectorService) { }
 
   ngOnInit() {
-    
-    this.buildingSelectorService.getBuildingList(1,null).subscribe(buildingList => this.buildingList = buildingList, err => console.log(err));
-    
+    this.buildingSelectorService.getBuildingList(this.planId)
+      .subscribe(buildingList => {
+        this.buildingList = buildingList
+      }, err => console.log(err));
   }
 
 }
