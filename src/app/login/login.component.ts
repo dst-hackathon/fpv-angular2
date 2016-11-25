@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import {
   Input,
   trigger,
@@ -30,8 +30,10 @@ export class LoginComponent implements OnInit {
   username;
   password;
   rememberMe;
-  user;
   signInButtonClicked = 'none';
+  
+  @Input() user;
+  @Output() userChange = new EventEmitter();
 
   constructor(public loginService: LoginService) { }
 
@@ -40,7 +42,10 @@ export class LoginComponent implements OnInit {
   }
 
   checkLoginUser(){
-    this.loginService.getAccount().subscribe(user => this.user = user, err => console.log(err))
+    this.loginService.getAccount().subscribe(user => {
+      this.user = user
+      this.userChange.emit(this.user);
+    }, err => console.log(err))
   }
 
   onSignInBtnClick() {
@@ -61,11 +66,9 @@ export class LoginComponent implements OnInit {
   }
 
   logout(){
-    this.loginService.logout().subscribe(this.logResponse)
-    this.user = null
-  }
-
-  logResponse(json){
-    return console.log(json)
+    this.loginService.logout().subscribe(res => {
+      this.user = null
+      this.userChange.emit(this.user);
+    })
   }
 }

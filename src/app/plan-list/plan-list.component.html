@@ -4,7 +4,7 @@
 <div>
   <ul>
     <li *ngFor="let plan of planList">
-      <p>{{plan.name}}</p>
+      <a href="#" (click)='onClick(plan)'>{{plan.name}}</a>
     </li>
   </ul>
 </div>
