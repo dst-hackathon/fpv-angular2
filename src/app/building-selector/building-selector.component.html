@@ -1,9 +1,9 @@
 <div *ngIf="buildingList">
   <p>
     Building
-      <select (change)="onSelect($event.target.value)">
+      <select [ngModel]="selectedBuilding" (ngModelChange)="onSelectedBuilding($event)">
         <option value="0">--Select Building--</option>
-        <option *ngFor="let item of buildingList" value="{{ item.id }}">{{ item.name }}</option>
+        <option *ngFor="let item of buildingList" [ngValue]="item">{{ item.name }}</option>
       </select>
   </p>
 </div>

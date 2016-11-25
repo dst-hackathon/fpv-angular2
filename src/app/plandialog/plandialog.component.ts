@@ -18,6 +18,8 @@ export class PlanDialogComponent implements OnInit {
   floorList;
   floorId;
 
+  selectedBuilding
+
   constructor(
     public planDialogService: PlanDialogService,
     private route: ActivatedRoute

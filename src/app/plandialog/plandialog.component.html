@@ -1,5 +1,8 @@
 <div *ngIf="plan">
 	<h2>Plan : {{plan.name}}</h2>
-	<building-selector [planId]="plan.id"></building-selector>
-	<floor-selector [building]="building"></floor-selector>
+	<building-selector [planId]="plan.id" [(selectedBuilding)]="selectedBuilding"></building-selector>
+
+	{{selectedBuilding | json}}
+
+	<floor-selector [building]="selectedBuilding"></floor-selector>
 </div>
