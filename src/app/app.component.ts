@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
 
   checkLoginUser(){
     this.loginService.getAccount().subscribe(user => this.user = user, err => console.log(err))
-
   }
 
   getDeskAssignment(){
