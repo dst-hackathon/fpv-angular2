@@ -13,6 +13,9 @@ export class FloorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(this.floor){
+      this.floor = Floor.fromJson(this.floor); 
+    }
   }
 
 }

@@ -2,7 +2,7 @@
 	<h2>Plan : {{plan.name}}</h2>
 	<building-selector [planId]="plan.id" [(selectedBuilding)]="selectedBuilding"></building-selector>
 
-	{{selectedBuilding | json}}
-
-	<floor-selector [building]="selectedBuilding"></floor-selector>
+	<floor-selector *ngIf="selectedBuilding" 
+		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor"></floor-selector>
+	<floor *ngIf="selectedFloor" [floor]="selectedFloor"></floor>
 </div>

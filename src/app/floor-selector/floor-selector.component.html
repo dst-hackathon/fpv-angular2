@@ -1,8 +1,8 @@
-<p>
+<p *ngIf="building">
 	Floor :
-	<select>
+	<select [ngModel]="selectedFloor" (ngModelChange)="onSelectedFloor($event)">
 		<option>--Select--</option>
-		<option *ngFor='let floorItem of floorList' value='{{ floorItem.id }}'>
+		<option *ngFor='let floorItem of floorList' [ngValue]='floorItem'>
 			{{ floorItem.name }}
 		</option>
 	</select>
