@@ -5,13 +5,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { PlanDialogComponent } from './plandialog/plandialog.component';
 
 import { LoginService } from './service/login.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    PlanDialogComponent
   ],
   imports: [
     BrowserModule,
