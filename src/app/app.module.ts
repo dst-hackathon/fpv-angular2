@@ -9,8 +9,13 @@ import { PlanDialogComponent } from './plandialog/plandialog.component';
 import { DeskComponent } from './desk/desk.component';
 
 import { LoginService } from './service/login.service';
+import { PlanService } from './service/plan.service';
+import { PlanListComponent } from './plan-list/plan-list.component';
+import { PlanDialogService } from './service/plandialog.service';
 import { EmployeeService } from './service/employee.service';
 import { DeskCardComponent } from './desk-card/desk-card.component';
+import { FloorSelectorComponent } from './floor-selector/floor-selector.component';
+import { BuildingSelectorComponent } from './building-selector/building-selector.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,10 @@ import { DeskCardComponent } from './desk-card/desk-card.component';
     PlanDialogComponent,
     DeskComponent,
     DeskCardComponent,
-    PlanDialogComponent
+    PlanDialogComponent,
+    FloorSelectorComponent,
+    PlanListComponent,
+    BuildingSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +35,7 @@ import { DeskCardComponent } from './desk-card/desk-card.component';
     HttpModule
   ],
   providers: [
-    LoginService,EmployeeService
+    LoginService,PlanDialogService,EmployeeService,PlanService
   ],
   bootstrap: [AppComponent]
 })
