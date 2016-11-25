@@ -1,0 +1,6 @@
+{
+   "/api": {
+      "target": "http://dst.me-soft.net",
+      "secure": false
+   }
+}
