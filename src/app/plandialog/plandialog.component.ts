@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { PlanDialogService } from '../service/plandialog.service';
 
@@ -17,12 +18,15 @@ export class PlanDialogComponent implements OnInit {
   floorList;
   floorId;
 
-  constructor(public planDialogService: PlanDialogService) { }
+  constructor(
+    public planDialogService: PlanDialogService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    // TODO: receive planId from other page
-    this.planId = 1;
-    this.planDialogService.getPlan(this.planId).subscribe(plan => this.plan = plan, err => console.log(err))
+    this.route.params
+    .switchMap((params: Params) => this.planDialogService.getPlan(params['id']))
+    .subscribe(plan => this.plan = plan, err => console.log(err));
   }
 
   logResponse(json){
