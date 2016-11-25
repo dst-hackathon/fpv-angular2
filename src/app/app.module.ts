@@ -9,13 +9,17 @@ import { PlanDialogComponent } from './plandialog/plandialog.component';
 import { DeskComponent } from './desk/desk.component';
 
 import { LoginService } from './service/login.service';
+import { EmployeeService } from './service/employee.service';
+import { DeskCardComponent } from './desk-card/desk-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PlanDialogComponent,
-    DeskComponent
+    DeskComponent,
+    DeskCardComponent,
+    PlanDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,7 @@ import { LoginService } from './service/login.service';
     HttpModule
   ],
   providers: [
-    LoginService
+    LoginService,EmployeeService
   ],
   bootstrap: [AppComponent]
 })
