@@ -1,0 +1,11 @@
+.btn-signin, .form-signin > .container {
+    overflow: hidden;
+}
+.btn-signin {
+    transition-property: height opacity;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+}
+.btn-signin.clicked {
+    height: 0px;
+}
