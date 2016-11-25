@@ -3,13 +3,25 @@
   <button (click)="logout()">Logout</button>
 </div>
 
-<form class="form-signin" (ngSubmit)="onSubmit()" #loginForm="ngForm" *ngIf="user==null">
-    <h2 class="form-signin-heading">Please sign in</h2>
-    <label for="username" class="sr-only">Username</label>
-    <input type="text" class="form-control" id="username" required [(ngModel)]="username" name="username">
+<div class="jumbotron" *ngIf="user==null">
+  <div class="container">
+    <h1 class="display-3">Floor Plan Visualizer</h1>
+    <p class="lead">Move desks in a blink of an eye.</p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Sign-In &raquo;</a></p>
+  </div>
+</div>
 
-    <label for="password" class="sr-only">Password</label>
-    <input type="password" class="form-control" id="password" required [(ngModel)]="password" name="password">
+<form class="form-signin" (ngSubmit)="onSubmit()" #loginForm="ngForm" *ngIf="user==null">
+  <div class="container">
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" required [(ngModel)]="username" name="username">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" required [(ngModel)]="password" name="password">
+    </div>
 
     <div class="checkbox">
       <label>
@@ -17,4 +29,5 @@
       </label>
     </div>
     <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!loginForm.form.valid">Sign in</button>
+  </div>
 </form>

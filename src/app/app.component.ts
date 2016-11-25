@@ -1,7 +1,9 @@
-import { Component,OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { EmployeeService } from './service/employee.service';
+import {EmployeeService} from './service/employee.service';
 import { Employee } from './model/employee';
+import { LoginService } from './service/login.service';
+import {DeskAssignment} from './model/desk-assignment';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +12,24 @@ import { Employee } from './model/employee';
 })
 export class AppComponent implements OnInit {
   title = 'app worksxxx!';
-  employee: Employee
+  employee: Employee;
+  user;
 
-  constructor(public employeeService : EmployeeService){}
+  constructor(public employeeService : EmployeeService,
+              public loginService : LoginService){}
 
   ngOnInit(){
      this.employeeService.getEmployee(1).subscribe(res => {
       this.employee = res
-    })
+    });
+    this.checkLoginUser();
+  }
+
+  checkLoginUser(){
+    this.loginService.getAccount().subscribe(user => this.user = user, err => console.log(err))
+  }
+
+  getDeskAssignment(){
+    return new DeskAssignment();
   }
 }

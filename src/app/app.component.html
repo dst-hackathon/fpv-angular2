@@ -1,7 +1,25 @@
-<div class="container">
-  {{title}}
-  <app-login></app-login>
-  <plan-list></plan-list>
+<!-- Just an image -->
+<nav class="navbar navbar-dark bg-inverse">
+  <a class="navbar-brand" href="#">
+    <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" alt="">
+  </a>
+</nav>
 
-  <desk-card [employee]="employee"></desk-card>
+<app-login [(user)]="user"></app-login>
+  <div *ngIf="user">
+    <plan-list></plan-list>
+    <desk-card [employee]="employee"></desk-card>
+  </div>
+  <p>empty desk</p>
+  <desk></desk> 
+  <p>assigned desk</p>
+  <desk [deskAssignment]="getDeskAssignment()"></desk>
+  <!--<div *ngIf="">-->
+    <!--<desk-card [employee]="employee"></desk-card>-->
+  <!--</div>-->
+<div class="container">
+  <hr/>
+  <footer>
+    <p>&copy; 2016 DST Systems, Inc. All rights reserved.</p>
+  </footer>
 </div>

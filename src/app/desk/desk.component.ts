@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Desk } from '../model/desk';
-import { DeskAssignment } from '../model/desk-assignment';
+import {Component, OnInit, Input} from '@angular/core';
+
+import {Desk} from '../model/desk';
+import {DeskAssignment} from '../model/desk-assignment';
+import {Employee} from '../model/employee';
+
+import {EmployeeService} from '../service/employee.service';
 
 @Component({
   selector: 'desk',
@@ -9,15 +13,17 @@ import { DeskAssignment } from '../model/desk-assignment';
 })
 export class DeskComponent implements OnInit {
   
-  desk;
-  deskAssignment;
+  @Input() desk: Desk
+  @Input() deskAssignment: DeskAssignment
+  employee: Employee;
   emptyDeskUrl = '../assets/question-mark.png';
   assignedDeskUrl = '../assets/user-silhouette.png';
   
-  constructor() { }
+  constructor(public employeeService : EmployeeService) { }
 
   ngOnInit() {
-    
+      this.employeeService.getEmployee(1).subscribe(res => {
+      this.employee = res
+    })
   }
-
 }
