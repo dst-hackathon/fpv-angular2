@@ -7,11 +7,14 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
 import { LoginService } from './service/login.service';
+import { EmployeeService } from './service/employee.service';
+import { DeskCardComponent } from './desk-card/desk-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DeskCardComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +22,7 @@ import { LoginService } from './service/login.service';
     HttpModule
   ],
   providers: [
-    LoginService
+    LoginService,EmployeeService
   ],
   bootstrap: [AppComponent]
 })

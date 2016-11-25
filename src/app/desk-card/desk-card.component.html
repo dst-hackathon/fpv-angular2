@@ -1,0 +1,9 @@
+<div class="card" *ngIf="employee">
+  <img class="card-img-top" [src]="employee.getByteImage()" alt="Card image cap">
+  <div class="card-block">
+    <h4 class="card-title">{{employee.firstname}} {{employee.lastname}} ({{employee.nickname}})</h4>
+    <p class="card-text"></p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+  {{employee | json}}
+</div>
