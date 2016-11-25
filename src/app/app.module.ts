@@ -23,6 +23,8 @@ import { BuildingSelectorComponent } from './building-selector/building-selector
 import { FloorSelectorService } from './service/floorselector.service';
 import { FloorComponent } from './floor/floor.component';
 
+import { AppRoutingModule  } from './app-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +43,7 @@ import { FloorComponent } from './floor/floor.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    AppRoutingModule,
     NgbModule.forRoot()
   ],
   providers: [

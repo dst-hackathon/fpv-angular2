@@ -4,7 +4,8 @@
 <div>
   <ul>
     <li *ngFor="let plan of planList">
-      <a href="#" (click)='onClick(plan)'>{{plan.name}}</a>
+      <a href="#" [routerLink]="['/plan', plan.id]">{{plan.name}}</a>
     </li>
   </ul>
+  <router-outlet></router-outlet>
 </div>

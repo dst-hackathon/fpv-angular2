@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { Desk } from '../model/Desk';
+import { Desk } from '../model/desk';
 @Injectable()
 export class DeskService {
 
