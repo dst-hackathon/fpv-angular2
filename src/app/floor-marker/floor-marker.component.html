@@ -1,2 +1,5 @@
-<floor [floor]="floor" (click)="onDrag($event)"></floor>
-<div *ngFor='let p of deskAssignments'>{{p.x}},{{p.y}}</div>
+<floor-create-dialog [(desk)]="selectedDesk" (change)="completeCreateDesk()"></floor-create-dialog>
+<floor-plan-canvas *ngIf="floor" (click)="markDesk($event)" 
+		[(floor)]="floor" 
+		[desks]="desks"
+		[deskAssignments]="deskAssignments"></floor-plan-canvas>

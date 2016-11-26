@@ -3,8 +3,20 @@
 	<building-selector [planId]="plan.id" [(selectedBuilding)]="selectedBuilding"></building-selector>
 
 	<floor-selector *ngIf="selectedBuilding" 
-		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor"></floor-selector>
-	<floor *ngIf="selectedFloor" [floor]="selectedFloor"></floor>
+		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor" (change)="floorChange()"></floor-selector>
+
+	<button *ngIf="selectedFloor" type="button" class="btn btn-secondary" (click)="toggleFloorMode()">{{floorMode}} Mode</button>
+
+	<floor-marker *ngIf="selectedFloor && floorMode == 'Edit'"
+		[(floor)]="selectedFloor" 
+		[(desks)]="desks"
+		[deskAssignments]="deskAssignments"></floor-marker>
+
+	<floor-plan-canvas *ngIf="selectedFloor && floorMode == 'View'" 
+		[(floor)]="selectedFloor" 
+		[desks]="desks"
+		[deskAssignments]="deskAssignments"></floor-plan-canvas>
+	
 
 	 <planholder  [changesetId]="changesetId" ></planholder>
 

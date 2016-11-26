@@ -1,30 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 
-import { FloorSelectorService } from '../service/floorselector.service';
+import { FloorService } from '../service/floor.service';
 
 import { Floor } from '../model/floor';
+import { Desk } from '../model/desk';
 
 @Component({
-  selector: 'app-floor-marker',
+  selector: 'floor-marker',
   templateUrl: './floor-marker.component.html',
   styleUrls: ['./floor-marker.component.css']
 })
 export class FloorMarkerComponent implements OnInit {
-  floor
+  @Input() floor
+  @Input() desks: Desk[]
+  @Input() deskAssignments
 
-  deskAssignments
+  @Output() desksChange: EventEmitter<Desk[]> = new EventEmitter<Desk[]>();
 
-  constructor(public floorService:FloorSelectorService) { }
+  selectedDesk: Desk
 
-  ngOnInit() {
-    this.floorService.getFloor(1)
-       .subscribe(floor => this.floor = floor, err => console.log(err));
+  constructor(public floorService:FloorService) { }
 
-    this.deskAssignments = []
+  ngOnInit() {}
+
+  markDesk($event){
+    let desk = Desk.fromJson({
+      x:$event.offsetX,
+      y:$event.offsetY,
+      height: 30,
+      width: 30
+    })
+    desk.floor = this.floor
+
+    this.selectedDesk = desk
   }
 
-  onDrag($event){
-    this.deskAssignments.push({x:$event.offsetX,y:$event.offsetY})
-    console.log(this.deskAssignments)
+  completeCreateDesk(){
+    console.log("complete create",this.selectedDesk)
+    this.desks.push(this.selectedDesk);
+
+    this.desksChange.emit(this.desks);
   }
 }

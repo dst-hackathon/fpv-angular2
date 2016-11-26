@@ -6,10 +6,9 @@ import { LoginService } from '../service/login.service';
 @Component({
   selector: 'profile',
   template: `
-    <div *ngIf="user">
-      <p>Login as : {{user.firstName}}</p>
-      <button (click)="logout()">Logout</button>
-    </div>
+    <span class="navbar-text float-sm-right navbar-dark-text" *ngIf="user">
+      Login as : {{user.firstName}}
+    </span>
   `,
 })
 export class ProfileComponent{

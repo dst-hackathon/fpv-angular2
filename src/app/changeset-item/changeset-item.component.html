@@ -1,0 +1,24 @@
+<div *ngIf="changesetItemList && changeset">
+	<h3>Changeset: {{changeset.effectiveDate}}</h3>
+	<table class="table">
+		<thead>
+			<th>Name</th>
+			<th>From</th>
+			<th>To</th>
+			<th>Status</th>
+		</thead>
+		<tbody>
+			<tr *ngFor="let changesetItem of changesetItemList">
+				<td>{{changesetItem.employee.firstname}} {{changesetItem.employee.lastname}}</td>
+				<td>{{changesetItem.fromDesk.code}}</td>
+				<td>{{changesetItem.toDesk.code}}</td>
+				<td *ngIf="changesetItem.status=='ACCEPT'" class="text-success">Accepeted</td>
+				<td *ngIf="changesetItem.status=='DENY'" class="text-danger">Denied</td>
+				<td *ngIf="changesetItem.status!='ACCEPT' && changesetItem.status!='DENY'">
+					<a class="btn btn-success" role="button" (click)="updateStatus(changesetItem, 'ACCEPT')">Approve</a>
+					<a class="btn btn-danger" role="button" (click)="updateStatus(changesetItem, 'DENY')">Deny</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

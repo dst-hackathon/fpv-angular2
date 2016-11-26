@@ -1,0 +1,7 @@
+<div *ngIf="plan">
+	<span>{{plan.name}}</span>
+	<span>
+		<a href="#">Changeset</a>
+		<a href="#" [routerLink]="['/plan', plan.id]">Move Desk</a>
+	</span>
+</div>

@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { PlanDialogService } from '../service/plandialog.service';
+import { PlanService } from '../service/plan.service';
+import { DeskService } from '../service/desk.service';
+import { DeskAssignmentService } from '../service/desk-assignment.service';
+
+import { Floor } from '../model/floor';
 
 @Component({
   selector: 'plan-dialog',
@@ -19,10 +23,19 @@ export class PlanDialogComponent implements OnInit {
   floorId;
   changesetId;
 
+  selectedFloor;
+  desks;
+  deskAssignments;
+
   selectedBuilding
 
+  floorMode = "View";
+
   constructor(
-    public planDialogService: PlanDialogService,
+    public planService: PlanService,
+    public deskService:DeskService,
+    public deskAssignmentService: DeskAssignmentService,
+    
     private route: ActivatedRoute
   ) {}
 
@@ -30,7 +43,7 @@ export class PlanDialogComponent implements OnInit {
       this.route.params.subscribe(params => {
         let planId = params['id'];
 
-        this.planDialogService.getPlan(planId)
+        this.planService.getPlan(planId)
           .subscribe(plan => this.plan = plan, err => console.log(err));
       })
 
@@ -40,6 +53,41 @@ export class PlanDialogComponent implements OnInit {
 
   logResponse(json){
     return console.log(json)
+  }
+
+  floorChange(){
+    if (this.selectedFloor) {
+        this.getDeskByFloor();
+        this.getDeskAssignmentsByFloor();
+      }
+  }
+
+  getDeskByFloor() {
+    this.deskService.getDesks(this.selectedFloor.id).subscribe(
+      json => {
+        this.desks = json;
+        console.log("Desk ", json)
+      },
+      err => {
+        console.log(err);
+      });
+  }
+
+  getDeskAssignmentsByFloor() {
+    this.deskAssignmentService.getDeskAssignments(this.selectedFloor.id).subscribe(
+      result => {
+        this.deskAssignments = result;
+        console.log("DeskAssigments", result);
+      }
+    );
+  }
+
+  toggleFloorMode() {
+    if ("View" === this.floorMode) {
+      this.floorMode = "Edit";
+    } else {
+      this.floorMode = "View"
+    }
   }
 }
 

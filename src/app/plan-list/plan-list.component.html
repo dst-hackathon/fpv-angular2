@@ -1,10 +1,12 @@
-<h1>
-  {{title}}
-</h1>
-<div>
-  <ul>
-    <li *ngFor="let plan of planList">
-      <a href="#" [routerLink]="['/plan', plan.id]">{{plan.name}}</a>
-    </li>
-  </ul>
+<div class="col-md-10">
+  <h1>
+    {{title}}
+  </h1>
+  <div>
+    <ul>
+      <li *ngFor="let plan of planList">
+        <plan-item planId={{plan.id}}></plan-item>
+      </li>
+    </ul>
+  </div>
 </div>
