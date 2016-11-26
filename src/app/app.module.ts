@@ -57,7 +57,7 @@ import { PlanholderComponent } from './planholder/planholder.component';
     LeftnavComponent,
     ChangesetListComponent,
     FloorCreateDialogComponent,
-    ChangesetItemComponent
+    ChangesetItemComponent,
     FloorMarkerComponent,
     PlanholderComponent
 
