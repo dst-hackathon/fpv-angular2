@@ -17,11 +17,11 @@ export class DeskAssignmentService {
 
   constructor(private http: Http) { }
 
-  getAllDeskAssignments(): Observable<DeskAssignment[]> {
+  getDeskAssignments(floorId): Observable<DeskAssignment[]> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(this.serverUrl, options)
+    return this.http.get(`${this.serverUrl}?floorId=${floorId}`, options)
       .map(res => {
         let deskAssignmentList: DeskAssignment[] = [];
         for(let responseItem of res.json()){
