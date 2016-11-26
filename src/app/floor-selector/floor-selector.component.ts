@@ -1,6 +1,6 @@
 import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
 
-import { FloorSelectorService } from '../service/floorselector.service';
+import { FloorService } from '../service/floor.service';
 
 import { Floor } from '../model/floor';
 
@@ -21,7 +21,7 @@ export class FloorSelectorComponent implements OnInit {
   @Input() selectedFloor: Floor
   @Output() selectedFloorChange: EventEmitter<Floor> = new EventEmitter<Floor>();
 
-  constructor(public floorSelectorService: FloorSelectorService) { }
+  constructor(public floorService: FloorService) { }
 
   onSelectedFloor(selectedBuilding) {
     this.selectedFloor = selectedBuilding
@@ -29,7 +29,7 @@ export class FloorSelectorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.floorSelectorService.getFloorList(this.building.id).subscribe(floorList => this.floorList = floorList, err => console.log(err));
+    this.floorService.getFloorList(this.building.id).subscribe(floorList => this.floorList = floorList, err => console.log(err));
   }
 
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FloorSelectorService } from '../service/floorselector.service';
+import { FloorService } from '../service/floor.service';
 
 import { Floor } from '../model/floor';
 import { Desk } from '../model/desk';
@@ -15,7 +15,7 @@ export class FloorMarkerComponent implements OnInit {
 
   desks: Desk[]
 
-  constructor(public floorService:FloorSelectorService) { }
+  constructor(public floorService:FloorService) { }
 
   ngOnInit() {
     this.floorService.getFloor(1)
