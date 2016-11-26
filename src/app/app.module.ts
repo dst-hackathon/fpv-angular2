@@ -35,7 +35,6 @@ import { ChangesetListComponent } from './changeset-list/changeset-list.componen
 import { ChangesetService } from './service/changeset.service'
 import { ChangesetItemComponent } from './changeset-item/changeset-item.component';
 import { ChangesetItemService } from './service/changeset-item.service';
-import { DeskMoveModal } from './desk-move-modal/desk-move-modal';
 
 @NgModule({
   declarations: [
@@ -54,8 +53,7 @@ import { DeskMoveModal } from './desk-move-modal/desk-move-modal';
     PlanItemComponent,
     LeftnavComponent,
     ChangesetListComponent,
-    ChangesetItemComponent,
-    DeskMoveModal
+    ChangesetItemComponent
   ],
   imports: [
     BrowserModule,

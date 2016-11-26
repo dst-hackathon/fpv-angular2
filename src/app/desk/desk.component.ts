@@ -4,7 +4,6 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Desk } from '../model/desk';
 import { DeskAssignment } from '../model/desk-assignment';
 import { Employee } from '../model/employee';
-import { DeskMoveModal } from '../desk-move-modal/desk-move-modal'
 
 import { EmployeeService } from '../service/employee.service';
 
