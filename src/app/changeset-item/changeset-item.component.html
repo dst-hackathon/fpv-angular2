@@ -1,3 +1,11 @@
-<p>
-  changeset-item works!
-</p>
+<span *ngIf="changesetItem">
+	<span>{{changesetItem.employee.firstname}} {{changesetItem.employee.lastname}}</span>
+	<span>{{changesetItem.fromDesk.code}}</span>
+	<span>{{changesetItem.toDesk.code}}</span>
+	<span class="text-success" *ngIf="changesetItem.status=='ACCEPT'">Approved</span>
+	<span class="text-danger" *ngIf="changesetItem.status=='DENY'">Denied</span>
+	<span *ngIf="changesetItem.status!='ACCEPT' && changesetItem.status!='DENY'">
+		<a class="btn btn-success" href="#" role="button">Approve</a>
+		<a class="btn btn-danger" href="#" role="button">Deny</a>
+	</span>
+</span>
