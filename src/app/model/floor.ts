@@ -1,3 +1,5 @@
+import {Building} from './building';
+
 export class Floor {
     id: number;
     name: string;
@@ -5,7 +7,7 @@ export class Floor {
     image
     imageContentType: string
 
-    building: number
+    building: Building
 
     static fromJson(jsonObject) : Floor{
         let floor = new Floor()
@@ -15,7 +17,7 @@ export class Floor {
         floor.image = jsonObject.image
         floor.imageContentType = jsonObject.imageContentType
 
-        floor.building = jsonObject.building
+        floor.building = Building.fromJson(jsonObject.building);
 
         return floor;
     }

@@ -12,7 +12,7 @@ export class FloorCreateDialogComponent implements OnInit {
   @Input() desk: Desk
   @Output() deskChange: EventEmitter<Desk> = new EventEmitter<Desk>();
 
-  constructor(public deskService: DeskService) { }
+  constructor(public deskService: DeskService ) { }
 
   ngOnInit() {
   }
