@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { FloorService } from '../service/floor.service';
 
@@ -6,14 +6,14 @@ import { Floor } from '../model/floor';
 import { Desk } from '../model/desk';
 
 @Component({
-  selector: 'app-floor-marker',
+  selector: 'floor-marker',
   templateUrl: './floor-marker.component.html',
   styleUrls: ['./floor-marker.component.css']
 })
 export class FloorMarkerComponent implements OnInit {
-  floor
-
-  desks: Desk[]
+  @Input() floor
+  @Input() desks: Desk[]
+  @Input() deskAssignments
 
   constructor(public floorService:FloorService) { }
 
@@ -25,7 +25,12 @@ export class FloorMarkerComponent implements OnInit {
   }
 
   onDrag($event){
-    let desk = Desk.fromJson({x:$event.offsetX,y:$event.offsetY})
+    let desk = Desk.fromJson({
+      x:$event.offsetX,
+      y:$event.offsetY,
+      height: "50px",
+      width: "50px"
+    })
 
     this.desks.push(desk)
     console.log(this.desks)
