@@ -1,3 +1,8 @@
+<div class="desk-position"
+    [style.top]="desk.y + 'px'" 
+    [style.left]="desk.x + 'px'"
+    [style.width]="desk.width + 'px'"
+    [style.height]="desk.height + 'px'"> 
 <div class="deskItem" *ngIf="deskAssignment == null" placement="right" ngbPopover="Empty Desk" popoverTitle="Empty Desk Title">
   <img src="{{emptyDeskUrl}}" alt="empty desk">
 </div> 
@@ -5,3 +10,4 @@
   <img src="{{assignedDeskUrl}}" alt="assigned desk">
 </div> 
 <template #popContent><desk-card [employee]="employee"></desk-card></template>
+</div>
