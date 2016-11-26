@@ -7,6 +7,6 @@
     [style.height]="desk.height + 'px'"
     >
         <!--<span>ID: {{desk.id}}, Code: {{desk.code}}, X: {{desk.x}}, Y: {{desk.y}}, Width: {{desk.width}}, Height: {{desk.height}}</span>-->
-        <desk [desk]="desk"></desk>
+        <desk [desk]="desk" [deskAssignment]="getDeskAssignment(desk)"></desk>
     </div>
 </div>
