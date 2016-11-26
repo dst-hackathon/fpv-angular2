@@ -1,16 +1,33 @@
 <div class="desk-position"
-    [style.top]="desk.y + 'px'" 
+    [style.top]="desk.y + 'px'"
     [style.left]="desk.x + 'px'"
     [style.width]="desk.width + 'px'"
-    [style.height]="desk.height + 'px'"> 
+    [style.height]="desk.height + 'px'"
+    placement="right"
+    [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="{{deskAssignment == null ? 'Employee Title' : 'Employee Title'}}"
+    (click)="open(modalContent)">
 
 <!--Hover event-->
-  <div class="deskItem" *ngIf="deskAssignment == null" placement="right" ngbPopover="Empty Desk" triggers="mouseenter:mouseleave" popoverTitle="Empty Desk Title">
-    <img src="{{emptyDeskUrl}}" alt="empty desk" (click)="tryClick()">
-  </div> 
-  <div class="deskItem" *ngIf="deskAssignment != null" placement="right" [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="Employee Title">
+  <div class="deskItem" *ngIf="deskAssignment == null">
+    <img src="{{emptyDeskUrl}}" alt="empty desk">
+  </div>
+  <div class="deskItem" *ngIf="deskAssignment != null">
     <img src="{{assignedDeskUrl}}" alt="assigned desk">
-  </div> 
+  </div>
 </div>
 
 <template #popContent><desk-card [employee]="employee"></desk-card></template>
+<template #modalContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Modal title</h4>
+  </div>
+  <div class="modal-body">
+    <p>Sample modal</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</template>

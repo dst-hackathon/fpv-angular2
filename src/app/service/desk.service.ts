@@ -16,7 +16,7 @@ export class DeskService {
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers }); // Create a request option
 
-    return this.http.get("/api/desks?floorId="+floorId, options)
+    return this.http.get("/api/desks?floorId="+floorId+"&cacheBuster="+new Date().getTime(), options)
       .map((res: Response) => {
         let desks: Desk[] = [];
         for (let obj of res.json()) {
@@ -25,6 +25,15 @@ export class DeskService {
 
         return desks;
       })
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  save(desk: Desk): Observable<Desk>{
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers }); 
+
+    return this.http.post(this.serverUrl, desk, options)
+      .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 }

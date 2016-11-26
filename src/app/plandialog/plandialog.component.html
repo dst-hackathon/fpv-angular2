@@ -5,6 +5,11 @@
 	<floor-selector *ngIf="selectedBuilding" 
 		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor" (change)="floorChange()"></floor-selector>
 
+	<floor-marker *ngIf="selectedFloor"
+		[(floor)]="selectedFloor" 
+		[(desks)]="desks"
+		[deskAssignments]="deskAssignments"></floor-marker>
+
 	<floor-plan-canvas *ngIf="selectedFloor" 
 		[(floor)]="selectedFloor" 
 		[desks]="desks"

@@ -43,7 +43,6 @@ export class PlanDialogComponent implements OnInit {
         this.planService.getPlan(planId)
           .subscribe(plan => this.plan = plan, err => console.log(err));
       })
-      this.getDeskAssignments();
   }
 
   logResponse(json){
@@ -53,6 +52,7 @@ export class PlanDialogComponent implements OnInit {
   floorChange(){
     if (this.selectedFloor) {
         this.getDeskByFloor();
+        this.getDeskAssignmentsByFloor();
       }
   }
 
@@ -67,8 +67,8 @@ export class PlanDialogComponent implements OnInit {
       });
   }
 
-  getDeskAssignments() {
-    this.deskAssignmentService.getAllDeskAssignments().subscribe(
+  getDeskAssignmentsByFloor() {
+    this.deskAssignmentService.getDeskAssignments(this.selectedFloor.id).subscribe(
       result => {
         this.deskAssignments = result;
         console.log("DeskAssigments", result);
