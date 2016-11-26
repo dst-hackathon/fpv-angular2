@@ -3,9 +3,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import { PlanService } from '../service/plan.service';
 import { DeskService } from '../service/desk.service';
+import { DeskAssignmentService } from '../service/desk-assignment.service';
 
 import { Floor } from '../model/floor';
-
 
 @Component({
   selector: 'plan-dialog',
@@ -22,14 +22,16 @@ export class PlanDialogComponent implements OnInit {
   floorList;
   floorId;
 
-  selectedFloor
-  desks
+  selectedFloor;
+  desks;
+  deskAssignments;
 
   selectedBuilding
 
   constructor(
     public planService: PlanService,
     public deskService:DeskService,
+    public deskAssignmentService: DeskAssignmentService,
     
     private route: ActivatedRoute
   ) {}
@@ -41,6 +43,7 @@ export class PlanDialogComponent implements OnInit {
         this.planService.getPlan(planId)
           .subscribe(plan => this.plan = plan, err => console.log(err));
       })
+      this.getDeskAssignments();
   }
 
   logResponse(json){
@@ -62,6 +65,15 @@ export class PlanDialogComponent implements OnInit {
       err => {
         console.log(err);
       });
+  }
+
+  getDeskAssignments() {
+    this.deskAssignmentService.getAllDeskAssignments().subscribe(
+      result => {
+        this.deskAssignments = result;
+        console.log("DeskAssigments", result);
+      }
+    );
   }
 
 

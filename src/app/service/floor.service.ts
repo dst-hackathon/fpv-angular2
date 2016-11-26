@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import { Floor } from '../model/floor';
 
 @Injectable()
-export class FloorSelectorService {
+export class FloorService {
 
   private serverUrl = '/api/floors';
 

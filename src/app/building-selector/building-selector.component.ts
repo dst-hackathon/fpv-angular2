@@ -1,6 +1,6 @@
 import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
 
-import { BuildingSelectorService } from '../service/buildingselector.service';
+import { BuildingService } from '../service/building.service';
 
 import { Building } from '../model/building';
 
@@ -17,7 +17,7 @@ export class BuildingSelectorComponent implements OnInit {
   @Input() selectedBuilding: Building
   @Output() selectedBuildingChange: EventEmitter<Building> = new EventEmitter<Building>();
 
-  constructor(public buildingSelectorService: BuildingSelectorService) { }
+  constructor(public buildingService: BuildingService) { }
 
   onSelectedBuilding(selectedBuilding) {
     this.selectedBuilding = selectedBuilding
@@ -25,7 +25,7 @@ export class BuildingSelectorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.buildingSelectorService.getBuildingList(this.planId)
+    this.buildingService.getBuildingList(this.planId)
       .subscribe(buildingList => {
         this.buildingList = buildingList
       }, err => console.log(err));

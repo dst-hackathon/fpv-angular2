@@ -17,4 +17,14 @@ export class FloorPlanCanvasComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  getDeskAssignment(desk: Desk) : DeskAssignment {
+      
+      for(let deskAssigment of this.deskAssignments) {
+          if (desk.id === deskAssigment.desk.id) {
+            return deskAssigment;
+          }
+      }
+      return null;
+  }
 }
