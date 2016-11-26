@@ -16,7 +16,7 @@ export class DeskService {
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers }); // Create a request option
 
-    return this.http.get("/api/desks", options)
+    return this.http.get("/api/desks?floorId="+floorId, options)
       .map((res: Response) => {
         let desks: Desk[] = [];
         for (let obj of res.json()) {
