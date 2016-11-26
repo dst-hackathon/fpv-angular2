@@ -30,6 +30,7 @@ import { FloorComponent } from './floor/floor.component';
 import { AppRoutingModule  } from './app-routing.module';
 import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
+import { LeftnavComponent } from './leftnav/leftnav.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { PlanItemComponent } from './plan-item/plan-item.component';
     BuildingSelectorComponent,
     FloorComponent,
     FloorMarkerComponent,
-    PlanItemComponent
+    PlanItemComponent,
+    LeftnavComponent
 
   ],
   imports: [

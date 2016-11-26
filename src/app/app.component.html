@@ -6,11 +6,15 @@
 </nav>
 
 <div class="container">
-  <hr/>
-  <profile [(user)]="user"></profile>
-  <router-outlet></router-outlet>
-
-  <footer>
-    <p>&copy; 2016 DST Systems, Inc. All rights reserved.</p>
-  </footer>
+  <leftnav [(user)]="user"></leftnav>
+  <div id="page-content-wrapper">
+    <hr/>
+    <profile [(user)]="user"></profile>
+    <router-outlet></router-outlet>
+  </div>
 </div>
+<!--TODO: Add footer -->
+<!--<footer>
+  <p>&copy; 2016 DST Systems, Inc. All rights reserved.</p>
+</footer>-->
+
