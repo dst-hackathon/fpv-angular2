@@ -17,7 +17,6 @@ import { LoginService } from './service/login.service';
 import { DeskAssignmentService } from './service/desk-assignment.service';
 import { PlanService } from './service/plan.service';
 import { PlanListComponent } from './plan-list/plan-list.component';
-import { PlanDialogService } from './service/plandialog.service';
 import { EmployeeService } from './service/employee.service';
 import { DeskService } from './service/desk.service';
 import { DeskCardComponent } from './desk-card/desk-card.component';
@@ -30,6 +29,7 @@ import { FloorComponent } from './floor/floor.component';
 
 import { AppRoutingModule  } from './app-routing.module';
 import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
+import { PlanItemComponent } from './plan-item/plan-item.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
     PlanListComponent,
     BuildingSelectorComponent,
     FloorComponent,
-    FloorMarkerComponent
+    FloorMarkerComponent,
+    PlanItemComponent
 
   ],
   imports: [
@@ -56,7 +57,6 @@ import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
   ],
   providers: [
     LoginService,
-    PlanDialogService,
     EmployeeService,
     PlanService,
     FloorSelectorService,

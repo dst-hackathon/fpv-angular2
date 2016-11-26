@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { PlanDialogService } from '../service/plandialog.service';
+import { PlanService } from '../service/plan.service';
 
 @Component({
   selector: 'plan-dialog',
@@ -21,7 +21,7 @@ export class PlanDialogComponent implements OnInit {
   selectedBuilding
 
   constructor(
-    public planDialogService: PlanDialogService,
+    public planService: PlanService,
     private route: ActivatedRoute
   ) {}
 
@@ -29,7 +29,7 @@ export class PlanDialogComponent implements OnInit {
       this.route.params.subscribe(params => {
         let planId = params['id'];
 
-        this.planDialogService.getPlan(planId)
+        this.planService.getPlan(planId)
           .subscribe(plan => this.plan = plan, err => console.log(err));
       })
   }

@@ -29,4 +29,13 @@ export class PlanService {
       })
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
+
+  getPlan(planId): Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this.serverUrl + "/" + planId, options)
+      .map(res => Plan.fromJson(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }

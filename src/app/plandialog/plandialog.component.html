@@ -4,5 +4,5 @@
 
 	<floor-selector *ngIf="selectedBuilding" 
 		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor"></floor-selector>
-	<floor *ngIf="selectedFloor" [floor]="selectedFloor"></floor>
+	<floor-plan-canvas *ngIf="selectedFloor" [floor]="selectedFloor"></floor-plan-canvas>
 </div>

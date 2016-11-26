@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Desk } from '../model/desk';
+import { Floor } from '../model/floor';
 import { DeskAssignment } from '../model/desk-assignment';
 import { DeskService } from '../service/desk.service';
 @Component({
@@ -8,6 +9,8 @@ import { DeskService } from '../service/desk.service';
   styleUrls: ['./floor-plan-canvas.component.css']
 })
 export class FloorPlanCanvasComponent implements OnInit {
+  @Input() floor: Floor;
+
   desks: Desk[];
   deskAssignments: DeskAssignment[];
   constructor(public deskService: DeskService) { }
@@ -16,8 +19,16 @@ export class FloorPlanCanvasComponent implements OnInit {
     this.getDeskByFloor();
   }
 
+  ngOnChanges(floor: Floor) {
+    if (this.floor) {
+      this.floor = Floor.fromJson(this.floor);
+      this.getDeskByFloor();
+    }
+   
+  }
+
   getDeskByFloor() {
-    this.deskService.getDesks("1").subscribe(
+    this.deskService.getDesks(this.floor.id).subscribe(
       json => {
         this.desks = json;
         console.log("Desk ", json)
