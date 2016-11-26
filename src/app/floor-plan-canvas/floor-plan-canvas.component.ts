@@ -19,12 +19,14 @@ export class FloorPlanCanvasComponent implements OnInit {
   }
 
   getDeskAssignment(desk: Desk) : DeskAssignment {
-      
-      for(let deskAssigment of this.deskAssignments) {
-          if (desk.id === deskAssigment.desk.id) {
-            return deskAssigment;
-          }
+      if(this.deskAssignments){
+        for(let deskAssigment of this.deskAssignments) {
+            if (desk.id === deskAssigment.desk.id) {
+              return deskAssigment;
+            }
+        }
       }
+      
       return null;
   }
 }

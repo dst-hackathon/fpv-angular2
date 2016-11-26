@@ -1,1 +1,4 @@
-<floor-plan-canvas *ngIf="floor" [floor]="floor" (click)="onDrag($event)"></floor-plan-canvas>
+<floor-plan-canvas *ngIf="floor" (click)="onDrag($event)" 
+		[(floor)]="floor" 
+		[desks]="desks"
+		[deskAssignments]="deskAssignments"></floor-plan-canvas>
