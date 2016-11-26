@@ -6,11 +6,28 @@
 
 <!--Hover event-->
   <div class="deskItem" *ngIf="deskAssignment == null" placement="right" ngbPopover="Empty Desk" triggers="mouseenter:mouseleave" popoverTitle="Empty Desk Title">
-    <img src="{{emptyDeskUrl}}" alt="empty desk" (click)="tryClick()">
+    <img src="{{emptyDeskUrl}}" alt="empty desk" (click)="open(modalContent)">
   </div> 
   <div class="deskItem" *ngIf="deskAssignment != null" placement="right" [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="Employee Title">
-    <img src="{{assignedDeskUrl}}" alt="assigned desk">
+    <img src="{{assignedDeskUrl}}" alt="assigned desk" (click)="open(modalContent)">
   </div> 
 </div>
 
 <template #popContent><desk-card [employee]="employee"></desk-card></template>
+<template #modalContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Modal title</h4>
+  </div>
+  <div class="modal-body">
+    <p>Sample modal</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+  </div>
+</template>
+
+<desk-move-modal></desk-move-modal>
+
