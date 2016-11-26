@@ -32,7 +32,6 @@ import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
 import { LeftnavComponent } from './leftnav/leftnav.component';
 import { ChangesetListComponent } from './changeset-list/changeset-list.component';
-import { DeskMoveModal } from './desk-move-modal/desk-move-modal';
 
 @NgModule({
   declarations: [
@@ -50,8 +49,7 @@ import { DeskMoveModal } from './desk-move-modal/desk-move-modal';
     FloorMarkerComponent,
     PlanItemComponent,
     LeftnavComponent,
-    ChangesetListComponent,
-    DeskMoveModal
+    ChangesetListComponent
   ],
   imports: [
     BrowserModule,
