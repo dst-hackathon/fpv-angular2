@@ -4,7 +4,7 @@
 <div>
   <ul>
     <li *ngFor="let plan of planList">
-      <a href="#" [routerLink]="['/plan', plan.id]">{{plan.name}}</a>
+      <plan-item planId={{plan.id}}></plan-item>
     </li>
   </ul>
 </div>
