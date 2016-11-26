@@ -17,6 +17,7 @@ export class PlanDialogComponent implements OnInit {
   buildingId;
   floorList;
   floorId;
+  changesetId;
 
   selectedBuilding
 
@@ -32,6 +33,9 @@ export class PlanDialogComponent implements OnInit {
         this.planDialogService.getPlan(planId)
           .subscribe(plan => this.plan = plan, err => console.log(err));
       })
+
+      //TO DO REMOVE ME MOCK UP DATA
+      this.changesetId = 1
   }
 
   logResponse(json){

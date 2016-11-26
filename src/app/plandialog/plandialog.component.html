@@ -5,4 +5,7 @@
 	<floor-selector *ngIf="selectedBuilding" 
 		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor"></floor-selector>
 	<floor *ngIf="selectedFloor" [floor]="selectedFloor"></floor>
+
+	 <planholder  [changesetId]="changesetId" ></planholder>
+
 </div>

@@ -1,0 +1,7 @@
+<div>
+     <li *ngFor="let changeSetItem of changeSetItems"> 
+      <img class="card-img-top" [src]="changeSetItem.employee.getByteImage()" style="high:100px;width:100px;">
+      <p>Name: {{changeSetItem.employee.firstname}} {{changeSetItem.employee.lastname}} </p>
+     </li>
+
+</div>

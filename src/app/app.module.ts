@@ -25,11 +25,13 @@ import { FloorSelectorComponent } from './floor-selector/floor-selector.componen
 import { BuildingSelectorComponent } from './building-selector/building-selector.component';
 import { FloorSelectorService } from './service/floorselector.service';
 import { BuildingSelectorService } from './service/buildingselector.service';
+import { PlanHolderService } from './service/planholder.service';
 
 import { FloorComponent } from './floor/floor.component';
 
 import { AppRoutingModule  } from './app-routing.module';
 import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
+import { PlanholderComponent } from './planholder/planholder.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
     PlanListComponent,
     BuildingSelectorComponent,
     FloorComponent,
-    FloorMarkerComponent
+    FloorMarkerComponent,
+    PlanholderComponent
 
   ],
   imports: [
@@ -62,7 +65,8 @@ import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
     FloorSelectorService,
     DeskAssignmentService,
     BuildingSelectorService,
-    DeskService
+    DeskService,
+    PlanHolderService
   ],
   bootstrap: [AppComponent]
 })
