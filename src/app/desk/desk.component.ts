@@ -49,6 +49,24 @@ export class DeskComponent implements OnInit {
     }
   }
 
+  public ondragstart(event) {
+    console.log("Drag started", event);
+    console.log("Desk ID", this.desk.id);
+    event.dataTransfer.setData('srcDesk', JSON.stringify(this.desk));
+  }
+
+  public ondrop(event) {
+    event.preventDefault();
+    console.log("Drop", event);
+    console.log("To Desk ID", this.desk.id);
+    var srcDesk = event.dataTransfer.getData('srcDesk');
+    console.log(srcDesk);
+    console.log("From Desk ID", JSON.parse(srcDesk).id );
+  }
+
+  public ondragover(event) {
+    event.preventDefault();
+  }
   tryClick() {
     console.log('click');
   }
