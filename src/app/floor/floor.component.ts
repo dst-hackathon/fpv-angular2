@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, Input,SimpleChanges } from '@angular/core';
 
-import { FloorSelectorService } from '../service/floorselector.service';
+import { FloorService } from '../service/floor.service';
 
 import { Floor } from '../model/floor';
 
@@ -13,7 +13,7 @@ export class FloorComponent implements OnInit, OnChanges {
   @Input() floor: Floor
   loadedFloor: Floor
 
-  constructor(public floorService:FloorSelectorService) { }
+  constructor(public floorService:FloorService) { }
 
   ngOnInit() {
     this.loadFloor(this.floor)
