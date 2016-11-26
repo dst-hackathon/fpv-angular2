@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 
 import { Desk } from '../model/desk';
 import { DeskService } from '../service/desk.service';
@@ -10,6 +10,7 @@ import { DeskService } from '../service/desk.service';
 })
 export class FloorCreateDialogComponent implements OnInit {
   @Input() desk: Desk
+  @Output() deskChange: EventEmitter<Desk> = new EventEmitter<Desk>();
 
   constructor(public deskService: DeskService) { }
 
@@ -17,8 +18,8 @@ export class FloorCreateDialogComponent implements OnInit {
   }
 
   save(){
-    this.deskService.save(this.desk).subscribe(res => {
-      console.log(res)
+    this.deskService.save(this.desk).subscribe(desk => {
+      this.deskChange.emit(this.desk);
     })
   }
   delete(){}

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 
 import { FloorService } from '../service/floor.service';
 
@@ -15,16 +15,13 @@ export class FloorMarkerComponent implements OnInit {
   @Input() desks: Desk[]
   @Input() deskAssignments
 
+  @Output() desksChange: EventEmitter<Desk[]> = new EventEmitter<Desk[]>();
+
   selectedDesk: Desk
 
   constructor(public floorService:FloorService) { }
 
-  ngOnInit() {
-    this.floorService.getFloor(1)
-       .subscribe(floor => this.floor = floor, err => console.log(err));
-
-    this.desks = []
-  }
+  ngOnInit() {}
 
   markDesk($event){
     let desk = Desk.fromJson({
@@ -36,5 +33,12 @@ export class FloorMarkerComponent implements OnInit {
     desk.floor = this.floor
 
     this.selectedDesk = desk
+  }
+
+  completeCreateDesk(){
+    console.log("complete create",this.selectedDesk)
+    this.desks.push(this.selectedDesk);
+
+    this.desksChange.emit(this.desks);
   }
 }
