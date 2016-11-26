@@ -4,7 +4,7 @@
     [style.width]="desk.width + 'px'"
     [style.height]="desk.height + 'px'"
     placement="right"
-    [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="{{deskAssignment == null ? 'Employee Title' : 'Employee Title'}}"
+    [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="{{deskAssignment == null ? 'Available desk' : 'Employee Title'}}"
     (click)="open(modalContent)">
 
 <!--Hover event-->
