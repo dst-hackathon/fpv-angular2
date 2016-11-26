@@ -1,5 +1,5 @@
 <div style="position: relative;">
-    <p>Demo floor canvas!</p>
+    <floor *ngIf="floor" [floor]="floor"></floor>
     <div class="desk-position" *ngFor="let desk of desks" 
     [style.top]="desk.y + 'px'" 
     [style.left]="desk.x + 'px'"
