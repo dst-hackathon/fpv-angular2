@@ -1,4 +1,5 @@
-<floor-plan-canvas *ngIf="floor" (click)="onDrag($event)" 
+<floor-create-dialog [desk]="selectedDesk"></floor-create-dialog>
+<floor-plan-canvas *ngIf="floor" (click)="markDesk($event)" 
 		[(floor)]="floor" 
 		[desks]="desks"
 		[deskAssignments]="deskAssignments"></floor-plan-canvas>

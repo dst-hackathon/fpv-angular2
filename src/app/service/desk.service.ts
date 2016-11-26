@@ -27,4 +27,13 @@ export class DeskService {
       })
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
+
+  save(desk: Desk){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers }); 
+
+    return this.http.post(this.serverUrl, desk, options)
+      .map((res: Response) => res)
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }

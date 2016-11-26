@@ -32,6 +32,7 @@ import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
 import { LeftnavComponent } from './leftnav/leftnav.component';
 import { ChangesetListComponent } from './changeset-list/changeset-list.component';
+import { FloorCreateDialogComponent } from './floor-create-dialog/floor-create-dialog.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ChangesetListComponent } from './changeset-list/changeset-list.componen
     FloorMarkerComponent,
     PlanItemComponent,
     LeftnavComponent,
-    ChangesetListComponent
+    ChangesetListComponent,
+    FloorCreateDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,5 @@
+import { Floor } from './floor';
+
 export class Desk {
     id: number;
     code: string;
@@ -5,6 +7,8 @@ export class Desk {
     height: number;
     x: number;
     y: number;
+
+    floor: Floor
 
     static fromJson(jsonObject): Desk {
         let desk = new Desk();
@@ -18,4 +22,3 @@ export class Desk {
         return desk;
     }
 }
-

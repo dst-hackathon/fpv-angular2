@@ -15,6 +15,8 @@ export class FloorMarkerComponent implements OnInit {
   @Input() desks: Desk[]
   @Input() deskAssignments
 
+  selectedDesk: Desk
+
   constructor(public floorService:FloorService) { }
 
   ngOnInit() {
@@ -24,15 +26,15 @@ export class FloorMarkerComponent implements OnInit {
     this.desks = []
   }
 
-  onDrag($event){
+  markDesk($event){
     let desk = Desk.fromJson({
       x:$event.offsetX,
       y:$event.offsetY,
       height: 30,
       width: 30
     })
+    desk.floor = this.floor
 
-    this.desks.push(desk)
-    console.log(this.desks)
+    this.selectedDesk = desk
   }
 }
