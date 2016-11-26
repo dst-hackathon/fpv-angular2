@@ -8,7 +8,6 @@ import { LoginService } from '../service/login.service';
   template: `
     <div *ngIf="user">
       <p>Login as : {{user.firstName}}</p>
-      <button (click)="logout()">Logout</button>
     </div>
   `,
 })

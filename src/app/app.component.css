@@ -1,0 +1,10 @@
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    left: 250px;
+}
+
+#page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
