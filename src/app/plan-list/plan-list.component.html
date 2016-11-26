@@ -2,6 +2,11 @@
   {{title}}
 </h1>
 <div>
+
+  <floor-marker 
+    [desks]="desks"
+		[deskAssignments]="deskAssignments"></floor-marker>
+
   <ul>
     <li *ngFor="let plan of planList">
       <plan-item planId={{plan.id}}></plan-item>

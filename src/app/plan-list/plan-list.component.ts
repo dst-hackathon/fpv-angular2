@@ -12,6 +12,10 @@ export class PlanListComponent implements OnInit {
   planList: Plan[];
   selectedPlan: Plan;
 
+  //TODO remove
+  desks
+  deskAssignments
+
   constructor(public planService: PlanService) { }
 
   ngOnInit() {

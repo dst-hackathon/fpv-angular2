@@ -28,8 +28,8 @@ export class FloorMarkerComponent implements OnInit {
     let desk = Desk.fromJson({
       x:$event.offsetX,
       y:$event.offsetY,
-      height: "50px",
-      width: "50px"
+      height: 30,
+      width: 30
     })
 
     this.desks.push(desk)
