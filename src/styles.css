@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+.navbar-dark .navbar-dark-text,
+.navbar-dark .navbar-item a.nav-link {
+    color: rgba(255,255,255,.5);
+}
+.bootstrap-vertical-nav li {
+    padding-top: .425rem;
+    padding-bottom: .425rem;
+    cursor: pointer;
+}
+.bootstrap-vertical-nav li:hover {
+    background-color: rgba(255,255,255,.3);
+}
+.bootstrap-vertical-nav li:hover .navbar-dark-text {
+    color: rgb(255,255,255);
+}
+footer {
+    text-align: center;
+}

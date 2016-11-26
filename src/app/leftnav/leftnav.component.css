@@ -1,51 +1,41 @@
-#sidebar-wrapper {
-    z-index: 1000;
-    position: absolute;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+/* Creates a vertical nav starting at 768px (sm) */
+.navbar-dark .navbar-item a.nav-link {
+    color: rgba(255,255,255,.5);
 }
 
-#sidebar-wrapper {
-    width: 250px;
-}
-
-/* Sidebar Styles */
-
-.sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 250px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.sidebar-nav li {
-    text-indent: 20px;
-    line-height: 40px;
-}
-
-.sidebar-nav li a {
+.navbar-nav .nav-link {
     display: block;
-    text-decoration: none;
-    color: #999999;
+    padding-top: .425rem;
+    padding-bottom: .425rem;
+}
+.nav-link {
+    display: inline-block;
 }
 
-.sidebar-nav li a:hover {
-    text-decoration: none;
-    color: #fff;
-    background: rgba(255,255,255,0.2);
+@media (min-width: 768px) {
+   .bootstrap-vertical-nav .navbar .navbar-collapse {
+      padding: 0;
+      max-height: none;
+   }
+   .bootstrap-vertical-nav .navbar ul {
+      float: none;
+   }
+   .bootstrap-vertical-nav .navbar ul:not {
+      display: block;
+   }
+   .bootstrap-vertical-nav .navbar li {
+      float: none;
+      display: block;
+   }
+
+   .bootstrap-vertical-nav .navbar-nav .nav-item+.nav-item {
+      margin-left: 0;
+   }
 }
 
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-    text-decoration: none;
+/* Put any custom CSS you want for your menu when it is collapsed */
+@media (max-width: 768px) {
+   .bootstrap-vertical-nav {
+      
+   }
 }

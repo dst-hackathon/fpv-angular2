@@ -1,19 +1,23 @@
-<nav id="sidebar-wrapper" class="navbar navbar-dark bg-inverse" *ngIf="user">
-  <ul class="nav sidebar-nav" >
-    <li>
-      <a routerLink="/home" routerLinkActive="active">View Master Plan</a>
-    </li>
-    <li>
-      <a href="#">Create/Edit Future Plan</a>
-    </li>
-    <li>
-        <a href="#">Approve Future Plan</a>
-    </li>
-    <li>
-        <a href="#">Manage Floor Plan</a>
-    </li>
-    <li>
-      <a routerLink="/logout" routerLinkActive="active">Log out</a>
-    </li>
-  </ul>
-</nav>
+<div class="col-md-2">
+  <div class="bootstrap-vertical-nav">
+    <nav class="navbar navbar-dark bg-inverse" *ngIf="user">
+      <ul class="nav sidebar-nav" >
+        <li class="nav-item">
+          <a class="nav-link navbar-dark-text" routerLink="/home" routerLinkActive="active">View Master Plan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navbar-dark-text" href="#">Create/Edit Future Plan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navbar-dark-text" href="#">Approve Future Plan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link navbar-dark-text" href="#">Manage Floor Plan</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link navbar-dark-text" routerLink="/logout" routerLinkActive="active">Log out</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

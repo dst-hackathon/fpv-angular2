@@ -5,6 +5,7 @@
     transition-property: height opacity;
     transition-duration: 1s;
     transition-timing-function: linear;
+    color: white;
 }
 .btn-signin.clicked {
     height: 0px;
