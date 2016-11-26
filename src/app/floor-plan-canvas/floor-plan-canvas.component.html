@@ -1,12 +1,5 @@
 <div style="position: relative;">
     <floor *ngIf="floor" [floor]="floor"></floor>
-    <div class="desk-position" *ngFor="let desk of desks" 
-    [style.top]="desk.y + 'px'" 
-    [style.left]="desk.x + 'px'"
-    [style.width]="desk.width + 'px'"
-    [style.height]="desk.height + 'px'"
-    >
-        <!--<span>ID: {{desk.id}}, Code: {{desk.code}}, X: {{desk.x}}, Y: {{desk.y}}, Width: {{desk.width}}, Height: {{desk.height}}</span>-->
-        <desk [desk]="desk" [deskAssignment]="getDeskAssignment(desk)"></desk>
-    </div>
+         <!--<span>ID: {{desk.id}}, Code: {{desk.code}}, X: {{desk.x}}, Y: {{desk.y}}, Width: {{desk.width}}, Height: {{desk.height}}</span>-->
+        <desk *ngFor="let desk of desks" [desk]="desk" [deskAssignment]="getDeskAssignment(desk)"></desk>
 </div>
