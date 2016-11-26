@@ -1,19 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './login/login.component';
 import { LogoutComponent } from './login/logout.component';
 import { ProfileComponent } from './login/profile.component';
 
-import { PlanDialogComponent } from './plandialog/plandialog.component';
-import { DeskComponent } from './desk/desk.component';
+import {PlanDialogComponent} from './plandialog/plandialog.component';
+import {DeskComponent} from './desk/desk.component';
 import { FloorPlanCanvasComponent } from './floor-plan-canvas/floor-plan-canvas.component';
 
-import { LoginService } from './service/login.service';
+import {LoginService} from './service/login.service';
 import { DeskAssignmentService } from './service/desk-assignment.service';
 import { PlanService } from './service/plan.service';
 import { PlanListComponent } from './plan-list/plan-list.component';
@@ -50,7 +50,6 @@ import { ChangesetListComponent } from './changeset-list/changeset-list.componen
     PlanItemComponent,
     LeftnavComponent,
     ChangesetListComponent
-
   ],
   imports: [
     BrowserModule,
