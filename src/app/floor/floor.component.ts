@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 import { Floor } from '../model/floor';
 
@@ -13,6 +13,12 @@ export class FloorComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if(this.floor){
+      this.floor = Floor.fromJson(this.floor); 
+    }
+  }
+
+  ngOnChanges(floor: Floor) {
     if(this.floor){
       this.floor = Floor.fromJson(this.floor); 
     }
