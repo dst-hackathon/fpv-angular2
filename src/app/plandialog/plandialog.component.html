@@ -5,10 +5,8 @@
 	<floor-selector *ngIf="selectedBuilding" 
 		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor" (change)="floorChange()"></floor-selector>
 
-		{{selectedFloor | json}}
-
 	<floor-plan-canvas *ngIf="selectedFloor" 
-		[floor]="selectedFloor" 
+		[(floor)]="selectedFloor" 
 		[desks]="desks"
 		[deskAssignments]="deskAssignments"></floor-plan-canvas>
 </div>

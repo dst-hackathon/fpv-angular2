@@ -52,7 +52,6 @@ export class PlanDialogComponent implements OnInit {
 
   floorChange(){
     if (this.selectedFloor) {
-        this.selectedFloor = Floor.fromJson(this.selectedFloor);
         this.getDeskByFloor();
       }
   }
