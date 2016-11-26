@@ -27,7 +27,12 @@ export class FloorComponent implements OnInit, OnChanges {
 
   loadFloor(floor){
     if(floor && floor.id){
-      this.floorService.getFloor(floor.id).subscribe(floor => this.loadedFloor = floor, err => console.log(err));
+      this.floorService.getFloorImage(floor.id).subscribe(floorWithImage => {
+        floor.image = floorWithImage.image
+        floor.imageContentType = floorWithImage.imageContentType
+
+        this.loadedFloor = Floor.fromJson(floor)
+      }, err => console.log(err));
     }
   }
 }
