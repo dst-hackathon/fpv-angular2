@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+
+import { ChangesetService } from '../service/changeset.service';
+
+import { Changeset } from '../model/changeset';
 
 @Component({
-  selector: 'app-changeset-list',
+  selector: 'changeset-list',
   templateUrl: './changeset-list.component.html',
   styleUrls: ['./changeset-list.component.css']
 })
 export class ChangesetListComponent implements OnInit {
 
-  constructor() { }
+@Input() planId
+changesetList;
+     
+
+  constructor(public changesetService: ChangesetService) { }
 
   ngOnInit() {
+    this.changesetService.getChangesetList(this.planId)
+      .subscribe(changesetList => {
+        this.changesetList = changesetList
+      }, err => console.log(err));
+
   }
+
+  
 
 }
