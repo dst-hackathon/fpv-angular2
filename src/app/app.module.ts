@@ -17,7 +17,6 @@ import { LoginService } from './service/login.service';
 import { DeskAssignmentService } from './service/desk-assignment.service';
 import { PlanService } from './service/plan.service';
 import { PlanListComponent } from './plan-list/plan-list.component';
-import { PlanDialogService } from './service/plandialog.service';
 import { EmployeeService } from './service/employee.service';
 import { DeskService } from './service/desk.service';
 import { DeskCardComponent } from './desk-card/desk-card.component';
@@ -58,7 +57,6 @@ import { PlanItemComponent } from './plan-item/plan-item.component';
   ],
   providers: [
     LoginService,
-    PlanDialogService,
     EmployeeService,
     PlanService,
     FloorSelectorService,
