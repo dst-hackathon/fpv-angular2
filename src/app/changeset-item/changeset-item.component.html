@@ -1,4 +1,4 @@
-<div *ngIf="changesetItemList">
+<div *ngIf="changesetItemList && changeset">
 	<h3>Changeset: {{changeset.effectiveDate}}</h3>
 	<table class="table">
 		<thead>
@@ -15,8 +15,8 @@
 				<td *ngIf="changesetItem.status=='ACCEPT'" class="text-success">Accepeted</td>
 				<td *ngIf="changesetItem.status=='DENY'" class="text-danger">Denied</td>
 				<td *ngIf="changesetItem.status!='ACCEPT' && changesetItem.status!='DENY'">
-					<a class="btn btn-success" href="#" role="button">Approve</a>
-					<a class="btn btn-danger" href="#" role="button">Deny</a>
+					<a class="btn btn-success" role="button" (click)="updateStatus(changesetItem, 'ACCEPT')">Approve</a>
+					<a class="btn btn-danger" role="button" (click)="updateStatus(changesetItem, 'DENY')">Deny</a>
 				</td>
 			</tr>
 		</tbody>

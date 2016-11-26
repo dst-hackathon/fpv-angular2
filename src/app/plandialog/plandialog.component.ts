@@ -28,6 +28,8 @@ export class PlanDialogComponent implements OnInit {
 
   selectedBuilding
 
+  floorMode = "View";
+
   constructor(
     public planService: PlanService,
     public deskService:DeskService,
@@ -76,6 +78,12 @@ export class PlanDialogComponent implements OnInit {
     );
   }
 
-
+  toggleFloorMode() {
+    if ("View" === this.floorMode) {
+      this.floorMode = "Edit";
+    } else {
+      this.floorMode = "View"
+    }
+  }
 }
 

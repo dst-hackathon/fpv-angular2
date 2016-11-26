@@ -22,4 +22,9 @@ export class ChangesetItemComponent implements OnInit {
   	this.changesetService.getChangeset(this.changesetId).subscribe(changeset => this.changeset = changeset, err => console.log(err));
   }
 
+  updateStatus(changesetItem, status) {
+  	changesetItem.status = status;
+  	this.changesetItemService.setChangesetItemStatus(changesetItem).subscribe();
+  }
+
 }
