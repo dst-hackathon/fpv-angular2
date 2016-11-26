@@ -31,6 +31,7 @@ import { AppRoutingModule  } from './app-routing.module';
 import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
 import { LeftnavComponent } from './leftnav/leftnav.component';
+import { ChangesetListComponent } from './changeset-list/changeset-list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { LeftnavComponent } from './leftnav/leftnav.component';
     FloorComponent,
     FloorMarkerComponent,
     PlanItemComponent,
-    LeftnavComponent
+    LeftnavComponent,
+    ChangesetListComponent
 
   ],
   imports: [
