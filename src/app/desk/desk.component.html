@@ -1,12 +1,15 @@
 <div class="desk-position"
-    [style.top]="desk.y + 'px'"
-    [style.left]="desk.x + 'px'"
-    [style.width]="desk.width + 'px'"
+    [style.top]="desk.y - (desk.height/2) + 'px'"
+    [style.left]="desk.x + - (desk.width/2) + 'px'"
     [style.height]="desk.height + 'px'"
+    [style.width]="desk.width  + 'px'"
     placement="right"
-    [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="{{deskAssignment == null ? 'Employee Title' : 'Employee Title'}}"
-    (click)="open(modalContent)">
-
+    [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="{{deskAssignment == null ? 'Available desk' : 'Employee Title'}}"
+    (click)="open(modalContent)"
+    [draggable]="deskAssignment != null"
+    (dragstart)="ondragstart($event)"
+    (drop)="ondrop($event)"
+    (dragover)="ondragover($event)">
 <!--Hover event-->
   <div class="deskItem" *ngIf="deskAssignment == null">
     <img src="{{emptyDeskUrl}}" alt="empty desk">
