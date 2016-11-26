@@ -10,31 +10,11 @@ import { DeskService } from '../service/desk.service';
 })
 export class FloorPlanCanvasComponent implements OnInit {
   @Input() floor: Floor;
-
-  desks: Desk[];
-  deskAssignments: DeskAssignment[];
-  constructor(public deskService: DeskService) { }
+  @Input() desks: Desk[];
+  @Input() deskAssignments: DeskAssignment[];
+  
+  constructor() { }
 
   ngOnInit() {
-    this.getDeskByFloor();
-  }
-
-  ngOnChanges(floor: Floor) {
-    if (this.floor) {
-      this.floor = Floor.fromJson(this.floor);
-      this.getDeskByFloor();
-    }
-   
-  }
-
-  getDeskByFloor() {
-    this.deskService.getDesks(this.floor.id).subscribe(
-      json => {
-        this.desks = json;
-        console.log("Desk ", json)
-      },
-      err => {
-        console.log(err);
-      });
   }
 }

@@ -3,6 +3,12 @@
 	<building-selector [planId]="plan.id" [(selectedBuilding)]="selectedBuilding"></building-selector>
 
 	<floor-selector *ngIf="selectedBuilding" 
-		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor"></floor-selector>
-	<floor-plan-canvas *ngIf="selectedFloor" [floor]="selectedFloor"></floor-plan-canvas>
+		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor" (change)="floorChange()"></floor-selector>
+
+		{{selectedFloor | json}}
+
+	<floor-plan-canvas *ngIf="selectedFloor" 
+		[floor]="selectedFloor" 
+		[desks]="desks"
+		[deskAssignments]="deskAssignments"></floor-plan-canvas>
 </div>

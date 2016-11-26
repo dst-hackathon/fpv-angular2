@@ -1,7 +1,1 @@
-<floor [floor]="floor" (click)="onDrag($event)"></floor>
-<div style="position: absolute;display: inline-block;z-index: 999;"
-  *ngFor='let d of desks'
-    [style.top]="d.y + 'px'" 
-    [style.left]="d.x + 'px'"
-    [style.width]="10"
-    [style.height]="10">{{d.x}},{{d.y}}</div>
+<floor-plan-canvas *ngIf="floor" [floor]="floor" (click)="onDrag($event)"></floor-plan-canvas>

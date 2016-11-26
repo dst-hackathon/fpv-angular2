@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { PlanDialogService } from '../service/plandialog.service';
+import { DeskService } from '../service/desk.service';
+
+import { Floor } from '../model/floor';
 
 @Component({
   selector: 'plan-dialog',
@@ -18,10 +21,14 @@ export class PlanDialogComponent implements OnInit {
   floorList;
   floorId;
 
+  selectedFloor
+  desks
+
   selectedBuilding
 
   constructor(
     public planDialogService: PlanDialogService,
+    public deskService:DeskService,
     private route: ActivatedRoute
   ) {}
 
@@ -37,5 +44,25 @@ export class PlanDialogComponent implements OnInit {
   logResponse(json){
     return console.log(json)
   }
+
+  floorChange(){
+    if (this.selectedFloor) {
+        this.selectedFloor = Floor.fromJson(this.selectedFloor);
+        this.getDeskByFloor();
+      }
+  }
+
+  getDeskByFloor() {
+    this.deskService.getDesks(this.selectedFloor.id).subscribe(
+      json => {
+        this.desks = json;
+        console.log("Desk ", json)
+      },
+      err => {
+        console.log(err);
+      });
+  }
+
+
 }
 
