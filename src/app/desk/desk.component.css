@@ -2,3 +2,8 @@
     width: 20px;
     height: 20px;
 }
+.desk-position {
+    position: absolute;
+    background-color: red;
+    opacity: 0.5;
+}
