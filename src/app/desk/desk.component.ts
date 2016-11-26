@@ -22,8 +22,10 @@ export class DeskComponent implements OnInit {
   constructor(public employeeService : EmployeeService) { }
 
   ngOnInit() {
-      this.employeeService.getEmployee(1).subscribe(res => {
-      this.employee = res
-    })
+      if (this.deskAssignment) {
+        this.employeeService.getEmployee(this.deskAssignment.employee.id).subscribe(res => {
+        this.employee = res
+      });
+    }
   }
 }
