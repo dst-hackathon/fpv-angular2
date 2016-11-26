@@ -5,13 +5,16 @@
 	<floor-selector *ngIf="selectedBuilding" 
 		[building]="selectedBuilding" [(selectedFloor)]="selectedFloor" (change)="floorChange()"></floor-selector>
 
-	<floor-marker *ngIf="selectedFloor"
+	<button *ngIf="selectedFloor" type="button" class="btn btn-secondary" (click)="toggleFloorMode()">{{floorMode}} Mode</button>
+
+	<floor-marker *ngIf="selectedFloor && floorMode == 'Edit'"
 		[(floor)]="selectedFloor" 
 		[(desks)]="desks"
 		[deskAssignments]="deskAssignments"></floor-marker>
 
-	<floor-plan-canvas *ngIf="selectedFloor" 
+	<floor-plan-canvas *ngIf="selectedFloor && floorMode == 'View'" 
 		[(floor)]="selectedFloor" 
 		[desks]="desks"
 		[deskAssignments]="deskAssignments"></floor-plan-canvas>
+	
 </div>
