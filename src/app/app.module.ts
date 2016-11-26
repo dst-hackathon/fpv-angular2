@@ -33,6 +33,8 @@ import { PlanItemComponent } from './plan-item/plan-item.component';
 import { LeftnavComponent } from './leftnav/leftnav.component';
 import { ChangesetListComponent } from './changeset-list/changeset-list.component';
 import { ChangesetService } from './service/changeset.service'
+import { ChangesetItemComponent } from './changeset-item/changeset-item.component';
+import { ChangesetItemService } from './service/changeset-item.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { ChangesetService } from './service/changeset.service'
     FloorMarkerComponent,
     PlanItemComponent,
     LeftnavComponent,
-    ChangesetListComponent
+    ChangesetListComponent,
+    ChangesetItemComponent
+
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,8 @@ import { ChangesetService } from './service/changeset.service'
     DeskAssignmentService,
     BuildingService,
     DeskService,
-    ChangesetService
+    ChangesetService,
+    ChangesetItemService
   ],
   bootstrap: [AppComponent]
 })
