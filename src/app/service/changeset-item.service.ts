@@ -31,4 +31,13 @@ export class ChangesetItemService {
       .map(res => ChangesetItem.fromJson(res.json()))
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
+
+  setChangesetItemStatus(changesetItem): Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.serverUrl, changesetItem, options)
+      .map((res: Response) => res)
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }
