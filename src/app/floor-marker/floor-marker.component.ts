@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FloorSelectorService } from '../service/floorselector.service';
 
 import { Floor } from '../model/floor';
+import { Desk } from '../model/desk';
 
 @Component({
   selector: 'app-floor-marker',
@@ -12,7 +13,7 @@ import { Floor } from '../model/floor';
 export class FloorMarkerComponent implements OnInit {
   floor
 
-  deskAssignments
+  desks: Desk[]
 
   constructor(public floorService:FloorSelectorService) { }
 
@@ -20,11 +21,13 @@ export class FloorMarkerComponent implements OnInit {
     this.floorService.getFloor(1)
        .subscribe(floor => this.floor = floor, err => console.log(err));
 
-    this.deskAssignments = []
+    this.desks = []
   }
 
   onDrag($event){
-    this.deskAssignments.push({x:$event.offsetX,y:$event.offsetY})
-    console.log(this.deskAssignments)
+    let desk = Desk.fromJson({x:$event.offsetX,y:$event.offsetY})
+
+    this.desks.push(desk)
+    console.log(this.desks)
   }
 }
