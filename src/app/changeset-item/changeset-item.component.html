@@ -1,11 +1,24 @@
-<span *ngIf="changesetItem">
-	<span>{{changesetItem.employee.firstname}} {{changesetItem.employee.lastname}}</span>
-	<span>{{changesetItem.fromDesk.code}}</span>
-	<span>{{changesetItem.toDesk.code}}</span>
-	<span class="text-success" *ngIf="changesetItem.status=='ACCEPT'">Approved</span>
-	<span class="text-danger" *ngIf="changesetItem.status=='DENY'">Denied</span>
-	<span *ngIf="changesetItem.status!='ACCEPT' && changesetItem.status!='DENY'">
-		<a class="btn btn-success" href="#" role="button">Approve</a>
-		<a class="btn btn-danger" href="#" role="button">Deny</a>
-	</span>
-</span>
+<div *ngIf="changesetItemList">
+	<h3>Changeset: {{changeset.effectiveDate}}</h3>
+	<table class="table">
+		<thead>
+			<th>Name</th>
+			<th>From</th>
+			<th>To</th>
+			<th>Status</th>
+		</thead>
+		<tbody>
+			<tr *ngFor="let changesetItem of changesetItemList">
+				<td>{{changesetItem.employee.firstname}} {{changesetItem.employee.lastname}}</td>
+				<td>{{changesetItem.fromDesk.code}}</td>
+				<td>{{changesetItem.toDesk.code}}</td>
+				<td *ngIf="changesetItem.status=='ACCEPT'" class="text-success">Accepeted</td>
+				<td *ngIf="changesetItem.status=='DENY'" class="text-danger">Denied</td>
+				<td *ngIf="changesetItem.status!='ACCEPT' && changesetItem.status!='DENY'">
+					<a class="btn btn-success" href="#" role="button">Approve</a>
+					<a class="btn btn-danger" href="#" role="button">Deny</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

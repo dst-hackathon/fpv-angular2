@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ChangesetService } from '../service/changeset.service';
 import { ChangesetItemService } from '../service/changeset-item.service';
 import { ChangesetItem } from '../model/changeset-item';
 
@@ -9,13 +10,16 @@ import { ChangesetItem } from '../model/changeset-item';
 })
 export class ChangesetItemComponent implements OnInit {
 
-  @Input() changesetItemId
-  changesetItem
+  @Input() changesetId
+  changeset
+  changesetItemList
 
-  constructor(public changesetItemService: ChangesetItemService) { }
+  constructor(public changesetService: ChangesetService,
+  			public changesetItemService: ChangesetItemService) { }
 
   ngOnInit() {
-  	this.changesetItemService.getChangesetItem(this.changesetItemId).subscribe(changesetItem => this.changesetItem = changesetItem, err => console.log(err));
+  	this.changesetItemService.getChangesetList(this.changesetId).subscribe(changesetItemList => this.changesetItemList = changesetItemList, err => console.log(err));
+  	this.changesetService.getChangeset(this.changesetId).subscribe(changeset => this.changeset = changeset, err => console.log(err));
   }
 
 }

@@ -22,4 +22,13 @@ export class ChangesetService {
             .map(res => res.json())
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
+
+    getChangeset(changesetId): Observable<any> {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.get(this.serverUrl + '/' + changesetId, options)
+            .map(res => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }
