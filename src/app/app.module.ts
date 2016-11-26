@@ -33,6 +33,9 @@ import { PlanItemComponent } from './plan-item/plan-item.component';
 import { LeftnavComponent } from './leftnav/leftnav.component';
 import { ChangesetListComponent } from './changeset-list/changeset-list.component';
 import { FloorCreateDialogComponent } from './floor-create-dialog/floor-create-dialog.component';
+import { ChangesetService } from './service/changeset.service'
+import { ChangesetItemComponent } from './changeset-item/changeset-item.component';
+import { ChangesetItemService } from './service/changeset-item.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { FloorCreateDialogComponent } from './floor-create-dialog/floor-create-d
     PlanItemComponent,
     LeftnavComponent,
     ChangesetListComponent,
-    FloorCreateDialogComponent
+    FloorCreateDialogComponent,
+    ChangesetItemComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,9 @@ import { FloorCreateDialogComponent } from './floor-create-dialog/floor-create-d
     FloorService,
     DeskAssignmentService,
     BuildingService,
-    DeskService
+    DeskService,
+    ChangesetService,
+    ChangesetItemService
   ],
   bootstrap: [AppComponent]
 })
