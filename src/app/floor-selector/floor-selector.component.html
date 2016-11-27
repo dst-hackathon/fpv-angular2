@@ -1,9 +1,7 @@
-<p *ngIf="building">
-	Floor :
-	<select [ngModel]="selectedFloor" (ngModelChange)="onSelectedFloor($event)">
-		<option>--Select--</option>
-		<option *ngFor='let floorItem of floorList' [ngValue]='floorItem'>
-			{{ floorItem.name }}
-		</option>
-	</select>
-</p>
+<div class="form-group" *ngIf="building">
+  <label for="floorSelect">Floor</label>
+  <select id="floorSelect" class="form-control custom-select" [ngModel]="selectedFloor" (ngModelChange)="onSelectedFloor($event)">
+    <option>--Select--</option>
+    <option *ngFor='let floorItem of floorList' [ngValue]='floorItem'>{{ floorItem.name }}</option>
+  </select>
+</div>

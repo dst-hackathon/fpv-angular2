@@ -1,9 +1,8 @@
-<div *ngIf="buildingList">
-  <p>
-    Building
-      <select [ngModel]="selectedBuilding" (ngModelChange)="onSelectedBuilding($event)">
-        <option value="0">--Select Building--</option>
-        <option *ngFor="let item of buildingList" [ngValue]="item">{{ item.name }}</option>
-      </select>
-  </p>
+<div class="form-group" *ngIf="buildingList">
+  <label for="buildingSelect">Building</label>
+  <select id="buildingSelect" class="form-control custom-select" [ngModel]="selectedBuilding"
+          (ngModelChange)="onSelectedBuilding($event)">
+    <option value="0" selected>--Select Building--</option>
+    <option *ngFor="let item of buildingList" [ngValue]="item">{{ item.name }}</option>
+  </select>
 </div>
