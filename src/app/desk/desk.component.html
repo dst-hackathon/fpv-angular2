@@ -4,7 +4,7 @@
     [style.height]="desk.height + 'px'"
     [style.width]="desk.width  + 'px'"
     placement="right"
-    [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="{{deskAssignment == null ? 'Available desk' : 'Employee Title'}}"
+    [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="Desk code: {{desk.code}}"
     (click)="open(modalContent)"
     [draggable]="deskAssignment != null"
     (dragstart)="ondragstart($event)"
@@ -19,7 +19,11 @@
   </div>
 </div>
 
-<template #popContent><desk-card [employee]="employee"></desk-card></template>
+<template #popContent>
+  <p *ngIf="!deskAssignment">Available desk</p>
+  <desk-card [employee]="employee"></desk-card>
+</template>
+
 <template #modalContent let-c="close" let-d="dismiss">
   <div class="modal-header">
     <button type="button" class="close" aria-label="Close" (click)="d('Close')">
