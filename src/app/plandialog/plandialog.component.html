@@ -3,7 +3,15 @@
 
   <div class="floor-selector row">
     <building-selector [planId]="plan.id" [(selectedBuilding)]="selectedBuilding"></building-selector>
-    <floor-selector *ngIf="selectedBuilding" [building]="selectedBuilding" [(selectedFloor)]="selectedFloor" (change)="floorChange()"></floor-selector>
+    <floor-selector *ngIf="selectedBuilding" [building]="selectedBuilding" [(selectedFloor)]="selectedFloor" (change)="loadData()"></floor-selector>
+
+    <div class="form-group" *ngIf="selectedFloor">
+      <label for="changesetSelect">Effective Date</label>
+      <input id="changesetSelect" class="form-control" type="date" [(ngModel)]="changesetDate" (change)="loadData()">
+      <div *ngIf="noChangeset">
+        <button class="btn btn-primary" (click)="createChangeset()">Create Changeset</button>
+      </div>
+    </div>
   </div>
 
 	<button *ngIf="selectedFloor" type="button" class="btn btn-secondary" (click)="toggleFloorMode()">{{floorMode}} Mode</button>

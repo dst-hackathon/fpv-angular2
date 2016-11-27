@@ -1,11 +1,9 @@
-import { Component, OnInit} from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-
-import { PlanService } from '../service/plan.service';
-import { DeskService } from '../service/desk.service';
-import { DeskAssignmentService } from '../service/desk-assignment.service';
-
-import { Floor } from '../model/floor';
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {PlanService} from "../service/plan.service";
+import {DeskService} from "../service/desk.service";
+import {DeskAssignmentService} from "../service/desk-assignment.service";
+import {ChangesetService} from "../service/changeset.service";
 
 @Component({
   selector: 'plan-dialog',
@@ -29,13 +27,18 @@ export class PlanDialogComponent implements OnInit {
 
   selectedBuilding
 
+  changesetDate
+  selectedChangeset
+  noChangeset = false
+
   floorMode = "View";
 
   constructor(
     public planService: PlanService,
     public deskService:DeskService,
     public deskAssignmentService: DeskAssignmentService,
-    
+    public changesetService: ChangesetService,
+
     private route: ActivatedRoute
   ) {}
 
@@ -55,11 +58,29 @@ export class PlanDialogComponent implements OnInit {
     return console.log(json)
   }
 
-  floorChange(){
-    if (this.selectedFloor) {
-        this.getDeskByFloor();
-        this.getDeskAssignmentsByFloor();
-      }
+  loadData(){
+    if (this.selectedFloor && this.changesetDate) {
+      this.getDeskByFloor();
+      this.getDeskAssignmentsByFloor();
+
+      this.changesetService.getChangesetByEffectiveDate(this.changesetDate).subscribe(
+        changeset=> this.selectedChangeset = changeset,
+        err => {
+          this.noChangeset = true;
+        }
+      )
+    }
+  }
+
+  createChangeset(){
+    if(this.changesetDate){
+      let changeset = {effectiveDate: this.changesetDate, status: "IN_PROGRESS", plan: this.selectedBuilding.plan}
+
+      this.changesetService.save(changeset).subscribe(cs=> {
+        this.selectedChangeset = cs
+        this.noChangeset = false;
+      })
+    }
   }
 
   getDeskByFloor() {
