@@ -64,7 +64,10 @@ export class PlanDialogComponent implements OnInit {
       this.getDeskAssignmentsByFloor();
 
       this.changesetService.getChangesetByEffectiveDate(this.changesetDate).subscribe(
-        changeset=> this.selectedChangeset = changeset,
+        changeset=> {
+          this.selectedChangeset = changeset
+          this.noChangeset = false
+        },
         err => {
           this.noChangeset = true;
         }
