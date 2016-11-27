@@ -1,12 +1,10 @@
 <div class="col-md-10">
   <h1>
-    {{title}}
+    View Master Plans
   </h1>
-  <div>
-    <ul>
-      <li *ngFor="let plan of planList">
-        <plan-item planId={{plan.id}}></plan-item>
-      </li>
-    </ul>
+  <div class="row">
+    <div class="col-sm-6" *ngFor="let plan of planList">
+      <plan-item planId={{plan.id}}></plan-item>
+    </div>
   </div>
 </div>

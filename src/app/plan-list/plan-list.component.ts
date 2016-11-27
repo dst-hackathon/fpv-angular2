@@ -8,7 +8,6 @@ import { Plan } from '../model/plan';
   styleUrls: ['./plan-list.component.css'],
 })
 export class PlanListComponent implements OnInit {
-  title = "View Master Plan";
   planList: Plan[];
   selectedPlan: Plan;
 
@@ -25,8 +24,7 @@ export class PlanListComponent implements OnInit {
 
   onClick(plan)
   {
-    this.selectedPlan = plan; 
-//    alert(this.selectedPlan.name);
+    this.selectedPlan = plan;
   }
 
 }

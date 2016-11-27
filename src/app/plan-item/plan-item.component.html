@@ -1,7 +1,7 @@
-<div *ngIf="plan">
-	<span>{{plan.name}}</span>
-	<span>
-		<a href="#">Changeset</a>
-		<a href="#" [routerLink]="['/plan', plan.id]">Move Desk</a>
-	</span>
+<div class="card card-block" *ngIf="plan">
+  <h3 class="card-title">{{plan.name}}</h3>
+  <div class="text-xs-right">
+    <a href="#" class="card-link">Changeset</a>
+    <a href="#" class="card-link" [routerLink]="['/plan', plan.id]">Move Desk</a>
+  </div>
 </div>
