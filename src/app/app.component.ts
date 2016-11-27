@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { LoginService } from './service/login.service';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {LoginService} from "./service/login.service";
 
 @Component({
   selector: 'app-root',
@@ -16,13 +15,19 @@ export class AppComponent implements OnInit {
     public router: Router) {}
 
   ngOnInit() {
-    this.checkLoginUser();
+    this.user  = this.loginService.loginUser
+    this.checkLoginUser()
+
+    this.loginService.loadLoginAccount()
   }
 
   checkLoginUser() {
-    this.loginService.getAccount().subscribe(user => {
-      this.user = user
-      this.router.navigate(['home']);
+    this.user.subscribe(user => {
+      if(user){
+        this.router.navigate(['home']);
+      }else{
+        this.router.navigate(['login'])
+      }
     }, err => {
       console.log("User not logged in",err)
       this.router.navigate(['login'])

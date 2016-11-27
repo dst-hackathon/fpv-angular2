@@ -1,6 +1,6 @@
 <div class="col-md-2">
   <div class="bootstrap-vertical-nav">
-    <nav class="navbar navbar-dark bg-inverse" *ngIf="user">
+    <nav class="navbar navbar-dark bg-inverse" *ngIf="user|async">
       <ul class="nav sidebar-nav" >
         <li class="nav-item">
           <a class="nav-link navbar-dark-text" routerLink="/home" routerLinkActive="active">View Master Plan</a>

@@ -1,14 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {LoginService} from "../service/login.service";
 
 @Component({
   selector: 'leftnav',
   templateUrl: './leftnav.component.html',
   styleUrls: ['./leftnav.component.css']
 })
-export class LeftnavComponent {
+export class LeftnavComponent implements OnInit{
+  user
 
-  @Input() user;
+  constructor(private loginService: LoginService) { }
 
-  constructor() { }
-
+  ngOnInit() {
+    this.user = this.loginService.loginUser
+  }
 }

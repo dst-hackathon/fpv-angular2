@@ -1,25 +1,22 @@
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { LoginService } from '../service/login.service';
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {LoginService} from "../service/login.service";
 
 @Component({
   selector: 'profile',
   template: `
-    <span class="navbar-text float-sm-right navbar-dark-text" *ngIf="user">
-      Login as : {{user.firstName}}
+    
+    <span class="navbar-text float-sm-right navbar-dark-text" *ngIf="user|async">
+      Login as : {{(user | async)?.firstName}}
     </span>
   `,
 })
-export class ProfileComponent{
-  @Input() user;
+export class ProfileComponent implements OnInit{
+  user
 
-  constructor(public loginService: LoginService, public router: Router) { }
+  constructor(public loginService: LoginService, public router: Router) {}
 
-  logout(){
-    this.loginService.logout().subscribe(res => {
-      this.user = null
-      this.router.navigate(['login']);
-    })
+  ngOnInit(){
+    this.user  = this.loginService.loginUser
   }
 }
