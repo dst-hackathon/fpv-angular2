@@ -1,8 +1,9 @@
-import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 
 import { FloorService } from '../service/floor.service';
 
 import { Floor } from '../model/floor';
+import {Building} from "../model/building";
 
 @Component({
   selector: 'floor-selector',
@@ -10,14 +11,14 @@ import { Floor } from '../model/floor';
   styleUrls: ['./floor-selector.component.css']
 })
 
-export class FloorSelectorComponent implements OnInit {
+export class FloorSelectorComponent implements OnInit,OnChanges {
   floorList;
 
   floorId;
   buildingId;
   sort;
 
-  @Input() building
+  @Input() building: Building
   @Input() selectedFloor: Floor
   @Output() selectedFloorChange: EventEmitter<Floor> = new EventEmitter<Floor>();
 
@@ -31,7 +32,20 @@ export class FloorSelectorComponent implements OnInit {
   ngOnInit() {
     this.floorList = this.floorService.floors
 
-    this.floorService.loadAll(this.building.id)
+    this.loadFloor();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    var buildingChange = changes['building'];
+
+    if(buildingChange){
+      if(buildingChange.currentValue != buildingChange.previousValue){
+        this.loadFloor()
+      }
+    }
+  }
+
+  loadFloor() {
+    this.floorService.loadAll(this.building.id)
+  }
 }
