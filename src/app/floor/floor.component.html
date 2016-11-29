@@ -1,3 +1,3 @@
-<div *ngIf="loadedFloor">
-  <img [src]="loadedFloor.getByteImage()"/>
+<div *ngIf="loadedFloor|async">
+  <img [src]="(loadedFloor|async)?.getByteImage()"/>
 </div>

@@ -3,6 +3,7 @@ import { Component, OnInit, OnChanges, Input,SimpleChanges } from '@angular/core
 import { FloorService } from '../service/floor.service';
 
 import { Floor } from '../model/floor';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'floor',
@@ -11,28 +12,19 @@ import { Floor } from '../model/floor';
 })
 export class FloorComponent implements OnInit, OnChanges {
   @Input() floor: Floor
-  loadedFloor: Floor
+  loadedFloor: Observable<Floor>
 
   constructor(public floorService:FloorService) { }
 
   ngOnInit() {
-    this.loadFloor(this.floor)
+    this.loadedFloor = this.floorService.getFloor(this.floor.id)
+    this.floorService.loadFloorImage(this.floor)
   }
 
   ngOnChanges(changes: SimpleChanges) {
     let floor = changes['floor'].currentValue
-    this.loadedFloor = null
-    this.loadFloor(floor)
-  }
+    this.loadedFloor = this.floorService.getFloor(floor.id)
 
-  loadFloor(floor){
-    if(floor && floor.id){
-      this.floorService.getFloorImage(floor.id).subscribe(floorWithImage => {
-        floor.image = floorWithImage.image
-        floor.imageContentType = floorWithImage.imageContentType
-
-        this.loadedFloor = Floor.fromJson(floor)
-      }, err => console.log(err));
-    }
+    this.floorService.loadFloorImage(this.floor)
   }
 }

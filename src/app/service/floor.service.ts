@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
-import {Observable, BehaviorSubject} from 'rxjs/Rx';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
-import { Floor } from '../model/floor';
+import {Injectable} from "@angular/core";
+import {Http} from "@angular/http";
+import {Observable, BehaviorSubject} from "rxjs/Rx";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import {Floor} from "../model/floor";
 
 @Injectable()
 export class FloorService {
@@ -27,22 +25,34 @@ export class FloorService {
   }
 
   loadAll(buildingId) {
-    this.http.get(`${this.serverUrl}?buildingId=${buildingId}`).map(response => response.json()).subscribe(data => {
+    this.http.get(`${this.serverUrl}?buildingId=${buildingId}`).map(response => {
+      let floors = response.json()
+
+      for (var i = 0; i < floors.length; i++) {
+        floors[i] = Object.assign(new Floor(),floors[i])
+      }
+
+      return floors
+    }).subscribe(data => {
       this.dataStore.floors = data;
       this._floors.next(Object.assign({}, this.dataStore).floors);
-    }, error => console.log('Could not load building.'));
+    }, error => console.log('Could not load floors.'));
   }
 
   getFloor(id): Observable<Floor> {
     return this.floors.map(floors => floors.find(item => item.id === id));
   }
 
-  getFloorImage(floorId): Observable<any> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
+  loadFloorImage(floor:Floor){
+    //cache
+    if(floor.image){
+      return
+    }
 
-    return this.http.get(this.serverUrl + "/" + floorId+"/image", options)
-      .map(res => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    this.http.get(`${this.serverUrl}/${floor.id}/image`).map(res => res.json()).subscribe( floorImage => {
+      Object.assign(floor,floorImage)
+    }, error => console.log('Could not load floor image.',floor));
+
   }
+
 }

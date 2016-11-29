@@ -23,7 +23,11 @@ export class Floor {
     }
 
     getByteImage(){
+      if(this.image && this.imageContentType){
         return "data:"+ this.imageContentType+";base64," + this.image;
+      }
+
+      return null;
     }
 }
 
