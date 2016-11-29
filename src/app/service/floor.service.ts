@@ -45,7 +45,7 @@ export class FloorService {
 
   loadFloorImage(floor:Floor){
     //cache
-    if(floor.image){
+    if(floor == null || floor.image){
       return
     }
 
