@@ -55,11 +55,11 @@ export class ChangesetItemService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  move(employee: Employee, fromDeskId: Desk, toDeskId: Desk, changeset: Changeset) {
+  move(employee: Employee, fromDesk: Desk, toDesk: Desk, changeset: Changeset) {
     let item = new ChangesetItem();
     item.employee= employee;
-    item.fromDesk = fromDeskId
-    item.toDesk = toDeskId
+    item.fromDesk = fromDesk
+    item.toDesk = toDesk
     item.changeset = changeset
     item.status = 'DRAFT'
 
