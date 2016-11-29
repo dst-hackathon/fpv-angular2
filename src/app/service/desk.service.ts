@@ -39,4 +39,8 @@ export class DeskService {
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
+
+  get(id:number) {
+    return this.desks.map(desks=> desks.find(desk => desk.id === id))
+  }
 }

@@ -2,5 +2,6 @@
   <floor *ngIf="floor" [floor]="floor"></floor>
   <desk *ngFor="let desk of desks|async" [desk]="desk"
         [deskAssignment]="getDeskAssignment(desk)|async"
-        [changesetItem]="getChangesetItem(desk)|async"></desk>
+        [changesetItem]="getChangesetItem(desk)|async"
+        [changeset]="changeset"></desk>
 </div>

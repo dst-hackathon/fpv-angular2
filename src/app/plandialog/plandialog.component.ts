@@ -6,7 +6,6 @@ import {DeskAssignmentService} from "../service/desk-assignment.service";
 import {ChangesetService} from "../service/changeset.service";
 import {Observable} from "rxjs";
 import {Desk} from "../model/desk";
-import {FloorCanvasService} from "../service/floor-canvas.service";
 
 @Component({
   selector: 'plan-dialog',

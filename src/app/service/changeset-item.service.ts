@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
-import {Observable, BehaviorSubject} from 'rxjs/Rx';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
-import { ChangesetItem } from '../model/changeset-item';
+import {Injectable} from "@angular/core";
+import {Http, Response, Headers, RequestOptions} from "@angular/http";
+import {Observable, BehaviorSubject} from "rxjs/Rx";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import {ChangesetItem} from "../model/changeset-item";
+import {Changeset} from "../model/changeset";
+import {DeskService} from "./desk.service";
+import {Desk} from "../model/desk";
+import {Employee} from "../model/employee";
 
 @Injectable()
 export class ChangesetItemService {
@@ -19,7 +21,9 @@ export class ChangesetItemService {
 
   changesetItems: Observable<ChangesetItem[]>
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+    private deskService:DeskService
+  ) {
     this.dataStore = {changesetItems: []};
     this._changesetItems = <BehaviorSubject<ChangesetItem[]>>new BehaviorSubject([]);
 
@@ -49,5 +53,20 @@ export class ChangesetItemService {
     return this.http.put(this.serverUrl, changesetItem, options)
       .map((res: Response) => res)
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  move(employee: Employee, fromDeskId: Desk, toDeskId: Desk, changeset: Changeset) {
+    let item = new ChangesetItem();
+    item.employee= employee;
+    item.fromDesk = fromDeskId
+    item.toDesk = toDeskId
+    item.changeset = changeset
+    item.status = 'DRAFT'
+
+    this.http.put(`${this.serverUrl}`, item)
+      .map(response => response.json()).subscribe(data => {
+      this.dataStore.changesetItems.push(data);
+      this._changesetItems.next(Object.assign({}, this.dataStore).changesetItems);
+    }, error => console.log('Could not create todo.'));
   }
 }

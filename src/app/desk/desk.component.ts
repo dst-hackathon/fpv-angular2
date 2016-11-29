@@ -3,10 +3,11 @@ import {NgbModal, ModalDismissReasons} from "@ng-bootstrap/ng-bootstrap";
 import {Desk} from "../model/desk";
 import {DeskAssignment} from "../model/desk-assignment";
 import {Employee} from "../model/employee";
-import {Floor} from "../model/floor";
 import {EmployeeService} from "../service/employee.service";
 import {ChangesetItem} from "../model/changeset-item";
 import {Observable} from "rxjs";
+import {Changeset} from "../model/changeset";
+import {ChangesetItemService} from "../service/changeset-item.service";
 
 @Component({
   selector: 'desk',
@@ -18,13 +19,18 @@ export class DeskComponent implements OnInit {
   @Input() desk: Desk
   @Input() deskAssignment: DeskAssignment
   @Input() changesetItem: ChangesetItem
+  @Input() changeset: Changeset
 
   employee: Observable<Employee>;
+  loadedEmployee;
   closeResult: string;
   emptyDeskUrl = '../assets/question-mark.png';
   assignedDeskUrl = '../assets/user-silhouette.png';
 
-  constructor(public employeeService: EmployeeService, private deskModal: NgbModal) { }
+  constructor(
+    public employeeService: EmployeeService,
+    private changesetItemService: ChangesetItemService,
+    private deskModal: NgbModal) { }
 
   ngOnInit() {
     this.loadEmployee()
@@ -33,6 +39,7 @@ export class DeskComponent implements OnInit {
   loadEmployee(){
     if(this.deskAssignment){
       this.employee = this.employeeService.getEmployee(this.deskAssignment.employee.id)
+      this.employee.subscribe(emp => this.loadedEmployee = emp)
     }
   }
 
@@ -63,16 +70,19 @@ export class DeskComponent implements OnInit {
   public ondragstart(event) {
     console.log("Drag started", event);
     console.log("Desk ID", this.desk.id);
-    event.dataTransfer.setData('srcDesk', JSON.stringify(this.desk));
+    event.dataTransfer.setData('fromDeskId', JSON.stringify(this.desk));
+    event.dataTransfer.setData('employee', JSON.stringify(this.loadedEmployee));
   }
 
   public ondrop(event) {
     event.preventDefault();
-    console.log("Drop", event);
-    console.log("To Desk ID", this.desk.id);
-    var srcDesk = event.dataTransfer.getData('srcDesk');
-    console.log(srcDesk);
-    console.log("From Desk ID", JSON.parse(srcDesk).id );
+    let fromDeskId = JSON.parse(event.dataTransfer.getData('fromDeskId'))
+    let employee = JSON.parse(event.dataTransfer.getData('employee'))
+    let toDeskId  = this.desk;
+
+    console.log(`Move desk: from ${fromDeskId} to ${toDeskId}`)
+
+    this.changesetItemService.move(employee, fromDeskId, toDeskId, this.changeset)
   }
 
   public ondragover(event) {
