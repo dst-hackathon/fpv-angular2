@@ -28,10 +28,10 @@ export class PlanHolderService {
         {
            if (item.toDesk == null)
            {
-            changesetItems.push(ChangesetItem.fromJson(item));
+            changesetItems.push(Object.assign(new ChangesetItem(),item));
            }
         }
-        return changesetItems; 
+        return changesetItems;
       })
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }

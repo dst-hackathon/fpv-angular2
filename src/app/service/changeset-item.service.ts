@@ -28,7 +28,7 @@ export class ChangesetItemService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this.serverUrl + "/" + changesetItemId, options)
-      .map(res => ChangesetItem.fromJson(res.json()))
+      .map(res => Object.assign(new ChangesetItem(),res.json()))
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 

@@ -8,8 +8,4 @@ export class ChangesetItem {
     employee: Employee
     fromDesk: Desk
     toDesk: Desk
-
-    static fromJson(jsonObject): ChangesetItem{
-        return Object.assign(new ChangesetItem(),jsonObject);
-    }
 }
