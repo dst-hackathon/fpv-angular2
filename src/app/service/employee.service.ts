@@ -54,6 +54,7 @@ export class EmployeeService {
   }
 
   getEmployee(id): Observable<Employee> {
+    this.load(id)
     return this.employees.map(emps=> emps.find(emp => emp.id === id))
   }
 
