@@ -4,11 +4,11 @@ import { Desk } from '../model/desk';
 import { DeskService } from '../service/desk.service';
 
 @Component({
-  selector: 'floor-create-dialog',
-  templateUrl: './floor-create-dialog.component.html',
-  styleUrls: ['./floor-create-dialog.component.css']
+  selector: 'desk-create-dialog',
+  templateUrl: './desk-create-dialog.component.html',
+  styleUrls: ['./desk-create-dialog.component.css']
 })
-export class FloorCreateDialogComponent implements OnInit {
+export class DeskCreateDialogComponent implements OnInit {
   @Input() desk: Desk
   @Output() deskChange: EventEmitter<Desk> = new EventEmitter<Desk>();
 

@@ -33,7 +33,7 @@ import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
 import { LeftnavComponent } from './leftnav/leftnav.component';
 import { ChangesetListComponent } from './changeset-list/changeset-list.component';
-import { FloorCreateDialogComponent } from './floor-create-dialog/floor-create-dialog.component';
+import { DeskCreateDialogComponent } from './desk-create-dialog/desk-create-dialog.component';
 import { ChangesetService } from './service/changeset.service'
 import { ChangesetItemComponent } from './changeset-item/changeset-item.component';
 import { ChangesetItemService } from './service/changeset-item.service';
@@ -57,7 +57,7 @@ import { DeskAssignComponent } from './desk-assign/desk-assign.component';
     PlanItemComponent,
     LeftnavComponent,
     ChangesetListComponent,
-    FloorCreateDialogComponent,
+    DeskCreateDialogComponent,
     ChangesetItemComponent,
     FloorMarkerComponent,
     PlanholderComponent,

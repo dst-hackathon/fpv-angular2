@@ -7,10 +7,14 @@
     <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title">Add marker</h4>
+    <h4 class="modal-title">Add desk</h4>
   </div>
   <div class="modal-body">
-    <floor-create-dialog [(desk)]="selectedDesk" (change)="completeCreateDesk(selectedDesk)"></floor-create-dialog>
+    <desk-create-dialog [(desk)]="selectedDesk"></desk-create-dialog>
   </div>
-
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="c('Cancel')">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="c('Save')">Save</button>
+    <br/>
+  </div>
 </template>

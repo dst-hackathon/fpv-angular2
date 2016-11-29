@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 import { FloorService } from '../service/floor.service';
 import { DeskService } from '../service/desk.service';
@@ -25,6 +25,7 @@ export class FloorMarkerComponent implements OnInit {
   @Output() desksChange: EventEmitter<Desk[]> = new EventEmitter<Desk[]>();
 
   selectedDesk: Desk
+  closeResult: string;
 
   constructor(public floorService: FloorService,
     private deskModal: NgbModal,
@@ -40,18 +41,40 @@ export class FloorMarkerComponent implements OnInit {
       width: 30
     })
     desk.floor = this.floor
-    this.openModal(addContent);//open modal
     this.selectedDesk = desk
+    this.openModal(addContent);//open modal
   }
 
-  completeCreateDesk(selectedDesk) {
-    console.log("complete create", selectedDesk)
-    this.desks.push(selectedDesk);
+  saveSelectedDesk() {
+    console.log("save desk", this.selectedDesk)
+    this.deskService.save(this.selectedDesk).subscribe(desk => {
+      this.deskChange.emit(this.selectedDesk);
+    })
 
+    this.desks.push(this.selectedDesk);
     this.desksChange.emit(this.desks);
   }
 
   openModal(content) {
-    this.deskModal.open(content);
+    this.deskModal.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      console.log("Dialog result: " + this.closeResult);
+      if("Save" == result) {
+        this.saveSelectedDesk();
+      }
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      console.log("Dialog result: " + this.closeResult);
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
