@@ -29,7 +29,9 @@ export class FloorSelectorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.floorService.getFloorList(this.building.id).subscribe(floorList => this.floorList = floorList, err => console.log(err));
+    this.floorList = this.floorService.floors
+
+    this.floorService.loadAll(this.building.id)
   }
 
 }
