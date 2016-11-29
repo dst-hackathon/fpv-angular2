@@ -17,16 +17,13 @@
 	<button *ngIf="selectedFloor" type="button" class="btn btn-secondary" (click)="toggleFloorMode()">{{floorMode}} Mode</button>
 
 	<floor-marker *ngIf="selectedFloor && floorMode == 'Edit'"
-		[(floor)]="selectedFloor"
-		[(desks)]="desks"
-		[deskAssignments]="deskAssignments"></floor-marker>
+		[floor]="selectedFloor"
+    [changeset]="selectedChangeset"
+		></floor-marker>
 
 	<floor-plan-canvas *ngIf="selectedFloor && floorMode == 'View'"
-		[(floor)]="selectedFloor"
-		[desks]="desks"
-		[deskAssignments]="deskAssignments"
-		[changesetItems]="changesetItems"
-  ></floor-plan-canvas>
+		[floor]="selectedFloor"
+    [changeset]="selectedChangeset"></floor-plan-canvas>
 
 
 	 <!--<planholder  [changesetId]="changesetId" ></planholder>-->

@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from "@angular/core";
 import {Desk} from "../model/desk";
 import {EmployeeService} from "../service/employee.service";
 import {DeskAssignment} from "../model/desk-assignment";
-import {ChangesetItem} from "../model/changesetitem";
+import {ChangesetItem} from "../model/changeset-item";
 
 @Component({
   selector: 'desk-assign',

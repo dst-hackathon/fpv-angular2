@@ -1,9 +1,13 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Desk } from '../model/desk';
-import { Floor } from '../model/floor';
-import { DeskAssignment } from '../model/desk-assignment';
-import { DeskService } from '../service/desk.service';
-import {ChangesetItem} from "../model/changesetitem";
+import {Component, OnInit, Input} from "@angular/core";
+import {Desk} from "../model/desk";
+import {Floor} from "../model/floor";
+import {DeskAssignment} from "../model/desk-assignment";
+import {DeskService} from "../service/desk.service";
+import {Observable} from "rxjs";
+import {ChangesetItem} from "../model/changeset-item";
+import {Changeset} from "../model/changeset";
+import {DeskAssignmentService} from "../service/desk-assignment.service";
+import {ChangesetItemService} from "../service/changeset-item.service";
 @Component({
   selector: 'floor-plan-canvas',
   templateUrl: './floor-plan-canvas.component.html',
@@ -11,36 +15,29 @@ import {ChangesetItem} from "../model/changesetitem";
 })
 export class FloorPlanCanvasComponent implements OnInit {
   @Input() floor: Floor;
-  @Input() desks: Desk[];
-  @Input() deskAssignments: DeskAssignment[];
-  @Input() changesetItems: ChangesetItem[];
+  @Input() changeset: Changeset
 
-  constructor() { }
+  desks: Observable<Desk[]>;
+
+  constructor(
+    private deskService:DeskService,
+    private deskAssigmentService: DeskAssignmentService,
+    private changesetItemService: ChangesetItemService,
+
+  ) { }
 
   ngOnInit() {
+    this.desks = this.deskService.desks
+
+    if(this.floor) this.deskAssigmentService.loadAll(this.floor.id)
+    if(this.changeset) this.changesetItemService.loadAll(this.changeset.id)
   }
 
-  getDeskAssignment(desk: Desk) : DeskAssignment {
-      if(this.deskAssignments){
-        for(let deskAssigment of this.deskAssignments) {
-            if (desk.id === deskAssigment.desk.id) {
-              return deskAssigment;
-            }
-        }
-      }
-
-      return null;
+  getDeskAssignment(desk: Desk) : Observable<DeskAssignment>{
+    return this.deskAssigmentService.deskAssignments.map(list=> list.find(item => item.desk.id === desk.id))
   }
 
-  getChangesetItem(desk: Desk) : ChangesetItem {
-      if(this.changesetItems){
-        for(let changesetItem of this.changesetItems) {
-            if (desk.id === changesetItem.toDesk.id) {
-              return changesetItem;
-            }
-        }
-      }
-
-      return null;
+  getChangesetItem(desk: Desk) : Observable<ChangesetItem> {
+    return this.changesetItemService.changesetItems.map(list=> list.find(item => item.toDesk && item.toDesk.id === desk.id))
   }
 }

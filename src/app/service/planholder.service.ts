@@ -1,13 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions,URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
-import { Plan } from '../model/plan';
-import { Changeset } from '../model/changeset';
-import { ChangesetItem } from '../model/changesetitem';
+import {Injectable} from "@angular/core";
+import {Http, Headers, RequestOptions} from "@angular/http";
+import {Observable} from "rxjs/Rx";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import {ChangesetItem} from "../model/changeset-item";
 
 @Injectable()
 export class PlanHolderService {

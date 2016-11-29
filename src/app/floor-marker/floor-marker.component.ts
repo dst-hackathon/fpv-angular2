@@ -6,6 +6,7 @@ import { DeskService } from '../service/desk.service';
 
 import { Floor } from '../model/floor';
 import { Desk } from '../model/desk';
+import {Changeset} from "../model/changeset";
 
 @Component({
   selector: 'floor-marker',
@@ -13,18 +14,20 @@ import { Desk } from '../model/desk';
   styleUrls: ['./floor-marker.component.css']
 })
 export class FloorMarkerComponent implements OnInit {
-  @Input() floor
-  @Input() desks: Desk[]
-  @Input() deskAssignments
-  @Input() desk: Desk
+  @Input() floor: Floor;
+  @Input() changeset: Changeset
+
+  desks: Desk[]
+  deskAssignments
+  desk: Desk
 
   @Output() deskChange: EventEmitter<Desk> = new EventEmitter<Desk>();
   @Output() desksChange: EventEmitter<Desk[]> = new EventEmitter<Desk[]>();
 
   selectedDesk: Desk
 
-  constructor(public floorService: FloorService, 
-    private deskModal: NgbModal, 
+  constructor(public floorService: FloorService,
+    private deskModal: NgbModal,
     public deskService: DeskService) { }
 
   ngOnInit() { }

@@ -1,8 +1,6 @@
-<!--<floor-create-dialog [(desk)]="selectedDesk" (change)="completeCreateDesk()"></floor-create-dialog>-->
-<floor-plan-canvas *ngIf="floor" (click)="markDesk($event, modalContent)" 
-		[(floor)]="floor" 
-		[desks]="desks"
-		[deskAssignments]="deskAssignments"></floor-plan-canvas>
+<floor-plan-canvas *ngIf="floor" (click)="markDesk($event, modalContent)"
+                   [floor]="floor"
+                   [changeset]="changeset"></floor-plan-canvas>
 
 <template #modalContent let-c="close" let-d="dismiss">
   <div class="modal-header">

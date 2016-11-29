@@ -8,11 +8,6 @@ export class DeskAssignment {
     plan: Plan;
 
     static fromJson(jsonObject): DeskAssignment{
-        let deskAssignment = new DeskAssignment();
-        deskAssignment.desk = Desk.fromJson(jsonObject.desk);
-        deskAssignment.employee = Employee.fromJson(jsonObject.employee);
-        deskAssignment.plan = Plan.fromJson(jsonObject.plan);
-
-        return deskAssignment;
+        return Object.assign(new DeskAssignment(),jsonObject);
     }
 }

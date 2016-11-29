@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import {Observable, BehaviorSubject} from 'rxjs/Rx';
 
 import { Plan } from '../model/plan';
 import { Desk } from '../model/desk';
@@ -9,27 +9,31 @@ import { DeskAssignment } from '../model/desk-assignment';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import {Building} from "../model/building";
 
 @Injectable()
 export class DeskAssignmentService {
 
   private serverUrl = '/api/desk-assignments';
 
-  constructor(private http: Http) { }
-
-  getDeskAssignments(floorId): Observable<DeskAssignment[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.get(`${this.serverUrl}?floorId=${floorId}`, options)
-      .map(res => {
-        let deskAssignmentList: DeskAssignment[] = [];
-        for(let responseItem of res.json()){
-          deskAssignmentList.push(DeskAssignment.fromJson(responseItem));
-        }
-        return deskAssignmentList;
-      })
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  private _deskAssignments: BehaviorSubject<DeskAssignment[]>;
+  private dataStore: {
+    deskAssignments: DeskAssignment[]
   }
 
+  deskAssignments: Observable<DeskAssignment[]>
+
+  constructor(private http: Http) {
+    this.dataStore = {deskAssignments: []};
+    this._deskAssignments = <BehaviorSubject<DeskAssignment[]>>new BehaviorSubject([]);
+
+    this.deskAssignments = this._deskAssignments.asObservable();
+  }
+
+  loadAll(floorId) {
+    this.http.get(`${this.serverUrl}?floorId=${floorId}`).map(response => response.json()).subscribe(data => {
+      this.dataStore.deskAssignments = data;
+      this._deskAssignments.next(Object.assign({}, this.dataStore).deskAssignments);
+    }, error => console.log('Could not load desk assignments.'));
+  }
 }

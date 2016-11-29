@@ -18,7 +18,9 @@ export class ChangesetItemComponent implements OnInit {
   			public changesetItemService: ChangesetItemService) { }
 
   ngOnInit() {
-  	this.changesetItemService.getChangesetList(this.changesetId).subscribe(changesetItemList => this.changesetItemList = changesetItemList, err => console.log(err));
+    this.changesetItemList = this.changesetItemService.changesetItems
+
+    this.changesetItemService.loadAll(this.changesetId)
   	this.changesetService.getChangeset(this.changesetId).subscribe(changeset => this.changeset = changeset, err => console.log(err));
   }
 

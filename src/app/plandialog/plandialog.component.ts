@@ -4,6 +4,9 @@ import {PlanService} from "../service/plan.service";
 import {DeskService} from "../service/desk.service";
 import {DeskAssignmentService} from "../service/desk-assignment.service";
 import {ChangesetService} from "../service/changeset.service";
+import {Observable} from "rxjs";
+import {Desk} from "../model/desk";
+import {FloorCanvasService} from "../service/floor-canvas.service";
 
 @Component({
   selector: 'plan-dialog',
@@ -13,18 +16,11 @@ import {ChangesetService} from "../service/changeset.service";
 
 export class PlanDialogComponent implements OnInit {
   plan;
-  planId;
-
-  buildingList;
-  buildingId;
-  floorList;
-  floorId;
   changesetId;
 
   changesetItems
 
   selectedFloor;
-  desks;
   deskAssignments;
 
   selectedBuilding
@@ -34,6 +30,9 @@ export class PlanDialogComponent implements OnInit {
   noChangeset = false
 
   floorMode = "View";
+
+
+  desks:Observable<Desk[]>;
 
   constructor(
     public planService: PlanService,
@@ -48,9 +47,12 @@ export class PlanDialogComponent implements OnInit {
       this.route.params.subscribe(params => {
         let planId = params['id'];
 
-        this.planService.getPlan(planId)
-          .subscribe(plan => this.plan = plan, err => console.log(err));
+        this.planService.getPlan(planId).subscribe(plan => this.plan = plan, err => console.log(err));
       })
+
+
+      this.desks = this.deskService.desks;
+      this.deskAssignments = this.deskAssignmentService.deskAssignments
 
       //TO DO REMOVE ME MOCK UP DATA
       this.changesetId = 1
@@ -93,23 +95,11 @@ export class PlanDialogComponent implements OnInit {
   }
 
   getDeskByFloor() {
-    this.deskService.getDesks(this.selectedFloor.id).subscribe(
-      json => {
-        this.desks = json;
-        console.log("Desk ", json)
-      },
-      err => {
-        console.log(err);
-      });
+    this.deskService.loadAll(this.selectedFloor.id)
   }
 
   getDeskAssignmentsByFloor() {
-    this.deskAssignmentService.getDeskAssignments(this.selectedFloor.id).subscribe(
-      result => {
-        this.deskAssignments = result;
-        console.log("DeskAssigments", result);
-      }
-    );
+    this.deskAssignmentService.loadAll(this.selectedFloor.id)
   }
 
   toggleFloorMode() {

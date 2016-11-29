@@ -1,5 +1,6 @@
 import {Desk} from './desk';
 import {Employee} from './employee';
+import {Changeset} from "./changeset";
 
 export class ChangesetItem {
     id: number
@@ -8,4 +9,6 @@ export class ChangesetItem {
     employee: Employee
     fromDesk: Desk
     toDesk: Desk
+
+    changeset: Changeset;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import {Observable, BehaviorSubject} from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,22 +10,25 @@ export class DeskService {
 
   private serverUrl = '/api/desks';
 
-  constructor(private http: Http) { }
+  private _desks: BehaviorSubject<Desk[]>;
+  private dataStore: {
+    desks: Desk[]
+  }
 
-  getDesks(floorId): Observable<Desk[]> {
-    let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
-    let options = new RequestOptions({ headers: headers }); // Create a request option
+  desks: Observable<Desk[]>
 
-    return this.http.get("/api/desks?floorId="+floorId+"&cacheBuster="+new Date().getTime(), options)
-      .map((res: Response) => {
-        let desks: Desk[] = [];
-        for (let obj of res.json()) {
-          desks.push(Desk.fromJson(obj));
-        }
+  constructor(private http: Http) {
+    this.dataStore = {desks: []};
+    this._desks = <BehaviorSubject<Desk[]>>new BehaviorSubject([]);
 
-        return desks;
-      })
-      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    this.desks = this._desks.asObservable();
+  }
+
+  loadAll(floorId) {
+    this.http.get(`${this.serverUrl}?floorId=${floorId}&cacheBuster=${new Date().getTime()}`).map(response => response.json()).subscribe(data => {
+      this.dataStore.desks = data;
+      this._desks.next(Object.assign({}, this.dataStore).desks);
+    }, error => console.log('Could not load building.'));
   }
 
   save(desk: Desk): Observable<Desk>{

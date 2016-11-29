@@ -1,13 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
-import { Desk } from '../model/desk';
-import { DeskAssignment } from '../model/desk-assignment';
-import { Employee } from '../model/employee';
-import { Floor } from '../model/floor';
-
-import { EmployeeService } from '../service/employee.service';
-import {ChangesetItem} from "../model/changesetitem";
+import {Component, OnInit, Input} from "@angular/core";
+import {NgbModal, ModalDismissReasons} from "@ng-bootstrap/ng-bootstrap";
+import {Desk} from "../model/desk";
+import {DeskAssignment} from "../model/desk-assignment";
+import {Employee} from "../model/employee";
+import {Floor} from "../model/floor";
+import {EmployeeService} from "../service/employee.service";
+import {ChangesetItem} from "../model/changeset-item";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'desk',
@@ -19,9 +18,8 @@ export class DeskComponent implements OnInit {
   @Input() desk: Desk
   @Input() deskAssignment: DeskAssignment
   @Input() changesetItem: ChangesetItem
-  @Input() floor: Floor
 
-  employee: Employee;
+  employee: Observable<Employee>;
   closeResult: string;
   emptyDeskUrl = '../assets/question-mark.png';
   assignedDeskUrl = '../assets/user-silhouette.png';
@@ -33,10 +31,8 @@ export class DeskComponent implements OnInit {
   }
 
   loadEmployee(){
-    if (this.deskAssignment) {
-      this.employeeService.getEmployee(this.deskAssignment.employee.id).subscribe(res => {
-        this.employee = res
-      });
+    if(this.deskAssignment){
+      this.employee = this.employeeService.getEmployee(this.deskAssignment.employee.id)
     }
   }
 

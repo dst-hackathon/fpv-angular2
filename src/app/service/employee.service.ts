@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import {Observable, BehaviorSubject} from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -12,15 +12,49 @@ export class EmployeeService {
 
   private serverUrl = '/api/employees';
 
-  constructor(private http: Http) { }
+  private _employees: BehaviorSubject<Employee[]>;
+  private dataStore: {
+    employees: Employee[]
+  }
+
+  employees: Observable<Employee[]>
+
+  constructor(private http: Http) {
+    this.dataStore = {employees: []};
+    this._employees = <BehaviorSubject<Employee[]>>new BehaviorSubject([]);
+
+    this.employees = this._employees.asObservable();
+  }
+
+  loadAll() {
+    this.http.get(`${this.serverUrl}`).map(response => response.json()).subscribe(data => {
+      this.dataStore.employees = data;
+      this._employees.next(Object.assign({}, this.dataStore).employees);
+    }, error => console.log('Could not load building.'));
+  }
+
+  load(id){
+    this.http.get(`${this.serverUrl}/${id}`)
+      .map(res => Object.assign(new Employee(),res.json())).subscribe(data=>{
+      let notFound = true;
+
+      this.dataStore.employees.forEach((item, index) => {
+        if (item.id === data.id) {
+          this.dataStore.employees[index] = data;
+          notFound = false;
+        }
+      });
+
+      if (notFound) {
+        this.dataStore.employees.push(data);
+      }
+
+      this._employees.next(Object.assign({}, this.dataStore).employees);
+    })
+  }
 
   getEmployee(id): Observable<Employee> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.get(this.serverUrl + "/" + id, options)
-      .map(res => Employee.fromJson(res.json()))
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+    return this.employees.map(emps=> emps.find(emp => emp.id === id))
   }
 
   getEmployeeByCode(code): Observable<Employee> {
@@ -28,7 +62,7 @@ export class EmployeeService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(this.serverUrl + "/search?code=" + code, options)
-      .map(res => Employee.fromJson(res.json()))
+      .map(res => Object.assign(new Employee(),res.json()))
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 }
