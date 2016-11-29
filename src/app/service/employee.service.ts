@@ -22,4 +22,13 @@ export class EmployeeService {
       .map(res => Employee.fromJson(res.json()))
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
+
+  getEmployeeByCode(code): Observable<Employee> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this.serverUrl + "/search?code=" + code, options)
+      .map(res => Employee.fromJson(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }

@@ -24,7 +24,9 @@
 	<floor-plan-canvas *ngIf="selectedFloor && floorMode == 'View'"
 		[(floor)]="selectedFloor"
 		[desks]="desks"
-		[deskAssignments]="deskAssignments"></floor-plan-canvas>
+		[deskAssignments]="deskAssignments"
+		[changesetItems]="changesetItems"
+  ></floor-plan-canvas>
 
 
 	 <!--<planholder  [changesetId]="changesetId" ></planholder>-->

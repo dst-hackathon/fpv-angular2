@@ -31,12 +31,8 @@
     </button>
     <h4 class="modal-title">Desk Information</h4>
   </div>
-  <div class="modal-body" *ngIf="deskAssignment != null">
-    Floor: {{floor.name}} <br/>
-    Desk code: {{desk.code}} <br/>
-    Associate&#39;s DT: <input type="text" [(ngModel)]="deskAssignment.employee.id"/> <button type="button" class="btn btn-secondary" >Validate</button><br/>
-    First Name: {{deskAssignment.employee.firstname}}<br/>
-    Last Name: {{deskAssignment.employee.firstname}}<br/>
+  <div class="modal-body">
+    <desk-assign [desk]="desk" [deskAssignment]="deskAssignment" [changesetItem]="changesetItem"></desk-assign>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="c('Cancel')">Cancel</button>

@@ -1,5 +1,8 @@
 <div class="floor-canvas" style="position: relative;">
     <floor *ngIf="floor" [floor]="floor"></floor>
          <!--<span>ID: {{desk.id}}, Code: {{desk.code}}, X: {{desk.x}}, Y: {{desk.y}}, Width: {{desk.width}}, Height: {{desk.height}}</span>-->
-        <desk *ngFor="let desk of desks" [desk]="desk" [deskAssignment]="getDeskAssignment(desk)" [floor]="floor"></desk>
+        <desk *ngFor="let desk of desks" [desk]="desk"
+              [deskAssignment]="getDeskAssignment(desk)"
+              [changesetItem]="getChangesetItem(desk)"
+              [floor]="floor"></desk>
 </div>

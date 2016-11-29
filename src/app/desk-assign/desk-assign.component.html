@@ -1,0 +1,12 @@
+Floor: {{desk.floor.name}} <br/>
+Desk code: {{desk.code}} <br/>
+
+<div *ngIf="changesetItem">
+  {{changesetItem|json}}
+</div>
+
+<div *ngIf="employee">
+  Associate&#39;s DT: <input type="text" [(ngModel)]="employee.code"/> <button type="button" class="btn btn-secondary" (click)="loadEmployee(employee.code)" >Load</button><br/>
+  First Name: {{employee.firstname}}<br/>
+  Last Name: {{employee.firstname}}<br/>
+</div>

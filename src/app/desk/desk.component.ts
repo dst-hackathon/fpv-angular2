@@ -7,6 +7,7 @@ import { Employee } from '../model/employee';
 import { Floor } from '../model/floor';
 
 import { EmployeeService } from '../service/employee.service';
+import {ChangesetItem} from "../model/changesetitem";
 
 @Component({
   selector: 'desk',
@@ -17,7 +18,9 @@ export class DeskComponent implements OnInit {
 
   @Input() desk: Desk
   @Input() deskAssignment: DeskAssignment
+  @Input() changesetItem: ChangesetItem
   @Input() floor: Floor
+
   employee: Employee;
   closeResult: string;
   emptyDeskUrl = '../assets/question-mark.png';
@@ -26,6 +29,10 @@ export class DeskComponent implements OnInit {
   constructor(public employeeService: EmployeeService, private deskModal: NgbModal) { }
 
   ngOnInit() {
+    this.loadEmployee()
+  }
+
+  loadEmployee(){
     if (this.deskAssignment) {
       this.employeeService.getEmployee(this.deskAssignment.employee.id).subscribe(res => {
         this.employee = res
@@ -34,11 +41,6 @@ export class DeskComponent implements OnInit {
   }
 
   open(content) {
-    if(this.deskAssignment == null)
-    {
-      // new DeskAssignment to bind data from modal
-      this.newDeskAssignment();
-    }
     this.deskModal.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       console.log("Dialog result: " + this.closeResult);
@@ -51,17 +53,6 @@ export class DeskComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-
-  private newDeskAssignment()
-  {
-    this.deskAssignment = new DeskAssignment();
-    this.deskAssignment.desk = this.desk;
-    this.deskAssignment.employee = new Employee();
-    this.deskAssignment.employee.id = 0;
-    this.deskAssignment.employee.firstname = "";
-    this.deskAssignment.employee.lastname = "";
-    this.deskAssignment.plan = this.floor.building.plan;
-  } 
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

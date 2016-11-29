@@ -21,6 +21,8 @@ export class PlanDialogComponent implements OnInit {
   floorId;
   changesetId;
 
+  changesetItems
+
   selectedFloor;
   desks;
   deskAssignments;
@@ -66,6 +68,10 @@ export class PlanDialogComponent implements OnInit {
       this.changesetService.getChangesetByEffectiveDate(this.changesetDate).subscribe(
         changeset=> {
           this.selectedChangeset = changeset
+
+          let changesetId = this.selectedChangeset.id
+          this.changesetService.getChangesetItems(changesetId).subscribe(res=>this.changesetItems = res)
+
           this.noChangeset = false
         },
         err => {

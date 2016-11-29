@@ -30,7 +30,7 @@ export class DeskService {
 
   save(desk: Desk): Observable<Desk>{
     let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers }); 
+    let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.serverUrl, desk, options)
       .map((res: Response) => res.json())
