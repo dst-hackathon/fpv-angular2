@@ -1,25 +1,31 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
-import { Building } from '../model/building';
+import {Injectable} from "@angular/core";
+import {Http, Headers, RequestOptions} from "@angular/http";
+import {Observable, BehaviorSubject} from "rxjs/Rx";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import {Building} from "../model/building";
 
 @Injectable()
 export class BuildingService {
+  private serverUrl = '/api/buildings';
+  private _buildings: BehaviorSubject<Building[]>;
+  private dataStore: {
+    buildings: Building[]
+  }
 
-    private serverUrl = '/api/buildings';
+  buildings: Observable<Building[]>
 
-    constructor(private http: Http) { }
+  constructor(private http: Http) {
+    this.dataStore = {buildings: []};
+    this._buildings = <BehaviorSubject<Building[]>>new BehaviorSubject([]);
 
-    getBuildingList(planId): Observable<Building[]> {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
+    this.buildings = this._buildings.asObservable();
+  }
 
-        return this.http.get(this.serverUrl + '?planId=' + planId, options)
-            .map(res => res.json())
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-    }
+  loadAll(planId) {
+    this.http.get(`${this.serverUrl}?planId=${planId}`).map(response => response.json()).subscribe(data => {
+      this.dataStore.buildings = data;
+      this._buildings.next(Object.assign({}, this.dataStore).buildings);
+    }, error => console.log('Could not load building.'));
+  }
 }

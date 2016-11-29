@@ -25,10 +25,9 @@ export class BuildingSelectorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.buildingService.getBuildingList(this.planId)
-      .subscribe(buildingList => {
-        this.buildingList = buildingList
-      }, err => console.log(err));
+    this.buildingList = this.buildingService.buildings;
+
+    this.buildingService.loadAll(this.planId)
   }
 
 }

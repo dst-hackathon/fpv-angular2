@@ -1,8 +1,8 @@
-<div class="form-group" *ngIf="buildingList">
+<div class="form-group" *ngIf="buildingList|async">
   <label for="buildingSelect">Building</label>
   <select id="buildingSelect" class="form-control custom-select" [ngModel]="selectedBuilding"
           (ngModelChange)="onSelectedBuilding($event)">
     <option value="0" selected>--Select Building--</option>
-    <option *ngFor="let item of buildingList" [ngValue]="item">{{ item.name }}</option>
+    <option *ngFor="let item of buildingList|async" [ngValue]="item">{{ item.name }}</option>
   </select>
 </div>
