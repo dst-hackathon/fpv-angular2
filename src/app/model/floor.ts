@@ -9,19 +9,6 @@ export class Floor {
 
     building: Building
 
-    static fromJson(jsonObject) : Floor{
-        let floor = new Floor()
-        floor.id = jsonObject.id
-        floor.name = jsonObject.name
-
-        floor.image = jsonObject.image
-        floor.imageContentType = jsonObject.imageContentType
-
-        floor.building = Building.fromJson(jsonObject.building);
-
-        return floor;
-    }
-
     getByteImage(){
       if(this.image && this.imageContentType){
         return "data:"+ this.imageContentType+";base64," + this.image;
