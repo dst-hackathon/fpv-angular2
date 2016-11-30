@@ -32,12 +32,4 @@ export class FloorPlanCanvasComponent implements OnInit {
     if(this.floor) this.deskAssigmentService.loadAll(this.floor.id)
     if(this.changeset) this.changesetItemService.loadAll(this.changeset.id)
   }
-
-  getDeskAssignment(desk: Desk) : Observable<DeskAssignment>{
-    return this.deskAssigmentService.deskAssignments.map(list=> list.find(item => item.desk.id === desk.id))
-  }
-
-  getChangesetItem(desk: Desk) : Observable<ChangesetItem> {
-    return this.changesetItemService.changesetItems.map(list=> list.find(item => item.toDesk && item.toDesk.id === desk.id))
-  }
 }

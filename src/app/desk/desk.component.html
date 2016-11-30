@@ -11,6 +11,7 @@
     (drop)="ondrop($event)"
     (dragover)="ondragover($event)">
 <!--Hover event-->
+  <h2>{{(changesetItem|async)?.employee.firstname}}</h2>
   <div class="deskItem" *ngIf="deskAssignment == null">
     <img src="{{emptyDeskUrl}}" alt="empty desk">
   </div>

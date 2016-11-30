@@ -1,7 +1,6 @@
 <div class="floor-canvas" style="position: relative;">
   <floor *ngIf="floor" [floor]="floor"></floor>
-  <desk *ngFor="let desk of desks|async" [desk]="desk"
-        [deskAssignment]="getDeskAssignment(desk)|async"
-        [changesetItem]="getChangesetItem(desk)|async"
+  <desk *ngFor="let desk of desks|async"
+        [desk]="desk"
         [changeset]="changeset"></desk>
 </div>

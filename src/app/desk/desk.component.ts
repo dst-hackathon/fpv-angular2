@@ -8,6 +8,7 @@ import {ChangesetItem} from "../model/changeset-item";
 import {Observable} from "rxjs";
 import {Changeset} from "../model/changeset";
 import {ChangesetItemService} from "../service/changeset-item.service";
+import {DeskAssignmentService} from "../service/desk-assignment.service";
 
 @Component({
   selector: 'desk',
@@ -17,12 +18,12 @@ import {ChangesetItemService} from "../service/changeset-item.service";
 export class DeskComponent implements OnInit {
 
   @Input() desk: Desk
-  @Input() deskAssignment: DeskAssignment
-  @Input() changesetItem: ChangesetItem
   @Input() changeset: Changeset
 
+  deskAssignment: Observable<DeskAssignment>
+  changesetItem: Observable<ChangesetItem>
+
   employee: Observable<Employee>;
-  loadedEmployee;
   closeResult: string;
   emptyDeskUrl = '../assets/question-mark.png';
   assignedDeskUrl = '../assets/user-silhouette.png';
@@ -30,16 +31,34 @@ export class DeskComponent implements OnInit {
   constructor(
     public employeeService: EmployeeService,
     private changesetItemService: ChangesetItemService,
+    private deskAssigmentService: DeskAssignmentService,
     private deskModal: NgbModal) { }
 
   ngOnInit() {
-    this.loadEmployee()
+    this.deskAssignment = this.getDeskAssignment(this.desk)
+    this.changesetItem = this.getChangesetItem(this.desk)
+
+
+    this.deskAssigmentService.loadAll(this.desk.floor.id)
+    this.changesetItemService.loadAll(this.changeset.id)
+
+    this.deskAssignment.subscribe(da=> {
+      this.loadEmployee(da)
+      return da
+    })
   }
 
-  loadEmployee(){
-    if(this.deskAssignment){
-      this.employee = this.employeeService.getEmployee(this.deskAssignment.employee.id)
-      this.employee.subscribe(emp => this.loadedEmployee = emp)
+  getDeskAssignment(desk: Desk) : Observable<DeskAssignment>{
+    return this.deskAssigmentService.deskAssignments.map(list=> list.find(item => item.desk.id === desk.id))
+  }
+
+  getChangesetItem(desk: Desk) : Observable<ChangesetItem> {
+    return this.changesetItemService.changesetItems.map(list=> list.find(item => item.toDesk && item.toDesk.id === desk.id))
+  }
+
+  loadEmployee(deskAssignment){
+    if(deskAssignment){
+      this.employee = this.employeeService.getEmployee(deskAssignment.employee.id)
     }
   }
 
@@ -71,7 +90,12 @@ export class DeskComponent implements OnInit {
     console.log("Drag started", event);
     console.log("Desk ID", this.desk.id);
     event.dataTransfer.setData('fromDeskId', JSON.stringify(this.desk));
-    event.dataTransfer.setData('employee', JSON.stringify(this.loadedEmployee));
+
+    this.employee.subscribe(emp =>{
+      event.dataTransfer.setData('employee', JSON.stringify(emp));
+
+      emp
+    })
   }
 
   public ondrop(event) {
