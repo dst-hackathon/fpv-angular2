@@ -16,6 +16,6 @@ export class Employee {
   work: string
 
   getImage() {
-    return this.image = `/api/employees/${this.id}/image`;
+    return `/api/employees/${this.id}/image`;
   }
 }
