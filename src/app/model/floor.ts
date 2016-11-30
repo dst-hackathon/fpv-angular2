@@ -10,7 +10,7 @@ export class Floor {
     building: Building
 
     getByteImage(){
-      return this.image = `/api/floors/${this.id}/image`;
+      return `/api/floors/${this.id}/image`;
     }
 }
 
