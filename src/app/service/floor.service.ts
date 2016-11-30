@@ -42,17 +42,4 @@ export class FloorService {
   getFloor(id): Observable<Floor> {
     return this.floors.map(floors => floors.find(item => item.id === id));
   }
-
-  loadFloorImage(floor:Floor){
-    //cache
-    if(floor == null || floor.image){
-      return
-    }
-
-    this.http.get(`${this.serverUrl}/${floor.id}/image`).map(res => res.json()).subscribe( floorImage => {
-      Object.assign(floor,floorImage)
-    }, error => console.log('Could not load floor image.',floor));
-
-  }
-
 }

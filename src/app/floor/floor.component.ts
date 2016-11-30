@@ -18,13 +18,10 @@ export class FloorComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.loadedFloor = this.floorService.getFloor(this.floor.id)
-    this.floorService.loadFloorImage(this.floor)
   }
 
   ngOnChanges(changes: SimpleChanges) {
     let floor = changes['floor'].currentValue
     this.loadedFloor = this.floorService.getFloor(floor.id)
-
-    this.floorService.loadFloorImage(this.floor)
   }
 }

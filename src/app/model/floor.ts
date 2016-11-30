@@ -10,11 +10,7 @@ export class Floor {
     building: Building
 
     getByteImage(){
-      if(this.image && this.imageContentType){
-        return "data:"+ this.imageContentType+";base64," + this.image;
-      }
-
-      return null;
+      return this.image = `/api/floors/${this.id}/image`;
     }
 }
 

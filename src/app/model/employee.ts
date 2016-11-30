@@ -15,11 +15,7 @@ export class Employee {
   position: string
   work: string
 
-  getByteImage() {
-    if (this.image && this.imageContentType) {
-      return "data:" + this.imageContentType + ";base64," + this.image;
-    }
-
-    return null;
+  getImage() {
+    return this.image = `/api/employees/${this.id}/image`;
   }
 }
