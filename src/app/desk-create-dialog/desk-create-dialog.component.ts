@@ -17,10 +17,5 @@ export class DeskCreateDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  save(){
-    this.deskService.save(this.desk).subscribe(desk => {
-      this.deskChange.emit(this.desk);
-    })
-  }
   delete(){}
 }

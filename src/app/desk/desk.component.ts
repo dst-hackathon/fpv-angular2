@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 import {Changeset} from "../model/changeset";
 import {ChangesetItemService} from "../service/changeset-item.service";
 import {DeskAssignmentService} from "../service/desk-assignment.service";
+import {DeskService} from "../service/desk.service";
 
 @Component({
   selector: 'desk',
@@ -28,10 +29,13 @@ export class DeskComponent implements OnInit {
   emptyDeskUrl = '../assets/question-mark.png';
   assignedDeskUrl = '../assets/user-silhouette.png';
 
+  selectedDesk: Observable<Desk>;
+
   constructor(
     public employeeService: EmployeeService,
     private changesetItemService: ChangesetItemService,
     private deskAssigmentService: DeskAssignmentService,
+    private deskService: DeskService,
     private deskModal: NgbModal) { }
 
   ngOnInit() {
@@ -63,6 +67,7 @@ export class DeskComponent implements OnInit {
   }
 
   open(content) {
+    this.deskService.setSelectedDesk(this.desk);
     this.deskModal.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       console.log("Dialog result: " + this.closeResult);
@@ -71,8 +76,10 @@ export class DeskComponent implements OnInit {
         // Call service to save deskAssignment
         console.log("Save with DeskAssignment: ", this.deskAssignment);
       }
+      this.deskService.setSelectedDesk(null);
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      this.deskService.setSelectedDesk(null);
     });
   }
 

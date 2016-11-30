@@ -17,12 +17,10 @@ export class FloorMarkerComponent implements OnInit {
   @Input() floor: Floor;
   @Input() changeset: Changeset
 
-  desks: Desk[]
   deskAssignments
   desk: Desk
 
   @Output() deskChange: EventEmitter<Desk> = new EventEmitter<Desk>();
-  @Output() desksChange: EventEmitter<Desk[]> = new EventEmitter<Desk[]>();
 
   selectedDesk: Desk
   closeResult: string;
@@ -34,25 +32,22 @@ export class FloorMarkerComponent implements OnInit {
   ngOnInit() { }
 
   markDesk($event, addContent) {
-    let desk = Desk.fromJson({
-      x: $event.offsetX,
-      y: $event.offsetY,
-      height: 30,
-      width: 30
-    })
-    desk.floor = this.floor
-    this.selectedDesk = desk
-    this.openModal(addContent);//open modal
+    if (!this.deskService.hasSelectedDesk()) {
+      let desk = Desk.fromJson({
+        x: $event.offsetX,
+        y: $event.offsetY,
+        height: 30,
+        width: 30
+      })
+      desk.floor = this.floor
+      this.selectedDesk = desk
+      this.openModal(addContent);//open modal
+    }
   }
 
   saveSelectedDesk() {
     console.log("save desk", this.selectedDesk)
-    this.deskService.save(this.selectedDesk).subscribe(desk => {
-      this.deskChange.emit(this.selectedDesk);
-    })
-
-    this.desks.push(this.selectedDesk);
-    this.desksChange.emit(this.desks);
+    this.deskService.save(this.selectedDesk);
   }
 
   openModal(content) {
