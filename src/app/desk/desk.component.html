@@ -39,6 +39,7 @@
     <desk-assign [desk]="desk" [deskAssignment]="deskAssignment|async" [changesetItem]="changesetItem|async"></desk-assign>
   </div>
   <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="c('DELETE')">Delete</button>
     <button type="button" class="btn btn-secondary" (click)="c('Cancel')">Cancel</button>
     <button type="button" class="btn btn-primary" (click)="c('Save')">Save</button>
     <br/>

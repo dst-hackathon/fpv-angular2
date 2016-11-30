@@ -44,6 +44,18 @@ export class DeskService {
       }, error => console.log('Could not save desk.'));
   }
 
+  remove(deskId: number){
+    this.http.delete(`${this.serverUrl}/${deskId}`).subscribe(res => {
+      this.dataStore.desks.forEach((d, i) => {
+        if (d.id === deskId) { this.dataStore.desks.splice(i, 1); }
+      });
+
+      this._desks.next(Object.assign({}, this.dataStore).desks);
+
+      console.log('Complete delete desk',desk)
+    })
+  }
+
   get(id:number) {
     return this.desks.map(desks=> desks.find(desk => desk.id === id))
   }

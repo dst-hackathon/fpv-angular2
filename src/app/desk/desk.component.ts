@@ -76,6 +76,11 @@ export class DeskComponent implements OnInit {
         // Call service to save deskAssignment
         console.log("Save with DeskAssignment: ", this.deskAssignment);
       }
+      else if("DELETE" == result){
+        console.log("Delete desk: ", this.desk);
+        this.deskService.remove(this.desk.id)
+      }
+
       this.deskService.setSelectedDesk(null);
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
