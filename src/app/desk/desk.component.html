@@ -10,14 +10,17 @@
     (dragstart)="ondragstart($event)"
     (drop)="ondrop($event)"
     (dragover)="ondragover($event)">
-<!--Hover event-->
-  <h2>{{(changesetItem|async)?.employee.firstname}}</h2>
-  <div class="deskItem" *ngIf="deskAssignment == null">
-    <img src="{{emptyDeskUrl}}" alt="empty desk">
+
+  <span class="tag tag-pill tag-warning" *ngIf="changesetItem|async">
+    {{(changesetItem|async)?.employee.firstname}}
+  </span>
+  <span class="tag tag-pill tag-primary" *ngIf="(changesetItem|async) == null && (deskAssignment|async)">
+    {{(deskAssignment|async)?.employee.firstname}}
+  </span>
+  <div class="deskItem" *ngIf="(changesetItem|async) == null && (deskAssignment|async) == null">
+    <img [src]="emptyDeskUrl" alt="empty desk">
   </div>
-  <div class="deskItem" *ngIf="deskAssignment != null">
-    <img src="{{assignedDeskUrl}}" alt="assigned desk">
-  </div>
+
 </div>
 
 <template #popContent>
