@@ -26,7 +26,7 @@ export class DeskService {
   }
 
   loadAll(floorId) {
-    this.http.get(`${this.serverUrl}?floorId=${floorId}&cacheBuster=${new Date().getTime()}`).map(response => response.json()).subscribe(data => {
+    this.http.get(`${this.serverUrl}?floorId=${floorId}&cacheBuster=${new Date().getTime()}&size=10000`).map(response => response.json()).subscribe(data => {
       this.dataStore.desks = data;
       this._desks.next(Object.assign({}, this.dataStore).desks);
     }, error => console.log('Could not load desks.'));
