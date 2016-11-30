@@ -1,8 +1,4 @@
-.deskItem {
-    width: 20px;
-    height: 20px;
-}
 .desk-position {
     position: absolute;
-    background-color: red;
+    background-color: rgba(105, 193, 219, 0.47);
 }
