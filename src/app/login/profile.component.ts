@@ -6,9 +6,10 @@ import {LoginService} from "../service/login.service";
   selector: 'profile',
   template: `
     
-    <span class="navbar-text float-sm-right navbar-dark-text" *ngIf="user|async">
-      Login as : {{(user | async)?.firstName}}
-    </span>
+    <div class="navbar-text float-sm-right navbar-dark-text" *ngIf="user|async">
+      <span>Login as : {{(user | async)?.firstName}}</span>
+      | <a class="nav-link" routerLink="/logout" routerLinkActive="active">Log out</a>
+    </div>
   `,
 })
 export class ProfileComponent implements OnInit{

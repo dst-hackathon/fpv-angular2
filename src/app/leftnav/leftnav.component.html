@@ -1,12 +1,5 @@
-<div class="col-sm-3 col-md-2 sidebar" *ngIf="user|async">
-  <ul class="nav nav-sidebar">
-    <li class="active"><a class="nav-link navbar-dark-text" routerLink="/home" routerLinkActive="active">View Master
-      Plan</a></li>
-    <li><a class="nav-link navbar-dark-text" href="#">Create/Edit Future Plan</a></li>
-    <li><a class="nav-link navbar-dark-text" href="#">Approve Future Plan</a></li>
-    <li><a class="nav-link navbar-dark-text" href="#">Manage Floor Plan</a></li>
-  </ul>
-  <ul class="nav nav-sidebar">
-    <li><a class="nav-link navbar-dark-text" routerLink="/logout" routerLinkActive="active">Log out</a></li>
-  </ul>
-</div>
+<ul class="nav navbar-nav" *ngIf="user|async">
+  <li class="nav-item active">
+    <a class="nav-link navbar-dark-text" routerLink="/home" routerLinkActive="active">Home</a>
+  </li>
+</ul>
