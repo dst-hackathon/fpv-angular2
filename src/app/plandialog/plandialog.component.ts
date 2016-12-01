@@ -6,6 +6,7 @@ import {DeskAssignmentService} from "../service/desk-assignment.service";
 import {ChangesetService} from "../service/changeset.service";
 import {Observable} from "rxjs";
 import {Desk} from "../model/desk";
+import {ChangesetItemService} from "../service/changeset-item.service";
 
 @Component({
   selector: 'plan-dialog',
@@ -17,11 +18,7 @@ export class PlanDialogComponent implements OnInit {
   plan;
   changesetId;
 
-  changesetItems
-
   selectedFloor;
-  deskAssignments;
-
   selectedBuilding
 
   changesetDate
@@ -38,6 +35,7 @@ export class PlanDialogComponent implements OnInit {
     public deskService:DeskService,
     public deskAssignmentService: DeskAssignmentService,
     public changesetService: ChangesetService,
+    public changesetItemService: ChangesetItemService,
 
     private route: ActivatedRoute
   ) {}
@@ -51,7 +49,6 @@ export class PlanDialogComponent implements OnInit {
 
 
       this.desks = this.deskService.desks;
-      this.deskAssignments = this.deskAssignmentService.deskAssignments
 
       //TO DO REMOVE ME MOCK UP DATA
       this.changesetId = 1
@@ -66,14 +63,15 @@ export class PlanDialogComponent implements OnInit {
       this.getDeskByFloor();
       this.getDeskAssignmentsByFloor();
 
-      this.changesetService.getChangesetByEffectiveDate(this.changesetDate).subscribe(
-        changeset=> {
-          this.selectedChangeset = changeset
+      this.selectedChangeset = this.changesetService.getChangesetByEffectiveDate(this.changesetDate)
 
-          let changesetId = this.selectedChangeset.id
-          this.changesetService.getChangesetItems(changesetId).subscribe(res=>this.changesetItems = res)
+      this.selectedChangeset.subscribe(
+        changeset=> {
+          this.changesetItemService.loadAll(changeset.id)
 
           this.noChangeset = false
+
+          return changeset
         },
         err => {
           this.noChangeset = true;

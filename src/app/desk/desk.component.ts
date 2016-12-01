@@ -42,10 +42,6 @@ export class DeskComponent implements OnInit {
     this.deskAssignment = this.getDeskAssignment(this.desk)
     this.changesetItem = this.getChangesetItem(this.desk)
 
-
-    this.deskAssigmentService.loadAll(this.desk.floor.id)
-    this.changesetItemService.loadAll(this.changeset.id)
-
     this.deskAssignment.subscribe(da=> {
       this.loadEmployee(da)
       return da
