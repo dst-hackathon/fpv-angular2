@@ -1,9 +1,9 @@
-<div class="card" *ngIf="employee">
-  <img class="card-img-top" [src]="employee.getImage()" alt="Card image cap">
+<div class="card" *ngIf="emp">
+  <img class="card-img-top" [src]="emp.getImage()" alt="Card image cap">
   <div class="card-block">
-    <h4 class="card-title">{{employee.firstname}} {{employee.lastname}} ({{employee.nickname}})</h4>
-    <p class="card-text"><small class="text-muted">Id: {{employee.code}}</small></p>
-    <p class="card-text"><small class="text-muted">Email: {{employee.email}}</small></p>
-    <p class="card-text"><small class="text-muted">Extl: {{employee.work}}</small></p>
+    <h4 class="card-title">{{emp.firstname}} {{emp.lastname}} ({{emp.nickname}})</h4>
+    <p class="card-text"><small class="text-muted">Id: {{emp.code}}</small></p>
+    <p class="card-text"><small class="text-muted">Email: {{emp.email}}</small></p>
+    <p class="card-text"><small class="text-muted">Extl: {{emp.work}}</small></p>
   </div>
 </div>
