@@ -5,6 +5,7 @@
     [style.width]="desk.width  + 'px'"
     placement="right"
     [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="Desk code: {{desk.code}}"
+    container="body"
     (click)="open(modalContent)"
     [draggable]="deskAssignment != null"
     (dragstart)="ondragstart($event)"
