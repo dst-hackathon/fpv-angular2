@@ -58,11 +58,15 @@ export class PlanDialogComponent implements OnInit {
     return console.log(json)
   }
 
-  loadData(){
-    if (this.selectedFloor && this.changesetDate) {
+  loadFloorData(){
+    if (this.selectedFloor) {
       this.getDeskByFloor();
       this.getDeskAssignmentsByFloor();
+    }
+  }
 
+  loadChangesetData(){
+    if (this.changesetDate) {
       this.selectedChangeset = this.changesetService.getChangesetByEffectiveDate(this.changesetDate)
 
       this.selectedChangeset.subscribe(
