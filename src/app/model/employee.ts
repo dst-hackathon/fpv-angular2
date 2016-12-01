@@ -18,4 +18,8 @@ export class Employee {
   getImage() {
     return `/api/employees/${this.id}/image`;
   }
+
+  static fromJson(object): Employee{
+    return Object.assign(new Employee(),object)
+  }
 }
