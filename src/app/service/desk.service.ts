@@ -36,7 +36,7 @@ export class DeskService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(this.serverUrl, desk, options)
+    return this.http.put(this.serverUrl, desk, options)
       .map((response: Response) => response.json())
       .subscribe(data => {
         this.dataStore.desks.push(data);
@@ -52,7 +52,7 @@ export class DeskService {
 
       this._desks.next(Object.assign({}, this.dataStore).desks);
 
-      console.log('Complete delete desk',desk)
+      console.log('Complete delete desk',deskId)
     })
   }
 
