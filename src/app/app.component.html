@@ -11,18 +11,14 @@
   </div>
 </nav>
 
-<div class="container-fluid">
-  <div class="row">
-    <leftnav></leftnav>
-    <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 main">
-      <router-outlet></router-outlet>
-      <template ngbModalContainer></template>
-    </div>
-  </div>
+<!-- Begin page content -->
+<div class="container">
+  <router-outlet></router-outlet>
+  <template ngbModalContainer></template>
 </div>
 
-<div class="container">
-  <footer>
-    <p>&copy; 2016 DST Systems, Inc. All rights reserved.</p>
-  </footer>
-</div>
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted">&copy; 2016 DST Systems, Inc. All rights reserved.</span>
+  </div>
+</footer>

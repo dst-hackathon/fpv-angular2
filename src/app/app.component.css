@@ -1,10 +1,4 @@
-/*#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    left: 250px;
+.container{
+  padding-top: 80px;
+  width:100%;
 }
-
-#page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
-}*/
