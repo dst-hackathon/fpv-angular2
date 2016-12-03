@@ -1,3 +1,7 @@
 desk-card {
   max-width: 500px;
 }
+
+img {
+  border-radius: 50%;
+}
