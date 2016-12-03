@@ -3,12 +3,11 @@ import {PlanHolderService} from '../service/planholder.service';
 import {ChangesetItem} from "../model/changeset-item";
 
 @Component({
-  selector: 'planholder',
-  templateUrl: './planholder.component.html',
-  styleUrls: ['./planholder.component.css']
+  selector: 'plan-holder',
+  templateUrl: './plan-holder.component.html',
+  styleUrls: ['./plan-holder.component.css']
 })
-export class PlanholderComponent implements OnInit {
-
+export class PlanHolderComponent implements OnInit {
 
 @Input() changesetId
 
@@ -17,15 +16,15 @@ changeSetItems: ChangesetItem[];
   constructor(public planHolderService : PlanHolderService) { }
 
   ngOnInit() {
-    this.getChangeSetItemDeskNull();
+    this.getChangeSetItem();
   }
 
-
-  getChangeSetItemDeskNull()
+  getChangeSetItem()
   {
 
-    this.planHolderService.getChangesetItemsDeskNull(this.changesetId).subscribe(res => {
+    this.planHolderService.getChangesetItemsDesk(this.changesetId).subscribe(res => {
         this.changeSetItems = res
         }, err => console.log(err));
   }
+
 }

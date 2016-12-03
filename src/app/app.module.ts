@@ -39,6 +39,7 @@ import { ChangesetItemComponent } from './changeset-item/changeset-item.componen
 import { ChangesetItemService } from './service/changeset-item.service';
 import { PlanholderComponent } from './planholder/planholder.component';
 import { DeskAssignComponent } from './desk-assign/desk-assign.component';
+import { PlanHolderComponent } from './plan-holder/plan-holder.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { DeskAssignComponent } from './desk-assign/desk-assign.component';
     ChangesetItemComponent,
     FloorMarkerComponent,
     PlanholderComponent,
-    DeskAssignComponent
+    DeskAssignComponent,
+    PlanHolderComponent
 
   ],
   imports: [

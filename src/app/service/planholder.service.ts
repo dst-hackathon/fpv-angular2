@@ -8,8 +8,7 @@ import {ChangesetItem} from "../model/changeset-item";
 @Injectable()
 export class PlanHolderService {
 
-  private serverUrl = '/api/changesets';
-  private serverUrl2 = '/api/changeset-items';
+  private serverUrl = '/api/changeset-items';
 
   constructor(private http: Http) { }
 
@@ -17,7 +16,7 @@ export class PlanHolderService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.get(this.serverUrl2 + '?changesetId=' + changeID, options)
+    return this.http.get(this.serverUrl + '?changesetId=' + changeID, options)
       .map(res => {
         let changesetItems: ChangesetItem[] = [];
         for (let item of res.json())
@@ -26,6 +25,22 @@ export class PlanHolderService {
            {
             changesetItems.push(Object.assign(new ChangesetItem(),item));
            }
+        }
+        return changesetItems;
+      })
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+  
+   getChangesetItemsDesk(changeID): Observable<any> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(this.serverUrl + '?changesetId=' + changeID, options)
+      .map(res => {
+        let changesetItems: ChangesetItem[] = [];
+        for (let item of res.json())
+        {
+           changesetItems.push(Object.assign(new ChangesetItem(),item));
         }
         return changesetItems;
       })
