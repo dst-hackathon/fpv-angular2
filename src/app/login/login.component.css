@@ -2,10 +2,16 @@
     overflow: hidden;
 }
 .btn-signin {
-    transition-property: height opacity;
-    transition-duration: 1s;
-    transition-timing-function: linear;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
     color: white;
+}
+.jumbotron {
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+.jumbotron.clicked {
+    padding: 1rem 1rem;
 }
 .btn-signin.clicked {
     height: 0px;
