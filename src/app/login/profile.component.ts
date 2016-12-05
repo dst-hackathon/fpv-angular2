@@ -7,8 +7,8 @@ import {LoginService} from "../service/login.service";
   template: `
     
     <div class="navbar-text float-sm-right navbar-dark-text" *ngIf="user|async">
-      <span>Login as : {{(user | async)?.firstName}}</span>
-      | <a class="nav-link" routerLink="/logout" routerLinkActive="active">Log out</a>
+      <span><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{(user | async)?.firstName}}</span>
+      | <a class="nav-link" routerLink="/logout" routerLinkActive="active"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
     </div>
   `,
 })

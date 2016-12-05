@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import { NgZone } from '@angular/core';
 import {Router} from "@angular/router";
 import {LoginService} from "./service/login.service";
 
@@ -9,15 +10,26 @@ import {LoginService} from "./service/login.service";
 })
 export class AppComponent implements OnInit {
   user;
+  isShrunk: boolean = false;
 
   constructor(
     public loginService: LoginService,
-    public router: Router) {}
+    public router: Router,
+    zone: NgZone) {
+      window.onscroll = () => {
+      zone.run(() => {
+        if(window.pageYOffset > 0) {
+             this.isShrunk = true;
+        } else {
+             this.isShrunk = false;
+        }
+      });
+    }
+  }
 
   ngOnInit() {
     this.user  = this.loginService.loginUser
     this.checkLoginUser()
-
     this.loginService.loadLoginAccount()
   }
 
