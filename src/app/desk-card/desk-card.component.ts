@@ -19,7 +19,7 @@ export class DeskCardComponent implements OnInit {
     if(this.changesetItem && this.changesetItem.employee){
       this.emp = Object.assign(new Employee(),this.changesetItem.employee)
     }else{
-      this.emp = this.employee
+      this.emp = Object.assign(new Employee(), this.employee);
     }
   }
 
