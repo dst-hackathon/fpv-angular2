@@ -7,5 +7,5 @@ Desk code: {{desk.code}} <br/>
 
 <div>
   Associate&#39;s DT: <input type="text" [(ngModel)]="employeeCode"/> <button type="button" class="btn btn-secondary" (click)="assignEmployee()" >Assign</button><br/>
-  <desk-card *ngIf="deskAssignment" [employee]="deskAssignment?.employee" [changesetItem]="changesetItem"></desk-card>
+  <desk-card [deskAssignment]="deskAssignment" [changesetItem]="changesetItem"></desk-card>
 </div>

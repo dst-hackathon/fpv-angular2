@@ -26,7 +26,7 @@
 
 <template #popContent>
   <p *ngIf="!deskAssignment">Available desk</p>
-  <desk-card [employee]="employee|async" [changesetItem]="changesetItem|async" ></desk-card>
+  <desk-card [deskAssignment]="deskAssignment|async" [changesetItem]="changesetItem|async" ></desk-card>
 </template>
 
 <template #modalContent let-c="close" let-d="dismiss">

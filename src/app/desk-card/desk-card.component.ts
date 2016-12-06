@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Employee } from '../model/employee';
-import {ChangesetItem} from "../model/changeset-item";
+import { ChangesetItem } from '../model/changeset-item';
+import { DeskAssignment } from '../model/desk-assignment';
 
 @Component({
   selector: 'desk-card',
@@ -9,17 +10,20 @@ import {ChangesetItem} from "../model/changeset-item";
   styleUrls: ['./desk-card.component.css']
 })
 export class DeskCardComponent implements OnInit {
-  @Input() employee: Employee
+  @Input() deskAssignment: DeskAssignment;
   @Input() changesetItem: ChangesetItem
 
-  emp
+  public currentEmployee: Employee;
+  public nextEmployee: Employee;
+
   constructor() { }
 
   ngOnInit() {
-    if(this.changesetItem && this.changesetItem.employee){
-      this.emp = Object.assign(new Employee(),this.changesetItem.employee)
-    }else{
-      this.emp = Object.assign(new Employee(), this.employee);
+    if (this.deskAssignment) {
+      this.currentEmployee = Object.assign(new Employee(), this.deskAssignment.employee);
+    }
+    if (this.changesetItem) {
+      this.nextEmployee = Object.assign(new Employee(), this.changesetItem.employee);
     }
   }
 
