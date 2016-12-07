@@ -36,9 +36,7 @@ export class ChangesetItemService {
         let changesetItems: ChangesetItem[] = [];
         for (let item of items)
         {
-          let changesetItemsTemp = Object.assign(new ChangesetItem(),item);
-          changesetItemsTemp.employee = Object.assign(new Employee(),item.employee);
-          changesetItems.push(changesetItemsTemp);
+          changesetItems.push(ChangesetItem.fromJson(item));
         }
         return changesetItems;
       })
@@ -85,7 +83,7 @@ export class ChangesetItemService {
     item.status = 'DRAFT'
 
     this.http.put(`${this.serverUrl}`, item)
-      .map(response => response.json()).subscribe(data => {
+      .map(response => ChangesetItem.fromJson(response.json())).subscribe(data => {
       this.dataStore.changesetItems.push(data);
       this._changesetItems.next(Object.assign({}, this.dataStore).changesetItems);
     }, error => console.log('Could not create.'));

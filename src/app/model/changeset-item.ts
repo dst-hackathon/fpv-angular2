@@ -11,4 +11,11 @@ export class ChangesetItem {
     toDesk: Desk
 
     changeset: Changeset;
+
+  static fromJson(item) {
+    let changesetItemsTemp = Object.assign(new ChangesetItem(),item);
+    changesetItemsTemp.employee = Object.assign(new Employee(),item.employee);
+
+    return changesetItemsTemp
+  }
 }
