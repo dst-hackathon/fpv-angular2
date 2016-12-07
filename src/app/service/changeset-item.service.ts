@@ -88,6 +88,16 @@ export class ChangesetItemService {
       .map(response => response.json()).subscribe(data => {
       this.dataStore.changesetItems.push(data);
       this._changesetItems.next(Object.assign({}, this.dataStore).changesetItems);
-    }, error => console.log('Could not create todo.'));
+    }, error => console.log('Could not create.'));
+  }
+
+  remove(id: number) {
+    this.http.delete(`${this.serverUrl}/${id}`).subscribe(response => {
+      this.dataStore.changesetItems.forEach((t, i) => {
+        if (t.id === id) { this.dataStore.changesetItems.splice(i, 1); }
+      });
+
+      this._changesetItems.next(Object.assign({}, this.dataStore).changesetItems);
+    }, error => console.log('Could not delete.'));
   }
 }

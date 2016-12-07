@@ -21,4 +21,8 @@ export class PlanHolderComponent implements OnInit {
     this.changeSetItems = this.changesetItemService.changesetItems
   }
 
+  deleteItem(item){
+    this.changesetItemService.remove(item.id)
+  }
+
 }
