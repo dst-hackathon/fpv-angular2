@@ -24,7 +24,6 @@ import { FloorSelectorComponent } from './floor-selector/floor-selector.componen
 import { BuildingSelectorComponent } from './building-selector/building-selector.component';
 import { FloorService } from './service/floor.service';
 import { BuildingService } from './service/building.service';
-import { PlanHolderService } from './service/planholder.service';
 
 import { FloorComponent } from './floor/floor.component';
 
@@ -82,7 +81,6 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
     BuildingService,
     DeskService,
     ChangesetService,
-    PlanHolderService,
     ChangesetItemService
   ],
   bootstrap: [AppComponent]
