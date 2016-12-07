@@ -37,7 +37,6 @@ import { DeskCreateDialogComponent } from './desk-create-dialog/desk-create-dial
 import { ChangesetService } from './service/changeset.service'
 import { ChangesetItemComponent } from './changeset-item/changeset-item.component';
 import { ChangesetItemService } from './service/changeset-item.service';
-import { PlanholderComponent } from './planholder/planholder.component';
 import { DeskAssignComponent } from './desk-assign/desk-assign.component';
 import { PlanHolderComponent } from './plan-holder/plan-holder.component';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
@@ -62,7 +61,6 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
     DeskCreateDialogComponent,
     ChangesetItemComponent,
     FloorMarkerComponent,
-    PlanholderComponent,
     DeskAssignComponent,
     PlanHolderComponent,
     EmployeeCardComponent

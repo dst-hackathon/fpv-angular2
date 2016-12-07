@@ -1,6 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {PlanHolderService} from '../service/planholder.service';
+import {Component, OnInit, Input} from "@angular/core";
+import {PlanHolderService} from "../service/planholder.service";
 import {ChangesetItem} from "../model/changeset-item";
+import {ChangesetItemService} from "../service/changeset-item.service";
+import {ChangesetService} from "../service/changeset.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'plan-holder',
@@ -9,22 +12,13 @@ import {ChangesetItem} from "../model/changeset-item";
 })
 export class PlanHolderComponent implements OnInit {
 
-@Input() changesetId
+  changeSetItems: Observable<ChangesetItem[]>
 
-changeSetItems: ChangesetItem[];
-
-  constructor(public planHolderService : PlanHolderService) { }
-
-  ngOnInit() {
-    this.getChangeSetItem();
+  constructor(private changesetItemService: ChangesetItemService) {
   }
 
-  getChangeSetItem()
-  {
-
-    this.planHolderService.getChangesetItemsDesk(this.changesetId).subscribe(res => {
-        this.changeSetItems = res
-        }, err => console.log(err));
+  ngOnInit() {
+    this.changeSetItems = this.changesetItemService.changesetItems
   }
 
 }

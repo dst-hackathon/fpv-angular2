@@ -1,31 +1,37 @@
-<div *ngIf="plan">
-	<h2>Plan : {{plan.name}}</h2>
+<div class="row" *ngIf="plan">
 
-  <div class="floor-selector row">
-    <building-selector [planId]="plan.id" [(selectedBuilding)]="selectedBuilding"></building-selector>
-    <floor-selector *ngIf="selectedBuilding" [building]="selectedBuilding" [(selectedFloor)]="selectedFloor" (change)="loadFloorData()"></floor-selector>
+  <!--main-->
+  <div class="col-sm-9">
+    <h2>Plan : {{plan.name}}</h2>
 
-    <div class="form-group" *ngIf="selectedFloor">
-      <label for="changesetSelect">Effective Date</label>
-      <input id="changesetSelect" class="form-control" type="date" [(ngModel)]="changesetDate" (change)="loadChangesetData()">
-      <div *ngIf="noChangeset">
-        <button class="btn btn-primary" (click)="createChangeset()">Create Changeset</button>
+    <div class="floor-selector row">
+      <building-selector [planId]="plan.id" [(selectedBuilding)]="selectedBuilding"></building-selector>
+      <floor-selector *ngIf="selectedBuilding" [building]="selectedBuilding" [(selectedFloor)]="selectedFloor" (change)="loadFloorData()"></floor-selector>
+
+      <div class="form-group" *ngIf="selectedFloor">
+        <label for="changesetSelect">Effective Date</label>
+        <input id="changesetSelect" class="form-control" type="date" [(ngModel)]="changesetDate" (change)="loadChangesetData()">
+        <div *ngIf="noChangeset">
+          <button class="btn btn-primary" (click)="createChangeset()">Create Changeset</button>
+        </div>
       </div>
     </div>
+
+    <button *ngIf="selectedFloor" type="button" class="btn btn-secondary" (click)="toggleFloorMode()">{{floorMode}} Mode</button>
+
+    <floor-marker *ngIf="selectedFloor && floorMode == 'Edit'"
+                  [floor]="selectedFloor"
+                  [changeset]="selectedChangeset"
+    ></floor-marker>
+
+    <floor-plan-canvas *ngIf="selectedFloor && floorMode == 'View'"
+                       [floor]="selectedFloor"
+                       [changeset]="selectedChangeset"></floor-plan-canvas>
   </div>
 
-	<button *ngIf="selectedFloor" type="button" class="btn btn-secondary" (click)="toggleFloorMode()">{{floorMode}} Mode</button>
-
-	<floor-marker *ngIf="selectedFloor && floorMode == 'Edit'"
-		[floor]="selectedFloor"
-    [changeset]="selectedChangeset"
-		></floor-marker>
-
-	<floor-plan-canvas *ngIf="selectedFloor && floorMode == 'View'"
-		[floor]="selectedFloor"
-    [changeset]="selectedChangeset"></floor-plan-canvas>
-
-
-	 <!--<planholder  [changesetId]="changesetId" ></planholder>-->
+  <!--sidebar -->
+  <div class="col-sm-3" *ngIf="(selectedChangeset|async)">
+    <plan-holder></plan-holder>
+  </div>
 
 </div>

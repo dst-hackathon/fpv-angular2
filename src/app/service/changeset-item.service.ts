@@ -31,7 +31,18 @@ export class ChangesetItemService {
   }
 
   loadAll(changesetId) {
-    this.http.get(`${this.serverUrl}?changesetId=${changesetId}`).map(response => response.json()).subscribe(data => {
+    this.http.get(`${this.serverUrl}?changesetId=${changesetId}`).map(response => response.json())
+      .map(items => {
+        let changesetItems: ChangesetItem[] = [];
+        for (let item of items)
+        {
+          let changesetItemsTemp = Object.assign(new ChangesetItem(),item);
+          changesetItemsTemp.employee = Object.assign(new Employee(),item.employee);
+          changesetItems.push(changesetItemsTemp);
+        }
+        return changesetItems;
+      })
+    .subscribe(data => {
       this.dataStore.changesetItems = data;
       this._changesetItems.next(Object.assign({}, this.dataStore).changesetItems);
     }, error => console.log('Could not load building.'));

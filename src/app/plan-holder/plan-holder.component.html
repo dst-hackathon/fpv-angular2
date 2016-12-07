@@ -1,6 +1,6 @@
 <div>
-     <li *ngFor="let changeSetItem of changeSetItems">     
-       <img class="card-img-top" [src]="changeSetItem.employee.getImage()" style="high:100px;width:100px;">    
-       <p>Name: {{changeSetItem.employee.firstname}} {{changeSetItem.employee.lastname}} </p>   
+     <li *ngFor="let changeSetItem of changeSetItems|async">
+       <img class="card-img-top" [src]="changeSetItem.employee.getImage()" style="high:100px;width:100px;">
+       <p>Name: {{changeSetItem.employee.firstname}} {{changeSetItem.employee.lastname}} </p>
      </li>
 </div>
