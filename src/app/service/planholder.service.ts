@@ -4,6 +4,7 @@ import {Observable} from "rxjs/Rx";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import {ChangesetItem} from "../model/changeset-item";
+import {Employee} from "../model/employee";
 
 @Injectable()
 export class PlanHolderService {
@@ -23,7 +24,9 @@ export class PlanHolderService {
         {
            if (item.toDesk == null)
            {
-            changesetItems.push(Object.assign(new ChangesetItem(),item));
+             let changesetItemsTemp = Object.assign(new ChangesetItem(),item);
+             changesetItemsTemp.employee = Object.assign(new Employee(),item.employee);
+             changesetItems.push(changesetItemsTemp);
            }
         }
         return changesetItems;
@@ -40,7 +43,9 @@ export class PlanHolderService {
         let changesetItems: ChangesetItem[] = [];
         for (let item of res.json())
         {
-           changesetItems.push(Object.assign(new ChangesetItem(),item));
+           let changesetItemsTemp = Object.assign(new ChangesetItem(),item);
+           changesetItemsTemp.employee = Object.assign(new Employee(),item.employee);
+           changesetItems.push(changesetItemsTemp);
         }
         return changesetItems;
       })
