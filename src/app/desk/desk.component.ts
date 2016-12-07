@@ -24,7 +24,7 @@ export class DeskComponent implements OnInit {
   deskAssignment: Observable<DeskAssignment>
   changesetItem: Observable<ChangesetItem>
 
-  employee: Observable<Employee>;
+  employee: Employee;
   closeResult: string;
   emptyDeskUrl = '../assets/question-mark.png';
   assignedDeskUrl = '../assets/user-silhouette.png';
@@ -42,9 +42,20 @@ export class DeskComponent implements OnInit {
     this.deskAssignment = this.getDeskAssignment(this.desk)
     this.changesetItem = this.getChangesetItem(this.desk)
 
-    this.deskAssignment.subscribe(da=> {
-      this.loadEmployee(da)
-      return da
+    this.loadEmployee();
+  }
+
+  private loadEmployee() {
+    this.deskAssignment.flatMap(da=> {
+      if (da) {
+        this.employee = da.employee
+      }
+
+      return this.changesetItem
+    }).subscribe(ci=> {
+      if (ci) {
+        this.employee = ci.employee
+      }
     })
   }
 
@@ -54,12 +65,6 @@ export class DeskComponent implements OnInit {
 
   getChangesetItem(desk: Desk) : Observable<ChangesetItem> {
     return this.changesetItemService.changesetItems.map(list=> list.find(item => item.toDesk && item.toDesk.id === desk.id))
-  }
-
-  loadEmployee(deskAssignment){
-    if(deskAssignment){
-      this.employee = this.employeeService.getEmployee(deskAssignment.employee.id)
-    }
   }
 
   open(content) {
@@ -97,13 +102,8 @@ export class DeskComponent implements OnInit {
   public ondragstart(event) {
     console.log("Drag started", event);
     console.log("Desk ID", this.desk.id);
-    event.dataTransfer.setData('fromDesk', JSON.stringify(this.desk));
-
-    this.employee.subscribe(emp =>{
-      event.dataTransfer.setData('employee', JSON.stringify(emp));
-
-      emp
-    })
+    event.dataTransfer.setData('fromDesk', JSON.stringify(this.desk))
+    event.dataTransfer.setData('employee', JSON.stringify(this.employee))
   }
 
   public ondrop(event) {
