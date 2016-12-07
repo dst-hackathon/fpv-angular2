@@ -15,7 +15,8 @@ const routes: Routes = [
     { path: 'login',  component: LoginComponent },
     { path: 'logout',  component: LogoutComponent },
     { path: 'home',  component: PlanListComponent },
-    { path: 'plan/:id', component: PlanDialogComponent }
+    { path: 'plan/:id', component: PlanDialogComponent },
+    { path: 'plan/:id/:buildingId/:floorId', component: PlanDialogComponent }
 ];
 
 @NgModule({

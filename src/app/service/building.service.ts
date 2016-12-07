@@ -28,4 +28,8 @@ export class BuildingService {
       this._buildings.next(Object.assign({}, this.dataStore).buildings);
     }, error => console.log('Could not load building.'));
   }
+
+  get(id:number) {
+    return this.buildings.map(list=> list.find(b => b.id === id))
+  }
 }

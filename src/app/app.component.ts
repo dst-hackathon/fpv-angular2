@@ -35,11 +35,11 @@ export class AppComponent implements OnInit {
 
   checkLoginUser() {
     this.user.subscribe(user => {
-      if(user){
-        this.router.navigate(['home']);
-      }else{
-        this.router.navigate(['login'])
-      }
+      // if(user){
+      //   this.router.navigate(['home']);
+      // }else{
+      //   this.router.navigate(['login'])
+      // }
     }, err => {
       console.log("User not logged in",err)
       this.router.navigate(['login'])

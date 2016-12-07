@@ -7,6 +7,10 @@ import {ChangesetService} from "../service/changeset.service";
 import {Observable} from "rxjs";
 import {Desk} from "../model/desk";
 import {ChangesetItemService} from "../service/changeset-item.service";
+import {BuildingService} from "../service/building.service";
+import {FloorService} from "../service/floor.service";
+import {Floor} from "../model/floor";
+import {Building} from "../model/building";
 
 @Component({
   selector: 'plan-dialog',
@@ -18,8 +22,8 @@ export class PlanDialogComponent implements OnInit {
   plan;
   changesetId;
 
-  selectedFloor;
-  selectedBuilding
+  selectedFloor:Floor
+  selectedBuilding:Building
 
   changesetDate
   selectedChangeset
@@ -28,7 +32,7 @@ export class PlanDialogComponent implements OnInit {
   floorMode = "View";
 
 
-  desks:Observable<Desk[]>;
+  desks: Observable<Desk[]>;
 
   constructor(
     public planService: PlanService,
@@ -36,6 +40,8 @@ export class PlanDialogComponent implements OnInit {
     public deskAssignmentService: DeskAssignmentService,
     public changesetService: ChangesetService,
     public changesetItemService: ChangesetItemService,
+    public buildingService: BuildingService,
+    public floorService: FloorService,
 
     private route: ActivatedRoute
   ) {}
@@ -43,8 +49,23 @@ export class PlanDialogComponent implements OnInit {
   ngOnInit() {
       this.route.params.subscribe(params => {
         let planId = params['id'];
-
         this.planService.getPlan(planId).subscribe(plan => this.plan = plan, err => console.log(err));
+
+        let floorId = Number(params['floorId']);
+        let buildingId = Number(params['buildingId']);
+        if(buildingId && floorId) {
+          this.buildingService.buildings.subscribe(list=>{
+            this.buildingService.get(buildingId).subscribe(b=>{
+              this.selectedBuilding = b
+              this.floorService.loadAll(buildingId)
+            })
+          })
+
+          this.floorService.getFloor(floorId).subscribe(f=>{
+            this.selectedFloor = f
+            this.loadFloorData()
+          })
+        }
       })
 
 
@@ -60,8 +81,8 @@ export class PlanDialogComponent implements OnInit {
 
   loadFloorData(){
     if (this.selectedFloor) {
-      this.getDeskByFloor();
-      this.getDeskAssignmentsByFloor();
+      this.getDeskByFloor(this.selectedFloor.id);
+      this.getDeskAssignmentsByFloor(this.selectedFloor.id);
     }
   }
 
@@ -95,12 +116,12 @@ export class PlanDialogComponent implements OnInit {
     }
   }
 
-  getDeskByFloor() {
-    this.deskService.loadAll(this.selectedFloor.id)
+  getDeskByFloor(floorId) {
+    this.deskService.loadAll(floorId)
   }
 
-  getDeskAssignmentsByFloor() {
-    this.deskAssignmentService.loadAll(this.selectedFloor.id)
+  getDeskAssignmentsByFloor(floorId) {
+    this.deskAssignmentService.loadAll(floorId)
   }
 
   toggleFloorMode() {
