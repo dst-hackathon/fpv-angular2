@@ -56,6 +56,16 @@ export class ChangesetItemService {
   }
 
   move(employee: Employee, fromDesk: Desk, toDesk: Desk, changeset: Changeset) {
+    if((fromDesk && toDesk) && fromDesk.id == toDesk.id){
+      console.info("Unable to move employee to same desk")
+      return
+    }
+    if(!changeset){
+      console.info("No change set selected")
+      return
+    }
+
+
     let item = new ChangesetItem();
     item.employee= employee;
     item.fromDesk = fromDesk
