@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { Employee } from '../model/employee';
+import {DeskAssignment} from "../model/desk-assignment";
+import {ChangesetItem} from "../model/changeset-item";
 
 @Injectable()
 export class EmployeeService {
@@ -65,5 +67,15 @@ export class EmployeeService {
     return this.http.get(this.serverUrl + "/search/code?code=" + code, options)
       .map(res => Object.assign(new Employee(),res.json()))
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
+  static getEmployee(deskAssignment: DeskAssignment, changesetItem: ChangesetItem) :Employee{
+    if(changesetItem && changesetItem.employee){
+      return changesetItem.employee
+    }else if(deskAssignment && deskAssignment.employee){
+      return deskAssignment.employee
+    }
+
+    return null;
   }
 }
