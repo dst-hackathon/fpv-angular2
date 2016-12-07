@@ -104,17 +104,33 @@ export class DeskComponent implements OnInit {
     console.log("Desk ID", this.desk.id);
     event.dataTransfer.setData('fromDesk', JSON.stringify(this.desk))
     event.dataTransfer.setData('employee', JSON.stringify(this.employee))
+
+    this.changesetItem.subscribe(item=>{
+      if(item){
+        event.dataTransfer.setData('changesetItem', JSON.stringify(item))
+      }
+    })
   }
 
   public ondrop(event) {
     event.preventDefault();
     let fromDesk = JSON.parse(event.dataTransfer.getData('fromDesk'))
     let employee = JSON.parse(event.dataTransfer.getData('employee'))
+    let changesetItem = this.getTransferData(event,'changesetItem')
     let toDesk  = this.desk;
 
     console.log(`Move desk: from ${fromDesk} to ${toDesk}`)
 
-    this.changesetItemService.move(employee, fromDesk, toDesk, this.changeset)
+    this.changesetItemService.move(employee, fromDesk, toDesk, this.changeset,changesetItem)
+  }
+
+  private getTransferData(event,name) {
+    var data = event.dataTransfer.getData(name);
+    if(!data){
+      return null
+    }
+
+    return JSON.parse(data);
   }
 
   public ondragover(event) {

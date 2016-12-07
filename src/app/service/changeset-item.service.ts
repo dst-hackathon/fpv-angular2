@@ -64,7 +64,7 @@ export class ChangesetItemService {
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  move(employee: Employee, fromDesk: Desk, toDesk: Desk, changeset: Changeset) {
+  move(employee: Employee, fromDesk: Desk, toDesk: Desk, changeset: Changeset,previousChangesetItem: ChangesetItem) {
     if((fromDesk && toDesk) && fromDesk.id == toDesk.id){
       console.info("Unable to move employee to same desk")
       return
@@ -74,16 +74,26 @@ export class ChangesetItemService {
       return
     }
 
-
     let item = new ChangesetItem();
     item.employee= employee;
-    item.fromDesk = fromDesk
-    item.toDesk = toDesk
     item.changeset = changeset
-    item.status = 'DRAFT'
+    item.fromDesk = fromDesk
+
+    if(previousChangesetItem){
+      item = previousChangesetItem
+      item.status = 'DRAFT'
+    }
+
+    item.toDesk = toDesk
 
     this.http.put(`${this.serverUrl}`, item)
       .map(response => ChangesetItem.fromJson(response.json())).subscribe(data => {
+
+      //remove
+      this.dataStore.changesetItems.forEach((t, i) => {
+        if (t.id === data.id) { this.dataStore.changesetItems.splice(i, 1); }
+      });
+
       this.dataStore.changesetItems.push(data);
       this._changesetItems.next(Object.assign({}, this.dataStore).changesetItems);
     }, error => console.log('Could not create.'));

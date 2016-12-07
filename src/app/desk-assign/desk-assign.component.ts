@@ -34,10 +34,10 @@ export class DeskAssignComponent implements OnInit {
 
   assignEmployee(){
     this.employeeService.getEmployeeByCode(this.employeeCode).subscribe(employee=> {
-      this.changesetItemService.move(employee, null, this.desk, this.changeset)
+      this.changesetItemService.move(employee, null, this.desk, this.changeset,this.changesetItem)
     })
   }
   unassignEmployee(){
-    this.changesetItemService.move(EmployeeService.getEmployee(this.deskAssignment,this.changesetItem), this.desk, null, this.changeset)
+    this.changesetItemService.move(EmployeeService.getEmployee(this.deskAssignment,this.changesetItem), this.desk, null, this.changeset,this.changesetItem)
   }
 }
