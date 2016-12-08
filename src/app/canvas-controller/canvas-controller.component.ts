@@ -43,4 +43,13 @@ export class CanvasControllerComponent implements OnInit {
       });
     }
   }
+
+  toggleMoveFeature(){
+    this.deskService.getConfig().enableMove = !this.deskService.getConfig().enableMove
+  }
+
+  clearSelectedDesk(){
+    this.deskService.getConfig().enableMove = false
+    this.deskService.setSelectedDesk(null);
+  }
 }

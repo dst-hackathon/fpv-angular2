@@ -15,13 +15,20 @@ export class DeskService {
   private dataStore: {
     desks: Desk[]
     selectedDesk: Desk
+    config : {
+      enableMove : boolean
+    }
   }
 
   desks: Observable<Desk[]>
   selectedDesk: Observable<Desk>
 
   constructor(private http: Http) {
-    this.dataStore = {desks: [], selectedDesk: null };
+    this.dataStore = {desks: [], selectedDesk: null,
+      config:{
+        enableMove:false
+      }
+    };
     this._desks = <BehaviorSubject<Desk[]>>new BehaviorSubject([]);
     this._selectedDesk = <BehaviorSubject<Desk>>new BehaviorSubject(null);
 
@@ -81,5 +88,9 @@ export class DeskService {
   }
   getSelectedDesk():Desk {
     return this.dataStore.selectedDesk
+  }
+
+  getConfig(){
+    return this.dataStore.config
   }
 }

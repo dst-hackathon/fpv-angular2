@@ -52,6 +52,11 @@ export class FloorMarkerComponent implements OnInit {
   }
 
   moveDesk(selectedDesk:Desk,x,y){
+    if(!this.deskService.getConfig().enableMove){
+      console.log('move feature is not enable')
+      return
+    }
+
     selectedDesk.x = x
     selectedDesk.y = y
 
