@@ -20,7 +20,6 @@ import {Building} from "../model/building";
 
 export class PlanDialogComponent implements OnInit {
   plan;
-  changesetId;
 
   selectedFloor:Floor
   selectedBuilding:Building
@@ -28,9 +27,6 @@ export class PlanDialogComponent implements OnInit {
   changesetDate
   selectedChangeset
   noChangeset = false
-
-  floorMode = "View";
-
 
   desks: Observable<Desk[]>;
 
@@ -70,9 +66,6 @@ export class PlanDialogComponent implements OnInit {
 
 
       this.desks = this.deskService.desks;
-
-      //TO DO REMOVE ME MOCK UP DATA
-      this.changesetId = 1
   }
 
   logResponse(json){
@@ -124,12 +117,5 @@ export class PlanDialogComponent implements OnInit {
     this.deskAssignmentService.loadAll(floorId)
   }
 
-  toggleFloorMode() {
-    if ("View" === this.floorMode) {
-      this.floorMode = "Edit";
-    } else {
-      this.floorMode = "View"
-    }
-  }
 }
 
