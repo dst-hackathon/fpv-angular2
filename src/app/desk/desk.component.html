@@ -6,7 +6,7 @@
     placement="right"
     [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="Desk code: {{desk.code}}"
     container="body"
-    (click)="open(modalContent)"
+    (click)="selectDesk($event)"
     [draggable]="deskAssignment != null"
     (dragstart)="ondragstart($event)"
     (drop)="ondrop($event)"
@@ -27,22 +27,4 @@
 <template #popContent>
   <p *ngIf="!deskAssignment">Available desk</p>
   <desk-card [deskAssignment]="deskAssignment|async" [changesetItem]="changesetItem|async" ></desk-card>
-</template>
-
-<template #modalContent let-c="close" let-d="dismiss">
-  <div class="modal-header">
-    <button type="button" class="close" aria-label="Close" (click)="d('Close')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <h4 class="modal-title">Desk Information</h4>
-  </div>
-  <div class="modal-body">
-    <desk-assign [desk]="desk" [deskAssignment]="deskAssignment|async" [changesetItem]="changesetItem|async" [changeset]="changeset"></desk-assign>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="c('DELETE')">Delete</button>
-    <button type="button" class="btn btn-secondary" (click)="c('Cancel')">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="c('Save')">Save</button>
-    <br/>
-  </div>
 </template>

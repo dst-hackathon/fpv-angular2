@@ -108,4 +108,8 @@ export class ChangesetItemService {
       this._changesetItems.next(Object.assign({}, this.dataStore).changesetItems);
     }, error => console.log('Could not delete.'));
   }
+
+  get(desk: Desk) : Observable<ChangesetItem> {
+    return this.changesetItems.map(list=> list.find(item => item.toDesk && item.toDesk.id === desk.id))
+  }
 }

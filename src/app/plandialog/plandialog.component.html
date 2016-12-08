@@ -17,6 +17,7 @@
       </div>
     </div>
 
+    <app-canvas-controller [changeset]="selectedChangeset|async"></app-canvas-controller>
     <ngb-tabset #t="ngbTabset">
       <ngb-tab id="editMode">
         <template ngbTabTitle>Edit mode</template>

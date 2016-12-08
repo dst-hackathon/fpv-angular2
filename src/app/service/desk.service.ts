@@ -11,18 +11,22 @@ export class DeskService {
   private serverUrl = '/api/desks';
 
   private _desks: BehaviorSubject<Desk[]>;
+  private _selectedDesk: BehaviorSubject<Desk>;
   private dataStore: {
     desks: Desk[]
     selectedDesk: Desk
   }
 
   desks: Observable<Desk[]>
+  selectedDesk: Observable<Desk>
 
   constructor(private http: Http) {
     this.dataStore = {desks: [], selectedDesk: null };
     this._desks = <BehaviorSubject<Desk[]>>new BehaviorSubject([]);
+    this._selectedDesk = <BehaviorSubject<Desk>>new BehaviorSubject(null);
 
     this.desks = this._desks.asObservable();
+    this.selectedDesk = this._selectedDesk.asObservable();
   }
 
   loadAll(floorId) {
@@ -62,6 +66,7 @@ export class DeskService {
 
   setSelectedDesk(desk: Desk) {
     this.dataStore.selectedDesk = desk;
+    this._selectedDesk.next(Object.assign({}, this.dataStore).selectedDesk);
   }
 
   hasSelectedDesk() {

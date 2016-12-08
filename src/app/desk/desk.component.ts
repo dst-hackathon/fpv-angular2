@@ -25,7 +25,6 @@ export class DeskComponent implements OnInit {
   changesetItem: Observable<ChangesetItem>
 
   employee: Employee;
-  closeResult: string;
   emptyDeskUrl = '../assets/question-mark.png';
   assignedDeskUrl = '../assets/user-silhouette.png';
 
@@ -39,8 +38,8 @@ export class DeskComponent implements OnInit {
     private deskModal: NgbModal) { }
 
   ngOnInit() {
-    this.deskAssignment = this.getDeskAssignment(this.desk)
-    this.changesetItem = this.getChangesetItem(this.desk)
+    this.deskAssignment = this.deskAssigmentService.get(this.desk)
+    this.changesetItem = this.changesetItemService.get(this.desk)
 
     this.loadEmployee();
   }
@@ -59,44 +58,9 @@ export class DeskComponent implements OnInit {
     })
   }
 
-  getDeskAssignment(desk: Desk) : Observable<DeskAssignment>{
-    return this.deskAssigmentService.deskAssignments.map(list=> list.find(item => item.desk.id === desk.id))
-  }
-
-  getChangesetItem(desk: Desk) : Observable<ChangesetItem> {
-    return this.changesetItemService.changesetItems.map(list=> list.find(item => item.toDesk && item.toDesk.id === desk.id))
-  }
-
-  open(content) {
+  selectDesk(event){
+    event.preventDefault();
     this.deskService.setSelectedDesk(this.desk);
-    this.deskModal.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-      console.log("Dialog result: " + this.closeResult);
-      if("Save" == result)
-      {
-        // Call service to save deskAssignment
-        console.log("Save with DeskAssignment: ", this.deskAssignment);
-      }
-      else if("DELETE" == result){
-        console.log("Delete desk: ", this.desk);
-        this.deskService.remove(this.desk.id)
-      }
-
-      this.deskService.setSelectedDesk(null);
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-      this.deskService.setSelectedDesk(null);
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 
   public ondragstart(event) {

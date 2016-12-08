@@ -36,4 +36,8 @@ export class DeskAssignmentService {
       this._deskAssignments.next(Object.assign({}, this.dataStore).deskAssignments);
     }, error => console.log('Could not load desk assignments.'));
   }
+
+  get(desk: Desk) : Observable<DeskAssignment>{
+    return this.deskAssignments.map(list=> list.find(item => item.desk.id === desk.id))
+  }
 }

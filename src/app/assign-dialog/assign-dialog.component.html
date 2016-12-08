@@ -1,0 +1,14 @@
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Desk Information</h4>
+  </div>
+  <div class="modal-body">
+    <desk-assign [desk]="desk" [deskAssignment]="deskAssignment|async" [changesetItem]="changesetItem|async" [changeset]="changeset"></desk-assign>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteDesk()">Delete</button>
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close('cancel')">Cancel</button>
+    <br/>
+  </div>

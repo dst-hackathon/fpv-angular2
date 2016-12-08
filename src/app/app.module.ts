@@ -39,6 +39,8 @@ import { ChangesetItemService } from './service/changeset-item.service';
 import { DeskAssignComponent } from './desk-assign/desk-assign.component';
 import { PlanHolderComponent } from './plan-holder/plan-holder.component';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
+import { CanvasControllerComponent } from './canvas-controller/canvas-controller.component';
+import { AssignDialogComponent } from './assign-dialog/assign-dialog.component';
 
 @NgModule({
   declarations: [
@@ -62,8 +64,9 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
     FloorMarkerComponent,
     DeskAssignComponent,
     PlanHolderComponent,
-    EmployeeCardComponent
-
+    EmployeeCardComponent,
+    CanvasControllerComponent,
+    AssignDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -83,6 +86,7 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
     ChangesetService,
     ChangesetItemService
   ],
+  entryComponents: [AssignDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

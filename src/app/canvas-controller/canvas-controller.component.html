@@ -1,0 +1,6 @@
+<div *ngIf="selectedDesk|async" ngbRadioGroup name="radioBasic">
+  <label class="btn btn-primary">
+    <input type="radio" [value]="VIEW" (click)="openAssignDialog()"> View
+  </label>
+</div>
+<hr>
