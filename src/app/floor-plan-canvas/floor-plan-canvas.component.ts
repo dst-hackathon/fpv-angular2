@@ -12,6 +12,7 @@ import {Changeset} from "../model/changeset";
 export class FloorPlanCanvasComponent implements OnInit {
   @Input() floor: Floor;
   @Input() changeset: Changeset
+  @Input() mode:string
 
   desks: Observable<Desk[]>;
 
@@ -21,5 +22,9 @@ export class FloorPlanCanvasComponent implements OnInit {
 
   ngOnInit() {
     this.desks = this.deskService.desks
+  }
+
+  isPinMode(){
+    return this.mode == 'pin'
   }
 }

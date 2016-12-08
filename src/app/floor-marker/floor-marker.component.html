@@ -1,5 +1,5 @@
 <floor-plan-canvas *ngIf="floor" (click)="markDesk($event, modalContent)"
-                   [floor]="floor"
+                   [floor]="floor" [mode]="'pin'"
                    [changeset]="changeset"></floor-plan-canvas>
 
 <template #modalContent let-c="close" let-d="dismiss">

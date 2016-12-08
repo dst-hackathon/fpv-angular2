@@ -1,6 +1,13 @@
 <div class="floor-canvas" style="position: relative;">
   <floor *ngIf="floor" [floor]="floor"></floor>
-  <desk *ngFor="let desk of desks|async"
-        [desk]="desk"
-        [changeset]="changeset|async"></desk>
+
+  <div *ngIf="!isPinMode()">
+    <desk *ngFor="let desk of desks|async"
+          [desk]="desk"
+          [changeset]="changeset|async"></desk>
+  </div>
+  <div *ngIf="isPinMode()">
+    <app-marker *ngFor="let desk of desks|async"
+                [desk]="desk"></app-marker>
+  </div>
 </div>
