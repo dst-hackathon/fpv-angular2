@@ -32,17 +32,30 @@ export class FloorMarkerComponent implements OnInit {
   ngOnInit() { }
 
   markDesk($event, addContent) {
+    let x = $event.offsetX
+    let y = $event.offsetY
+
     if (!this.deskService.hasSelectedDesk()) {
       let desk = Desk.fromJson({
-        x: $event.offsetX,
-        y: $event.offsetY,
+        x: x,
+        y: y,
         height: 30,
         width: 30
       })
       desk.floor = this.floor
       this.selectedDesk = desk
       this.openModal(addContent);//open modal
+    }else{
+      this.selectedDesk = this.deskService.getSelectedDesk()
+      this.moveDesk(this.selectedDesk,x,y)
     }
+  }
+
+  moveDesk(selectedDesk:Desk,x,y){
+    selectedDesk.x = x
+    selectedDesk.y = y
+
+    this.saveSelectedDesk();
   }
 
   saveSelectedDesk() {

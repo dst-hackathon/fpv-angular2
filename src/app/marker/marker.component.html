@@ -1,6 +1,7 @@
 <div class="desk-position" [style.top]="desk.y - (desk.height/2) + 'px'"
      [style.left]="desk.x + - (desk.width/2) + 'px'"
      [style.height]="desk.height + 'px'"
-     [style.width]="desk.width  + 'px'">
+     [style.width]="desk.width  + 'px'"
+     (click)="selectDesk($event)">
   <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png" width="100%"/>
 </div>

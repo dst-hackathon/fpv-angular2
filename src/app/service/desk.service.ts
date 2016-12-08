@@ -43,6 +43,13 @@ export class DeskService {
     return this.http.put(this.serverUrl, desk, options)
       .map((response: Response) => response.json())
       .subscribe(data => {
+
+        //remove
+        this.dataStore.desks.forEach((t, i) => {
+          if (t.id === data.id) { this.dataStore.desks.splice(i, 1); }
+        });
+
+
         this.dataStore.desks.push(data);
         this._desks.next(Object.assign({}, this.dataStore).desks);
       }, error => console.log('Could not save desk.'));
@@ -71,5 +78,8 @@ export class DeskService {
 
   hasSelectedDesk() {
     return this.dataStore.selectedDesk ? true : false;
+  }
+  getSelectedDesk():Desk {
+    return this.dataStore.selectedDesk
   }
 }

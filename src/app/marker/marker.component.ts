@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Desk} from "../model/desk";
+import {DeskService} from "../service/desk.service";
 
 @Component({
   selector: 'app-marker',
@@ -9,9 +10,13 @@ import {Desk} from "../model/desk";
 export class MarkerComponent implements OnInit {
 
   @Input() desk:Desk
-  constructor() { }
+  constructor(private deskService:DeskService) { }
 
   ngOnInit() {
   }
 
+  selectDesk(event){
+    event.preventDefault();
+    this.deskService.setSelectedDesk(this.desk);
+  }
 }
