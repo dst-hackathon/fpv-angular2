@@ -1,11 +1,8 @@
 Floor: {{desk.floor.name}} <br/>
 Desk code: {{desk.code}} <br/>
 
-<div *ngIf="changesetItem">
-  {{changesetItem|json}}
-</div>
-
 <div>
   Associate&#39;s DT: <input type="text" [(ngModel)]="employeeCode"/> <button type="button" class="btn btn-secondary" (click)="assignEmployee()" >Assign</button><button type="button" class="btn btn-secondary" (click)="unassignEmployee()" >Unassign</button><br/>
-  <desk-card [deskAssignment]="deskAssignment" [changesetItem]="changesetItem"></desk-card>
+  <desk-card *ngIf="deskAssignment || changesetItem"
+             [deskAssignment]="deskAssignment" [changesetItem]="changesetItem"></desk-card>
 </div>
