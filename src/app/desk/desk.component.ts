@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from "@angular/core";
-import {NgbModal, ModalDismissReasons} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Desk} from "../model/desk";
 import {DeskAssignment} from "../model/desk-assignment";
 import {Employee} from "../model/employee";
@@ -104,4 +104,26 @@ export class DeskComponent implements OnInit {
     console.log('click');
   }
 
+  showChangesetItem(item:ChangesetItem){
+    if(!item){
+      return false
+    }
+
+    // do not display approved changeset to screen
+    if(item.status == 'ACCEPT'){
+      return false
+    }
+
+    return true;
+  }
+
+  showDeskAssignmentItem(item: ChangesetItem, da: DeskAssignment) {
+    if(!da){
+      return false
+    }
+
+    //TODO don't show da when fromDesk is matched with one of item list
+
+    return !this.showChangesetItem(item);
+  }
 }

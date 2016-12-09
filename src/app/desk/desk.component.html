@@ -12,10 +12,10 @@
     (drop)="ondrop($event)"
     (dragover)="ondragover($event)">
 
-  <span class="tag tag-pill tag-warning" *ngIf="changesetItem|async">
+  <span class="tag tag-pill tag-warning" *ngIf="showChangesetItem(changesetItem|async)">
     {{(changesetItem|async)?.employee.firstname}}
   </span>
-  <span class="tag tag-pill tag-primary" *ngIf="(changesetItem|async) == null && (deskAssignment|async)">
+  <span class="tag tag-pill tag-primary" *ngIf="showDeskAssignmentItem((changesetItem|async),(deskAssignment|async))">
     {{(deskAssignment|async)?.employee.firstname}}
   </span>
   <div class="deskItem" *ngIf="(changesetItem|async) == null && (deskAssignment|async) == null">
