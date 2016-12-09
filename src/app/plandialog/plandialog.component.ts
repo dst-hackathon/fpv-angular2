@@ -11,6 +11,7 @@ import {BuildingService} from "../service/building.service";
 import {FloorService} from "../service/floor.service";
 import {Floor} from "../model/floor";
 import {Building} from "../model/building";
+import {Changeset} from "../model/changeset";
 
 @Component({
   selector: 'plan-dialog',
@@ -25,7 +26,7 @@ export class PlanDialogComponent implements OnInit {
   selectedBuilding:Building
 
   changesetDate
-  selectedChangeset
+  selectedChangeset:Observable<Changeset>
   noChangeset = false
 
   desks: Observable<Desk[]>;
@@ -43,6 +44,30 @@ export class PlanDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+      //bind
+      this.selectedChangeset = this.changesetService.selectedChangeset;
+
+      this.selectedChangeset.subscribe(
+        changeset=> {
+          if(!changeset){
+            return changeset
+          }
+
+          if(this.changesetDate != changeset.effectiveDate){
+            this.changesetDate = changeset.effectiveDate
+          }
+
+          this.changesetItemService.loadAll(changeset.id)
+
+          this.noChangeset = false
+
+          return changeset
+        },
+        err => {
+          this.noChangeset = true;
+        }
+      )
+
       this.route.params.subscribe(params => {
         let planId = params['id'];
         this.planService.getPlan(planId).subscribe(plan => this.plan = plan, err => console.log(err));
@@ -61,6 +86,11 @@ export class PlanDialogComponent implements OnInit {
             this.selectedFloor = f
             this.loadFloorData()
           })
+        }
+
+        let changesetId = Number(params['changesetId']);
+        if(changesetId){
+          this.changesetService.getChangeset(changesetId).subscribe(cs=> this.changesetService.setSelectedChangeset(cs))
         }
       })
 
@@ -81,20 +111,9 @@ export class PlanDialogComponent implements OnInit {
 
   loadChangesetData(){
     if (this.changesetDate) {
-      this.selectedChangeset = this.changesetService.getChangesetByEffectiveDate(this.changesetDate)
-
-      this.selectedChangeset.subscribe(
-        changeset=> {
-          this.changesetItemService.loadAll(changeset.id)
-
-          this.noChangeset = false
-
-          return changeset
-        },
-        err => {
-          this.noChangeset = true;
-        }
-      )
+      this.changesetService.getChangesetByEffectiveDate(this.changesetDate).subscribe(cs=>this.changesetService.setSelectedChangeset(cs),err => {
+        this.noChangeset = true;
+      })
     }
   }
 
@@ -103,7 +122,7 @@ export class PlanDialogComponent implements OnInit {
       let changeset = {effectiveDate: this.changesetDate, status: "IN_PROGRESS", plan: this.selectedBuilding.plan}
 
       this.changesetService.save(changeset).subscribe(cs=> {
-        this.selectedChangeset = cs
+        this.changesetService.setSelectedChangeset(cs)
         this.noChangeset = false;
       })
     }

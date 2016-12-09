@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: 'logout',  component: LogoutComponent },
     { path: 'home',  component: PlanListComponent },
     { path: 'plans/:id', component: PlanDialogComponent },
-    { path: 'plans/:id/floorPlan/:buildingId/:floorId', component: PlanDialogComponent },
+    { path: 'plans/:id/floorPlan/:buildingId/:floorId/:changesetId', component: PlanDialogComponent },
     { path: 'plans/:id/changesets', component: ChangesetListComponent },
     { path: 'plans/:id/changesets/:changesetId', component: ChangesetComponent },
 ];

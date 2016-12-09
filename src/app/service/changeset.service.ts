@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions} from "@angular/http";
-import {Observable} from "rxjs/Rx";
+import {Observable, BehaviorSubject} from "rxjs/Rx";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import {Changeset} from "../model/changeset";
@@ -10,7 +10,38 @@ export class ChangesetService {
 
     private serverUrl = '/api/changesets';
 
-    constructor(private http: Http) { }
+    private _selectedChangeset: BehaviorSubject<Changeset>;
+    private _changesets: BehaviorSubject<Changeset[]>;
+    private dataStore: {
+      changesets : Changeset[]
+      selectedChangeset: Changeset
+    }
+
+    selectedChangeset: Observable<Changeset>
+    changesets: Observable<Changeset[]>
+
+    constructor(private http: Http) {
+      this.dataStore = {selectedChangeset: null,changesets:[]};
+
+      this._selectedChangeset = <BehaviorSubject<Changeset>>new BehaviorSubject(null);
+      this._changesets = <BehaviorSubject<Changeset[]>>new BehaviorSubject([]);
+
+      this.selectedChangeset = this._selectedChangeset.asObservable();
+      this.changesets = this._changesets.asObservable();
+    }
+
+    loadAll(planId) {
+      this.http.get(`${this.serverUrl}?planId=${planId}`).map(response => response.json()).subscribe(data => {
+        this.dataStore.changesets = data;
+        this._changesets.next(Object.assign({}, this.dataStore).changesets);
+      }, error => console.log('Could not load changesets.'));
+    }
+
+    setSelectedChangeset(changeset: Changeset) {
+      this.dataStore.selectedChangeset = changeset;
+      this._selectedChangeset.next(Object.assign({}, this.dataStore).selectedChangeset);
+    }
+
 
     getChangesetList(planId): Observable<Changeset[]> {
         let headers = new Headers({ 'Content-Type': 'application/json' });
