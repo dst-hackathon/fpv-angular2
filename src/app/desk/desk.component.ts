@@ -122,8 +122,14 @@ export class DeskComponent implements OnInit {
       return false
     }
 
-    //TODO don't show da when fromDesk is matched with one of item list
+    if(this.showChangesetItem(item)){
+      return false
+    }
 
-    return !this.showChangesetItem(item);
+    return true;
+  }
+
+  showAsPreviousStep(da: DeskAssignment){
+    return this.changesetItemService.findByFromDesk(da.desk).length > 0
   }
 }

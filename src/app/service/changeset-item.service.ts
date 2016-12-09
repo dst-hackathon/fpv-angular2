@@ -112,4 +112,15 @@ export class ChangesetItemService {
   get(desk: Desk) : Observable<ChangesetItem> {
     return this.changesetItems.map(list=> list.find(item => item.toDesk && item.toDesk.id === desk.id))
   }
+
+  findByFromDesk(desk: Desk) : Desk[] {
+    let list = []
+    this.dataStore.changesetItems.forEach((t, i) => {
+      if (t.fromDesk && t.fromDesk.id === desk.id) {
+        list.push(t)
+      }
+    });
+
+    return list;
+  }
 }
