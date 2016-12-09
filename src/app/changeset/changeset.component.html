@@ -1,3 +1,31 @@
-<p>
-  changeset works!
-</p>
+<div>
+  <h3>Changeset: {{(changeset|async)?.effectiveDate}}</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let changesetItem of changesetItemList|async">
+      <td>{{changesetItem.employee?.firstname}} {{changesetItem.employee?.lastname}}</td>
+      <td>{{changesetItem.employee?.code}}</td>
+      <td>{{changesetItem.fromDesk| deskString}}</td>
+      <td>{{changesetItem.toDesk |deskString}}</td>
+      <td>{{changesetItem.status}}</td>
+      <td>
+        <div>
+          <button type="button" class="btn btn-default" (click)="updateStatus(changesetItem, 'DRAFT')">DRAFT</button>
+          <button type="button" class="btn btn-success" (click)="updateStatus(changesetItem, 'ACCEPT')">Approve</button>
+          <button type="button" class="btn btn-danger" (click)="updateStatus(changesetItem, 'DENY')">Deny</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

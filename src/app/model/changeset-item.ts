@@ -16,6 +16,14 @@ export class ChangesetItem {
     let changesetItemsTemp = Object.assign(new ChangesetItem(),item);
     changesetItemsTemp.employee = Object.assign(new Employee(),item.employee);
 
+    if(item.fromDesk){
+      changesetItemsTemp.fromDesk = Object.assign(new Desk(),item.fromDesk);
+    }
+
+    if(item.toDesk){
+      changesetItemsTemp.toDesk = Object.assign(new Desk(),item.toDesk);
+    }
+
     return changesetItemsTemp
   }
 }

@@ -43,6 +43,7 @@ import { CanvasControllerComponent } from './canvas-controller/canvas-controller
 import { AssignDialogComponent } from './assign-dialog/assign-dialog.component';
 import { MarkerComponent } from './marker/marker.component';
 import { ChangesetComponent } from './changeset/changeset.component';
+import { DeskStringPipe } from './desk-string.pipe';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ChangesetComponent } from './changeset/changeset.component';
     CanvasControllerComponent,
     AssignDialogComponent,
     MarkerComponent,
-    ChangesetComponent
+    ChangesetComponent,
+    DeskStringPipe
   ],
   imports: [
     BrowserModule,
