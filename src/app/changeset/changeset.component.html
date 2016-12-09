@@ -16,7 +16,12 @@
       <td>{{changesetItem.employee?.firstname}} {{changesetItem.employee?.lastname}}</td>
       <td>{{changesetItem.employee?.code}}</td>
       <td>{{changesetItem.fromDesk| deskString}}</td>
-      <td>{{changesetItem.toDesk |deskString}}</td>
+      <td>
+        <button
+          [routerLink]="['/plans',(route.params|async).id
+            ,'floorPlan',changesetItem.toDesk?.floor.building.id
+            ,changesetItem.toDesk?.floor.id]" type="button" class="btn btn-link">{{changesetItem.toDesk |deskString}}</button>
+      </td>
       <td>{{changesetItem.status}}</td>
       <td>
         <div>
