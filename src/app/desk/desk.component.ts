@@ -65,7 +65,8 @@ export class DeskComponent implements OnInit {
     this.deskService.setSelectedDesk(this.desk);
   }
 
-  public ondragstart(event) {
+  public ondragstart(event, popoverWindow) {
+    popoverWindow.close();
     console.log("Drag started", event);
     console.log("Desk ID", this.desk.id);
     event.dataTransfer.setData('fromDesk', JSON.stringify(this.desk))

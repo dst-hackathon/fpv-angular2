@@ -10,7 +10,7 @@
 
     (click)="selectDesk($event)"
     [draggable]="deskAssignment != null"
-    (dragstart)="ondragstart($event)"
+    (dragstart)="ondragstart($event, popoverWindow)"
     (drop)="ondrop($event)"
     (dragover)="ondragover($event)">
 
