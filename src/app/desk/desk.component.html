@@ -3,9 +3,11 @@
     [style.left]="desk.x + - (desk.width/2) + 'px'"
     [style.height]="desk.height + 'px'"
     [style.width]="desk.width  + 'px'"
-    placement="right"
-    [ngbPopover]="popContent" triggers="mouseenter:mouseleave" popoverTitle="Desk code: {{desk.code}}"
-    container="body"
+
+    [ngbPopover]="popContent" triggers="manual" popoverTitle="Desk code: {{desk.code}}"
+    #popoverWindow = "ngbPopover" (mouseenter)="popoverWindow.open()" (mouseleave)="closePopoverWindow(popoverWindow)"
+    placement="right" container="body"
+
     (click)="selectDesk($event)"
     [draggable]="deskAssignment != null"
     (dragstart)="ondragstart($event)"
@@ -24,7 +26,8 @@
 
 </div>
 
-<template #popContent>
-  <p *ngIf="!deskAssignment">Available desk</p>
-  <desk-card [deskAssignment]="deskAssignment|async" [changesetItem]="changesetItem|async" ></desk-card>
+<template #popContent >
+  <div (mouseenter)="enterPopoverContent()" (mouseleave)="leavePopoverContent(popoverWindow)">
+    <desk-card [deskAssignment]="deskAssignment|async" [changesetItem]="changesetItem|async" ></desk-card>
+  </div>
 </template>

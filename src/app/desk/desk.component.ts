@@ -30,6 +30,8 @@ export class DeskComponent implements OnInit {
 
   selectedDesk: Observable<Desk>;
 
+  isPopoverHover: boolean;
+
   constructor(
     public employeeService: EmployeeService,
     private changesetItemService: ChangesetItemService,
@@ -100,9 +102,6 @@ export class DeskComponent implements OnInit {
   public ondragover(event) {
     event.preventDefault();
   }
-  tryClick() {
-    console.log('click');
-  }
 
   showChangesetItem(item:ChangesetItem){
     if(!item){
@@ -132,4 +131,22 @@ export class DeskComponent implements OnInit {
   showAsPreviousStep(da: DeskAssignment){
     return this.changesetItemService.findByFromDesk(da.desk).length > 0
   }
+
+  enterPopoverContent() {
+    this.isPopoverHover = true;
+  }
+
+  leavePopoverContent(popoverWindow) {
+    this.isPopoverHover = false;
+    popoverWindow.close();
+  }
+
+  closePopoverWindow(popoverWindow) {
+    setTimeout(() => {
+      if (!this.isPopoverHover) {
+        popoverWindow.close();
+      }
+    }, 300);
+  }
+
 }
