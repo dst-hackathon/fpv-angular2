@@ -42,6 +42,7 @@ import { EmployeeCardComponent } from './employee-card/employee-card.component';
 import { CanvasControllerComponent } from './canvas-controller/canvas-controller.component';
 import { AssignDialogComponent } from './assign-dialog/assign-dialog.component';
 import { MarkerComponent } from './marker/marker.component';
+import { ChangesetComponent } from './changeset/changeset.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { MarkerComponent } from './marker/marker.component';
     EmployeeCardComponent,
     CanvasControllerComponent,
     AssignDialogComponent,
-    MarkerComponent
+    MarkerComponent,
+    ChangesetComponent
   ],
   imports: [
     BrowserModule,

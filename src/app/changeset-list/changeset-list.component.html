@@ -1,3 +1,14 @@
-<p>
-  changeset-list works!
-</p>
+<div class="col-md-10">
+  <h1>
+    Changesets
+  </h1>
+
+  <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action"
+       [routerLink]="['/plans',planId,'changesets',changeset.id]"
+       *ngFor="let changeset of changesetList">
+      <h5 class="list-group-item-heading">{{changeset.effectiveDate}}</h5>
+      <p class="list-group-item-text">{{changeset.status}}</p>
+    </a>
+  </div>
+</div>

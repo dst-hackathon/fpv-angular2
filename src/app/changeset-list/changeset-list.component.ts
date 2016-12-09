@@ -1,8 +1,6 @@
-import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
-
-import { ChangesetService } from '../service/changeset.service';
-
-import { Changeset } from '../model/changeset';
+import {Component, OnInit, Input} from "@angular/core";
+import {ChangesetService} from "../service/changeset.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'changeset-list',
@@ -11,20 +9,23 @@ import { Changeset } from '../model/changeset';
 })
 export class ChangesetListComponent implements OnInit {
 
-@Input() planId
-changesetList;
-     
+  planId
+  changesetList;
 
-  constructor(public changesetService: ChangesetService) { }
 
-  ngOnInit() {
-    this.changesetService.getChangesetList(this.planId)
-      .subscribe(changesetList => {
-        this.changesetList = changesetList
-      }, err => console.log(err));
-
+  constructor(private route: ActivatedRoute,public changesetService: ChangesetService) {
   }
 
-  
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.planId = params['id'];
+
+      this.changesetService.getChangesetList(this.planId)
+        .subscribe(changesetList => {
+          this.changesetList = changesetList
+      }, err => console.log(err));
+    });
+  }
+
 
 }
