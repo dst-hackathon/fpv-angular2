@@ -2,6 +2,7 @@
      [style.left]="desk.x + - (desk.width/2) + 'px'"
      [style.height]="desk.height + 'px'"
      [style.width]="desk.width  + 'px'"
+     (dragstart)="ondragstart($event)"
      (click)="selectDesk($event)">
   <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png" width="100%"/>
 </div>

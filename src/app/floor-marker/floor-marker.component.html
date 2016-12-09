@@ -1,4 +1,6 @@
 <floor-plan-canvas *ngIf="floor" (click)="markDesk($event, modalContent)"
+                   (dragover)="logPoint($event,'dropover')"
+                   (drop)="dropToMoveDesk($event)"
                    [floor]="floor" [mode]="'pin'"
                    [changeset]="changeset"></floor-plan-canvas>
 

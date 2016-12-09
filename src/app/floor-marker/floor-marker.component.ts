@@ -51,6 +51,27 @@ export class FloorMarkerComponent implements OnInit {
     }
   }
 
+  logPoint($event,name) {
+    $event.preventDefault();
+    let x = $event.offsetX
+    let y = $event.offsetY
+    console.log(name,x,y)
+  }
+
+  dropToMoveDesk($event){
+    $event.preventDefault();
+    let x = $event.offsetX
+    let y = $event.offsetY
+
+    this.selectedDesk = this.deskService.getSelectedDesk()
+
+    console.log(`Drop desk: from ${this.selectedDesk} to `,x,y)
+    this.selectedDesk.x = x
+    this.selectedDesk.y = y
+
+    this.saveSelectedDesk();
+  }
+
   moveDesk(selectedDesk:Desk,x,y){
     if(!this.deskService.getConfig().enableMove){
       console.log('move feature is not enable')

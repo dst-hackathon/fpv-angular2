@@ -19,4 +19,9 @@ export class MarkerComponent implements OnInit {
     event.preventDefault();
     this.deskService.setSelectedDesk(this.desk);
   }
+
+  ondragstart(event) {
+    console.log("Drag started", event);
+    this.deskService.setSelectedDesk(this.desk);
+  }
 }
