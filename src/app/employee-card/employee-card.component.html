@@ -1,13 +1,12 @@
-<div class="employee-card" *ngIf="employee">
-  <h5>{{employee.firstname}} {{employee.lastname}} ({{employee.nickname}})</h5>
-  <div class="row">
-    <div class="col-sm-5">
-      <img class="img-fluid img-thumbnail rounded" [src]="employee.getImage()" alt="Employee image">
-    </div>
-    <div class="col-sm-7">
-      <p class="text-muted">DT: {{employee.code}}</p>
-      <p class="text-muted">Ext.: {{employee.work}}</p>
-      <p class="text-muted">Email: {{employee.email}}</p>
-    </div>
+<div class="empCard">
+  <div class="cardHeader" alt="sample87"></div>
+  <div class="cardInfo">
+    <img [src]="employee.getImage()" alt="Employee image" class="profile" />
+    <h4>{{employee.firstname}} {{employee.lastname}} ({{employee.nickname}})<span>{{employee.position}}</span></h4>
+    <p class="text-muted">DT: {{employee.code}}</p>
+    <p class="text-muted">Ext: {{employee.work}}</p>
+    <p class="text-muted">Email: {{employee.email}}</p>
+    <a href="#" class="view">View</a>
+    <a href="#" class="cancel">Cancel</a>
   </div>
 </div>
