@@ -45,9 +45,6 @@ export class FloorMarkerComponent implements OnInit {
       desk.floor = this.floor
       this.selectedDesk = desk
       this.openModal(addContent);//open modal
-    }else{
-      this.selectedDesk = this.deskService.getSelectedDesk()
-      this.moveDesk(this.selectedDesk,x,y)
     }
   }
 
@@ -68,18 +65,6 @@ export class FloorMarkerComponent implements OnInit {
     console.log(`Drop desk: from ${this.selectedDesk} to `,x,y)
     this.selectedDesk.x = x
     this.selectedDesk.y = y
-
-    this.saveSelectedDesk();
-  }
-
-  moveDesk(selectedDesk:Desk,x,y){
-    if(!this.deskService.getConfig().enableMove){
-      console.log('move feature is not enable')
-      return
-    }
-
-    selectedDesk.x = x
-    selectedDesk.y = y
 
     this.saveSelectedDesk();
   }
