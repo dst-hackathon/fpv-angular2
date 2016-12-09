@@ -87,4 +87,10 @@ export class ChangesetService {
         .map(res => res.json())
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
+
+    approve(id): Observable<Changeset>{
+      return this.http.put(`${this.serverUrl}/${id}/approve`,null)
+        .map(res => res.json())
+        .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
 }

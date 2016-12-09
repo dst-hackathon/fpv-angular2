@@ -32,6 +32,12 @@ export class ChangesetComponent implements OnInit {
     });
   }
 
+  approve(){
+    this.changesetService.approve(this.changesetId).subscribe(cs=>{
+      console.log("COMPLETE approve process",cs)
+    })
+  }
+
   updateStatus(changesetItem, status) {
     changesetItem.status = status;
     this.changesetItemService.setChangesetItemStatus(changesetItem).subscribe();
