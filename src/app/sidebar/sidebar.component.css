@@ -1,0 +1,8 @@
+.sidebar{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  top: 61px;
+  z-index: 9999;
+  overflow-y: scroll;
+}

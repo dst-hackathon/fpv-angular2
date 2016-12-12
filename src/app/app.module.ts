@@ -44,6 +44,7 @@ import { AssignDialogComponent } from './assign-dialog/assign-dialog.component';
 import { MarkerComponent } from './marker/marker.component';
 import { ChangesetComponent } from './changeset/changeset.component';
 import { DeskStringPipe } from './desk-string.pipe';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { DeskStringPipe } from './desk-string.pipe';
     AssignDialogComponent,
     MarkerComponent,
     ChangesetComponent,
-    DeskStringPipe
+    DeskStringPipe,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

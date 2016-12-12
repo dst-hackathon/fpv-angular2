@@ -16,11 +16,9 @@
     </div>
   </div>
 </div>
-
 <div class="row" *ngIf="plan">
-
   <!--main-->
-  <div class="col-sm-9">
+  <div class="col-sm">
     <ngb-tabset #t="ngbTabset" class="main-container">
       <ngb-tab id="editMode">
         <template ngbTabTitle>Edit mode</template>
@@ -41,10 +39,10 @@
       </ngb-tab>
     </ngb-tabset>
   </div>
-
+</div>
+<app-sidebar>
   <!--sidebar -->
-  <div class="col-sm-3" *ngIf="(selectedChangeset|async)">
+  <div *ngIf="(selectedChangeset|async)">
     <plan-holder></plan-holder>
   </div>
-
-</div>
+</app-sidebar>
