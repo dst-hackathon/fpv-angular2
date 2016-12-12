@@ -28,6 +28,9 @@
 
 <template #popContent >
   <div (mouseenter)="enterPopoverContent()" (mouseleave)="leavePopoverContent(popoverWindow)">
-    <desk-card [deskAssignment]="deskAssignment|async" [changesetItem]="changesetItem|async" ></desk-card>
+    <desk-card [desk]="desk"
+               [changeset]="changeset"
+               [deskAssignment]="deskAssignment|async"
+               [changesetItem]="changesetItem|async"></desk-card>
   </div>
 </template>

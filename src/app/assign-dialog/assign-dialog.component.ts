@@ -1,12 +1,9 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {NgbModal, NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
+import {Component, OnInit, Input} from "@angular/core";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {Desk} from "../model/desk";
 import {DeskService} from "../service/desk.service";
-import {Observable} from "rxjs";
 import {DeskAssignment} from "../model/desk-assignment";
 import {ChangesetItem} from "../model/changeset-item";
-import {DeskAssignmentService} from "../service/desk-assignment.service";
-import {ChangesetItemService} from "../service/changeset-item.service";
 import {Changeset} from "../model/changeset";
 
 @Component({
@@ -18,18 +15,12 @@ export class AssignDialogComponent implements OnInit {
 
   @Input() desk:Desk
   @Input() changeset:Changeset
+  @Input() changesetItem:ChangesetItem
+  @Input() deskAssignment:DeskAssignment
 
-  deskAssignment:Observable<DeskAssignment>
-  changesetItem:Observable<ChangesetItem>;
-
-  constructor(private deskService: DeskService
-    ,private deskAssigmentService: DeskAssignmentService
-    ,private changesetItemService: ChangesetItemService
-    ,private activeModal: NgbActiveModal) { }
+  constructor(private activeModal: NgbActiveModal,private deskService: DeskService) { }
 
   ngOnInit() {
-    this.deskAssignment = this.deskAssigmentService.get(this.desk)
-    this.changesetItem = this.changesetItemService.get(this.desk)
   }
 
   deleteDesk(){
