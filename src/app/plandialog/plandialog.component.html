@@ -1,6 +1,6 @@
 <div class="row" *ngIf="plan">
   <div class="col-sm-9">
-    <h2>Plan : {{plan.name}}</h2>
+    <h2>Manage Plan : {{plan.name}}</h2>
 
     <div class="floor-selector row">
       <building-selector [planId]="plan.id" [(selectedBuilding)]="selectedBuilding"></building-selector>
