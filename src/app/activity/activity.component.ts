@@ -4,11 +4,11 @@ import {ChangesetItemService} from "../service/changeset-item.service";
 import {Observable} from "rxjs";
 
 @Component({
-  selector: 'plan-holder',
-  templateUrl: './plan-holder.component.html',
-  styleUrls: ['./plan-holder.component.css']
+  selector: 'app-activity',
+  templateUrl: './activity.component.html',
+  styleUrls: ['./activity.component.css']
 })
-export class PlanHolderComponent implements OnInit {
+export class ActivityComponent implements OnInit {
 
   changeSetItems: Observable<ChangesetItem[]>
 

@@ -37,7 +37,7 @@ import { ChangesetService } from './service/changeset.service'
 import { ChangesetItemComponent } from './changeset-item/changeset-item.component';
 import { ChangesetItemService } from './service/changeset-item.service';
 import { DeskAssignComponent } from './desk-assign/desk-assign.component';
-import { PlanHolderComponent } from './plan-holder/plan-holder.component';
+import { ActivityComponent } from './activity/activity.component';
 import { EmployeeCardComponent } from './employee-card/employee-card.component';
 import { CanvasControllerComponent } from './canvas-controller/canvas-controller.component';
 import { AssignDialogComponent } from './assign-dialog/assign-dialog.component';
@@ -67,7 +67,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ChangesetItemComponent,
     FloorMarkerComponent,
     DeskAssignComponent,
-    PlanHolderComponent,
+    ActivityComponent,
     EmployeeCardComponent,
     CanvasControllerComponent,
     AssignDialogComponent,
