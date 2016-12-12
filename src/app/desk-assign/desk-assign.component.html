@@ -3,10 +3,14 @@ Desk code: {{desk.code}} <br/>
 
 <div>
   <template #rt let-r="result" let-t="term">
-    {{r.firstname}} {{r.lastname}} {{r.code}}
+    {{r.firstname}} {{r.lastname}} ({{r.code}})
   </template>
 
   Associate: <input type="text" [(ngModel)]="employee" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"/> <span *ngIf="searching">searching...</span>
+
+  <div *ngIf="employee && employee.id">
+    <employee-card [employee]="employee"></employee-card>
+  </div>
 
   <employee-card [employee]="deskAssignment?.employee"></employee-card>
   <div *ngIf="changesetItem">

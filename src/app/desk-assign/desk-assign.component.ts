@@ -55,8 +55,11 @@ export class DeskAssignComponent implements OnInit {
     if(this.employee){
       this.changesetItemService.move(this.employee, null, this.desk, this.changeset,this.changesetItem)
     }
+
+    this.employee=null
   }
   unassignEmployee(){
     this.changesetItemService.move(EmployeeService.getEmployee(this.deskAssignment,this.changesetItem), this.desk, null, this.changeset,this.changesetItem)
+    this.employee=null
   }
 }

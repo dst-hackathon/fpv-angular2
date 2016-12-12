@@ -74,7 +74,14 @@ export class EmployeeService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(`${this.serverUrl}/search?name=${name}`, options)
-      .map(res => res.json())
+      .map(res => {
+        let list: Employee[] = [];
+        for (let item of res.json())
+        {
+          list.push(Employee.fromJson(item));
+        }
+        return list;
+      })
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
