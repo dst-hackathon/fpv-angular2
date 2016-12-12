@@ -1,6 +1,4 @@
 <div class="row" *ngIf="plan">
-
-  <!--main-->
   <div class="col-sm-9">
     <h2>Plan : {{plan.name}}</h2>
 
@@ -16,7 +14,13 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
 
+<div class="row" *ngIf="plan">
+
+  <!--main-->
+  <div class="col-sm-9 main-container">
     <app-canvas-controller [changeset]="selectedChangeset|async"></app-canvas-controller>
     <ngb-tabset #t="ngbTabset">
       <ngb-tab id="editMode">
@@ -41,7 +45,7 @@
   </div>
 
   <!--sidebar -->
-  <div class="col-sm-3" *ngIf="(selectedChangeset|async)">
+  <div class="col-sm-3 activity-container" *ngIf="(selectedChangeset|async)">
     <plan-holder></plan-holder>
   </div>
 

@@ -3,3 +3,8 @@
   padding-left: 20px;
   float: left;
 }
+
+.main-container,.activity-container{
+  overflow: auto;
+  max-height:700px;
+}
