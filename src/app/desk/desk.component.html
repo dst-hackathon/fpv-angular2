@@ -30,7 +30,7 @@
   <div (mouseenter)="enterPopoverContent()" (mouseleave)="leavePopoverContent(popoverWindow)">
     <desk-card [desk]="desk"
                [changeset]="changeset"
-               [deskAssignment]="deskAssignment|async"
-               [changesetItem]="changesetItem|async"></desk-card>
+               [deskAssignment]="deskAssignment"
+               [changesetItem]="changesetItem"></desk-card>
   </div>
 </template>

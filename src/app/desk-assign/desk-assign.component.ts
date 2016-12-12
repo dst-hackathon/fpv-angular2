@@ -6,6 +6,7 @@ import {ChangesetItem} from "../model/changeset-item";
 import {Employee} from "../model/employee";
 import {ChangesetItemService} from "../service/changeset-item.service";
 import {Changeset} from "../model/changeset";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'desk-assign',

@@ -5,7 +5,7 @@
     <h4 class="modal-title">Desk Information</h4>
   </div>
   <div class="modal-body">
-    <desk-assign [desk]="desk" [deskAssignment]="deskAssignment" [changesetItem]="changesetItem" [changeset]="changeset"></desk-assign>
+    <desk-assign [desk]="desk" [deskAssignment]="deskAssignment|async" [changesetItem]="changesetItem|async" [changeset]="changeset"></desk-assign>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" (click)="deleteDesk()">Delete Desk</button>

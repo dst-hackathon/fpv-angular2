@@ -7,6 +7,7 @@ import {AssignDialogComponent} from "../assign-dialog/assign-dialog.component";
 import {Desk} from "../model/desk";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Changeset} from "../model/changeset";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'desk-card',
@@ -15,22 +16,13 @@ import {Changeset} from "../model/changeset";
 })
 export class DeskCardComponent implements OnInit {
   @Input() desk: Desk;
-  @Input() deskAssignment: DeskAssignment;
-  @Input() changesetItem: ChangesetItem;
+  @Input() deskAssignment: Observable<DeskAssignment>;
+  @Input() changesetItem: Observable<ChangesetItem>;
   @Input() changeset: Changeset;
-
-  public currentEmployee: Employee;
-  public nextEmployee: Employee;
 
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
-    if (this.deskAssignment) {
-      this.currentEmployee = Object.assign(new Employee(), this.deskAssignment.employee);
-    }
-    if (this.changesetItem) {
-      this.nextEmployee = Object.assign(new Employee(), this.changesetItem.employee);
-    }
   }
 
   openAssignDialog() {
