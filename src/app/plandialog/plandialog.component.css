@@ -4,7 +4,7 @@
   float: left;
 }
 
-.main-container,.activity-container{
+.main-container{
   overflow: auto;
   max-height:700px;
   padding-right: 0;
