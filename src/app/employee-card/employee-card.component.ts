@@ -13,6 +13,7 @@ export class EmployeeCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

@@ -3,6 +3,10 @@ Desk code: {{desk.code}} <br/>
 
 <div>
   Associate&#39;s DT: <input type="text" [(ngModel)]="employeeCode"/> <button type="button" class="btn btn-secondary" (click)="assignEmployee()" >Assign</button><button type="button" class="btn btn-secondary" (click)="unassignEmployee()" >Unassign</button><br/>
-  <desk-card *ngIf="deskAssignment || changesetItem"
-             [deskAssignment]="deskAssignment" [changesetItem]="changesetItem"></desk-card>
+
+  <employee-card [employee]="deskAssignment?.employee"></employee-card>
+  <div *ngIf="changesetItem">
+    <p>Next ({{changesetItem?.changeset?.effectiveDate}})</p>
+    <employee-card [employee]="changesetItem?.employee"></employee-card>
+  </div>
 </div>

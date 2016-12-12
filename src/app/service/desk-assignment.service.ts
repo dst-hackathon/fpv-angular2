@@ -31,7 +31,16 @@ export class DeskAssignmentService {
   }
 
   loadAll(floorId) {
-    this.http.get(`${this.serverUrl}?floorId=${floorId}`).map(response => response.json()).subscribe(data => {
+    this.http.get(`${this.serverUrl}?floorId=${floorId}`).map(response => response.json())
+      .map(objects=> {
+        let list: DeskAssignment[] = [];
+        for (let obj of objects)
+        {
+          list.push(DeskAssignment.fromJson(obj));
+        }
+        return list;
+      })
+      .subscribe(data => {
       this.dataStore.deskAssignments = data;
       this._deskAssignments.next(Object.assign({}, this.dataStore).deskAssignments);
     }, error => console.log('Could not load desk assignments.'));
