@@ -1,4 +1,4 @@
-<ul class="list-group">
+<ul class="list-group" (dragover)="ondrag($event)" (drop)="ondrop($event)">
      <li class="list-group-item" *ngFor="let changeSetItem of changeSetItems|async">
        <app-changeset-item-card [changesetItem]="changeSetItem"></app-changeset-item-card>
 
