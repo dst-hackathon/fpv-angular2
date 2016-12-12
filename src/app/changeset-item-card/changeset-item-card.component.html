@@ -1,0 +1,5 @@
+<div draggable="true" (dragstart)="ondragstart($event)">
+  <employee-card [employee]="changesetItem?.employee"></employee-card>
+
+  <p>Move from {{changesetItem.fromDesk?.code}} -> {{changesetItem.toDesk?.code}}</p>
+</div>

@@ -45,6 +45,7 @@ import { MarkerComponent } from './marker/marker.component';
 import { ChangesetComponent } from './changeset/changeset.component';
 import { DeskStringPipe } from './desk-string.pipe';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ChangesetItemCardComponent } from './changeset-item-card/changeset-item-card.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MarkerComponent,
     ChangesetComponent,
     DeskStringPipe,
-    SidebarComponent
+    SidebarComponent,
+    ChangesetItemCardComponent
   ],
   imports: [
     BrowserModule,

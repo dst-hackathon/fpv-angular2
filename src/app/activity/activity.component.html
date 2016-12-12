@@ -1,8 +1,6 @@
 <ul class="list-group">
      <li class="list-group-item" *ngFor="let changeSetItem of changeSetItems|async">
-       <employee-card [employee]="changeSetItem.employee"></employee-card>
-
-       <p>Move from {{changeSetItem.fromDesk?.code}} -> {{changeSetItem.toDesk?.code}}</p>
+       <app-changeset-item-card [changesetItem]="changeSetItem"></app-changeset-item-card>
 
        <button type="button" class="btn btn-secondary" (click)="deleteItem(changeSetItem)">Delete</button>
      </li>
