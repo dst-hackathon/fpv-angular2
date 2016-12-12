@@ -2,11 +2,18 @@ Floor: {{desk.floor.name}} <br/>
 Desk code: {{desk.code}} <br/>
 
 <div>
-  Associate&#39;s DT: <input type="text" [(ngModel)]="employeeCode"/> <button type="button" class="btn btn-secondary" (click)="assignEmployee()" >Assign</button><button type="button" class="btn btn-secondary" (click)="unassignEmployee()" >Unassign</button><br/>
+  <template #rt let-r="result" let-t="term">
+    {{r.firstname}} {{r.lastname}} {{r.code}}
+  </template>
+
+  Associate: <input type="text" [(ngModel)]="employee" [ngbTypeahead]="search" [resultTemplate]="rt" [inputFormatter]="formatter"/> <span *ngIf="searching">searching...</span>
+  {{employee|json}}
 
   <employee-card [employee]="deskAssignment?.employee"></employee-card>
   <div *ngIf="changesetItem">
     <p>Next ({{changesetItem?.changeset?.effectiveDate}})</p>
     <employee-card [employee]="changesetItem?.employee"></employee-card>
   </div>
+
+  <button type="button" class="btn btn-secondary" (click)="assignEmployee()" >Assign</button><button type="button" class="btn btn-secondary" (click)="unassignEmployee()" >Unassign</button><br/>
 </div>

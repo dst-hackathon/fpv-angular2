@@ -69,6 +69,15 @@ export class EmployeeService {
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  getEmployeeByName(name): Observable<Employee[]> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(`${this.serverUrl}/search?name=${name}`, options)
+      .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
   static getEmployee(deskAssignment: DeskAssignment, changesetItem: ChangesetItem) :Employee{
     if(changesetItem && changesetItem.employee){
       return changesetItem.employee

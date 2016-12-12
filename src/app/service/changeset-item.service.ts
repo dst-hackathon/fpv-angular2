@@ -75,13 +75,21 @@ export class ChangesetItemService {
     }
 
     let item = new ChangesetItem();
-    item.employee= employee;
-    item.changeset = changeset
-    item.fromDesk = fromDesk
-
     if(previousChangesetItem){
       item = previousChangesetItem
       item.status = 'DRAFT'
+    }
+
+    if(employee){
+      item.employee= employee;
+    }
+
+    if(changeset){
+      item.changeset = changeset
+    }
+
+    if(fromDesk){
+      item.fromDesk = fromDesk
     }
 
     item.toDesk = toDesk

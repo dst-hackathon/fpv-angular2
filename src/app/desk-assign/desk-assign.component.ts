@@ -3,7 +3,6 @@ import {Desk} from "../model/desk";
 import {EmployeeService} from "../service/employee.service";
 import {DeskAssignment} from "../model/desk-assignment";
 import {ChangesetItem} from "../model/changeset-item";
-import {Employee} from "../model/employee";
 import {ChangesetItemService} from "../service/changeset-item.service";
 import {Changeset} from "../model/changeset";
 import {Observable} from "rxjs";
@@ -23,8 +22,6 @@ export class DeskAssignComponent implements OnInit {
 
   employee
 
-  employeeCode
-
   constructor(
     private employeeService:EmployeeService,
     private changesetItemService: ChangesetItemService
@@ -33,10 +30,31 @@ export class DeskAssignComponent implements OnInit {
   ngOnInit() {
   }
 
+  searching:boolean
+  searchFailed:boolean
+
+  search = (text$: Observable<string>) =>
+    text$
+      .debounceTime(300)
+      .distinctUntilChanged()
+      .do(() => this.searching = true)
+      .switchMap(term =>
+        this.employeeService.getEmployeeByName(term)
+          .do(() => this.searchFailed = false)
+          .catch(() => {
+            this.searchFailed = true;
+            return Observable.of([]);
+          }))
+      .do(() => this.searching = false);
+
+  formatter(x) {
+    return x.code
+  }
+
   assignEmployee(){
-    this.employeeService.getEmployeeByCode(this.employeeCode).subscribe(employee=> {
-      this.changesetItemService.move(employee, null, this.desk, this.changeset,this.changesetItem)
-    })
+    if(this.employee){
+      this.changesetItemService.move(this.employee, null, this.desk, this.changeset,this.changesetItem)
+    }
   }
   unassignEmployee(){
     this.changesetItemService.move(EmployeeService.getEmployee(this.deskAssignment,this.changesetItem), this.desk, null, this.changeset,this.changesetItem)
