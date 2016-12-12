@@ -22,6 +22,7 @@
   <!--main-->
   <div class="col-sm-9 main-container">
     <app-canvas-controller [changeset]="selectedChangeset|async"></app-canvas-controller>
+
     <ngb-tabset #t="ngbTabset">
       <ngb-tab id="editMode">
         <template ngbTabTitle>Edit mode</template>
@@ -41,7 +42,6 @@
         </template>
       </ngb-tab>
     </ngb-tabset>
-
   </div>
 
   <!--sidebar -->
