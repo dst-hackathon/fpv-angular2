@@ -17,3 +17,6 @@
 footer {
     text-align: center;
 }
+.popover-content{
+  padding: 0;
+}
