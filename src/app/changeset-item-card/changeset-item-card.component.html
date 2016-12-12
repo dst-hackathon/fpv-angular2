@@ -1,5 +1,4 @@
-<div draggable="true" (dragstart)="ondragstart($event)">
-
+<div [appChangesetItemFocus]="changesetItem" draggable="true" (dragstart)="ondragstart($event)">
   <div class="employee-card" *ngIf="employee">
     <h5>{{employee.firstname}} {{employee.lastname}} ({{employee.nickname}})</h5>
     <div class="row">

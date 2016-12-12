@@ -46,6 +46,7 @@ import { ChangesetComponent } from './changeset/changeset.component';
 import { DeskStringPipe } from './desk-string.pipe';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChangesetItemCardComponent } from './changeset-item-card/changeset-item-card.component';
+import { ChangesetItemFocusDirective } from './changeset-item-focus.directive';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { ChangesetItemCardComponent } from './changeset-item-card/changeset-item
     ChangesetComponent,
     DeskStringPipe,
     SidebarComponent,
-    ChangesetItemCardComponent
+    ChangesetItemCardComponent,
+    ChangesetItemFocusDirective
   ],
   imports: [
     BrowserModule,

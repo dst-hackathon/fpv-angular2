@@ -15,19 +15,24 @@ export class ChangesetItemService {
   private serverUrl = '/api/changeset-items';
 
   private _changesetItems: BehaviorSubject<ChangesetItem[]>;
+  private _focusChangesetItem: BehaviorSubject<ChangesetItem>;
   private dataStore: {
     changesetItems: ChangesetItem[]
+    focusChangesetItem: ChangesetItem
   }
 
   changesetItems: Observable<ChangesetItem[]>
+  focusChangesetItem: Observable<ChangesetItem>
 
   constructor(private http: Http,
     private deskService:DeskService
   ) {
-    this.dataStore = {changesetItems: []};
+    this.dataStore = {changesetItems: [],focusChangesetItem:null};
     this._changesetItems = <BehaviorSubject<ChangesetItem[]>>new BehaviorSubject([]);
+    this._focusChangesetItem = <BehaviorSubject<ChangesetItem>>new BehaviorSubject(null);
 
     this.changesetItems = this._changesetItems.asObservable();
+    this.focusChangesetItem = this._focusChangesetItem.asObservable();
   }
 
   loadAll(changesetId) {
@@ -130,5 +135,10 @@ export class ChangesetItemService {
     });
 
     return list;
+  }
+
+  setFocusChangesetItem(item: ChangesetItem) {
+    this.dataStore.focusChangesetItem= item;
+    this._focusChangesetItem.next(Object.assign({}, this.dataStore).focusChangesetItem);
   }
 }

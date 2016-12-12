@@ -1,4 +1,4 @@
-<div class="desk-position"
+<div class="desk-position" [appChangesetItemFocus]="(changesetItem|async)"
     [style.top]="desk.y - (desk.height/2) + 'px'"
     [style.left]="desk.x + - (desk.width/2) + 'px'"
     [style.height]="desk.height + 'px'"

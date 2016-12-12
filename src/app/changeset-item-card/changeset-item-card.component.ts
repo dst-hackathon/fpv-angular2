@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from "@angular/core";
 import {ChangesetItem} from "../model/changeset-item";
 import {Employee} from "../model/employee";
 

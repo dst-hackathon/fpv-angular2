@@ -5,3 +5,7 @@
 .previous-step{
   background-color: rgba(106, 97, 97, 0.56);
 }
+
+.desk-position.highlight{
+  background: rgba(243, 244, 4, 0.43);
+}
