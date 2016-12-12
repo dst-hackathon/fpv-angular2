@@ -20,3 +20,8 @@ footer {
 .popover-content{
   padding: 0;
 }
+
+.avatar{
+  max-width: 90px;
+  border-radius: 50%;
+}
