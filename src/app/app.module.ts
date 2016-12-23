@@ -47,6 +47,7 @@ import { DeskStringPipe } from './desk-string.pipe';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChangesetItemCardComponent } from './changeset-item-card/changeset-item-card.component';
 import { ChangesetItemFocusDirective } from './changeset-item-focus.directive';
+import { MaterialModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ChangesetItemFocusDirective } from './changeset-item-focus.directive';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    MaterialModule.forRoot()
   ],
   providers: [
     LoginService,

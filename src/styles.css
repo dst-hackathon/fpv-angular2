@@ -1,3 +1,5 @@
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+
 /* You can add global styles to this file, and also import other style files */
 .navbar-dark .navbar-dark-text,
 .navbar-dark .navbar-item a.nav-link {
@@ -28,4 +30,9 @@ footer {
 
 .highlight{
   background: rgba(243, 244, 4, 0.43);
+}
+
+nav{
+  background: #00bcd4;
+  color: #fff;
 }
