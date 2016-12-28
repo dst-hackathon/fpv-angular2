@@ -4,13 +4,14 @@
     <md-card-header>
       <img md-card-avatar [src]="employee.getImage()"/>
       <md-card-title>{{employee.firstname}} {{employee.lastname}} ({{employee.nickname}})</md-card-title>
-      <md-card-subtitle>#{{employee.work}} {{employee.position}}</md-card-subtitle>
+      <md-card-subtitle>#{{employee.code}} {{employee.position}}</md-card-subtitle>
     </md-card-header>
     <img md-card-image [src]="employee.getImage()">
     <md-card-content>
-      <p>
-        Detail
-      </p>
+      <p>businessUnit : {{employee.businessUnit}}</p>
+      <p>email: {{employee.email}}</p>
+      <p>work: {{employee.work}}</p>
+      <p>mobile: {{employee.mobile}}</p>
     </md-card-content>
     <md-card-actions>
       <button md-button *ngIf="desk"
