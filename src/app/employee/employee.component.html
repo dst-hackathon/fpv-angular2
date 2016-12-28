@@ -1,8 +1,10 @@
 <div>
   <h3>Employees</h3>
-  <input type="text" [(ngModel)]="searchText" />
 
-  {{searchText}}
+  <md-input-container>
+    <input md-input type="text" [(ngModel)]="searchText" placeholder="Search" />
+  </md-input-container>
+
   <table class="table table-hover">
     <thead>
     <tr>
