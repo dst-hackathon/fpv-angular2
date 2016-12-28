@@ -13,13 +13,12 @@
       </p>
     </md-card-content>
     <md-card-actions>
-      <button md-button
+      <button md-button *ngIf="desk"
         [routerLink]="['/plans',(route.params|async).id
-            ,'floorPlan',desk?.floor.building.id
-            ,desk?.floor.id,'-'
-            ,desk?.id
+            ,'floorPlan',desk.floor.building.id
+            ,desk.floor.id,'-'
+            ,desk.id
             ]">Find desk</button>
-      <button md-button>SHARE</button>
     </md-card-actions>
   </md-card>
 </div>

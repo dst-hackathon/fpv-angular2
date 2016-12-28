@@ -55,7 +55,12 @@ export class DeskAssignmentService {
     let options = new RequestOptions({ headers: headers });
 
     return this.http.get(`${this.serverUrl}/search/desk?employeeId=${employeeId}&planId=${planId}`, options)
-      .map(res => Desk.fromJson(res.json()))
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+      .map(res => {
+        if(!res.text()){
+          return null;
+        }
+
+        return Desk.fromJson(res.json())
+      })
   }
 }
