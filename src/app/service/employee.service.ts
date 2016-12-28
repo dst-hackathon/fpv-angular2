@@ -1,11 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import {Observable, BehaviorSubject} from 'rxjs/Rx';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-
-import { Employee } from '../model/employee';
+import {Injectable} from "@angular/core";
+import {Http, Headers, RequestOptions} from "@angular/http";
+import {Observable, BehaviorSubject} from "rxjs/Rx";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
+import {Employee} from "../model/employee";
 import {DeskAssignment} from "../model/desk-assignment";
 import {ChangesetItem} from "../model/changeset-item";
 
@@ -64,6 +62,10 @@ export class EmployeeService {
   getEmployee(id): Observable<Employee> {
     this.load(id)
     return this.employees.map(emps=> emps.find(emp => emp.id === id))
+  }
+
+  get(id: number): Observable<Employee> {
+    return this.employees.map(employees => employees.find(employees => employees.id === id))
   }
 
   getEmployeeByCode(code): Observable<Employee> {

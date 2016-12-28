@@ -1,0 +1,25 @@
+<div *ngIf="employee">
+
+  <md-card class="employee-card">
+    <md-card-header>
+      <img md-card-avatar [src]="employee.getImage()"/>
+      <md-card-title>{{employee.firstname}} {{employee.lastname}} ({{employee.nickname}})</md-card-title>
+      <md-card-subtitle>#{{employee.work}} {{employee.position}}</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image [src]="employee.getImage()">
+    <md-card-content>
+      <p>
+        Detail
+      </p>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button
+        [routerLink]="['/plans',(route.params|async).id
+            ,'floorPlan',desk?.floor.building.id
+            ,desk?.floor.id,'-'
+            ,desk?.id
+            ]">Find desk</button>
+      <button md-button>SHARE</button>
+    </md-card-actions>
+  </md-card>
+</div>

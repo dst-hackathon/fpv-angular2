@@ -50,6 +50,7 @@ import { ChangesetItemFocusDirective } from './changeset-item-focus.directive';
 import { MaterialModule } from '@angular/material';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeePipe } from './employee.pipe';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { EmployeePipe } from './employee.pipe';
     ChangesetItemCardComponent,
     ChangesetItemFocusDirective,
     EmployeeComponent,
-    EmployeePipe
+    EmployeePipe,
+    EmployeeDetailComponent
   ],
   imports: [
     BrowserModule,

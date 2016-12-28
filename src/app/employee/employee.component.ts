@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
 import {Employee} from "../model/employee";
 import {EmployeeService} from "../service/employee.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-employee',
@@ -14,7 +15,7 @@ export class EmployeeComponent implements OnInit {
 
   searchText
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.employees = this.employeeService.employees

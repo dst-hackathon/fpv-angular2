@@ -21,7 +21,9 @@
         <button
           [routerLink]="['/plans',(route.params|async).id
             ,'floorPlan',changesetItem.toDesk?.floor.building.id
-            ,changesetItem.toDesk?.floor.id,(changeset|async)?.id]" type="button" class="btn btn-link">{{changesetItem.toDesk |deskString}}</button>
+            ,changesetItem.toDesk?.floor.id,(changeset|async)?.id
+            ,'-'
+            ]" type="button" class="btn btn-link">{{changesetItem.toDesk |deskString}}</button>
       </td>
       <td>{{changesetItem.status}}</td>
       <td>

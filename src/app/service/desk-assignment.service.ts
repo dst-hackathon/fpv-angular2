@@ -49,4 +49,13 @@ export class DeskAssignmentService {
   get(desk: Desk) : Observable<DeskAssignment>{
     return this.deskAssignments.map(list=> list.find(item => item.desk.id === desk.id))
   }
+
+  getDesk(employeeId,planId): Observable<Desk> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.get(`${this.serverUrl}/search/desk?employeeId=${employeeId}&planId=${planId}`, options)
+      .map(res => Desk.fromJson(res.json()))
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
 }

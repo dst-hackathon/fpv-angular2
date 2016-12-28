@@ -7,6 +7,7 @@ import {PlanDialogComponent} from "./plandialog/plandialog.component";
 import {ChangesetListComponent} from "./changeset-list/changeset-list.component";
 import {ChangesetComponent} from "./changeset/changeset.component";
 import {EmployeeComponent} from "./employee/employee.component";
+import {EmployeeDetailComponent} from "./employee-detail/employee-detail.component";
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,10 +15,11 @@ const routes: Routes = [
     { path: 'logout',  component: LogoutComponent },
     { path: 'home',  component: PlanListComponent },
     { path: 'plans/:id', component: PlanDialogComponent },
-    { path: 'plans/:id/floorPlan/:buildingId/:floorId/:changesetId', component: PlanDialogComponent },
+    { path: 'plans/:id/floorPlan/:buildingId/:floorId/:changesetId/:deskId', component: PlanDialogComponent },
     { path: 'plans/:id/changesets', component: ChangesetListComponent },
     { path: 'plans/:id/changesets/:changesetId', component: ChangesetComponent },
-    { path: 'employees', component: EmployeeComponent },
+    { path: 'plans/:id/employees', component: EmployeeComponent },
+    { path: 'plans/:id/employees/:empId', component: EmployeeDetailComponent },
 ];
 
 @NgModule({
