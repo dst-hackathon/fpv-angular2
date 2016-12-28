@@ -6,6 +6,7 @@ import {PlanListComponent} from "./plan-list/plan-list.component";
 import {PlanDialogComponent} from "./plandialog/plandialog.component";
 import {ChangesetListComponent} from "./changeset-list/changeset-list.component";
 import {ChangesetComponent} from "./changeset/changeset.component";
+import {EmployeeComponent} from "./employee/employee.component";
 
 const routes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'plans/:id/floorPlan/:buildingId/:floorId/:changesetId', component: PlanDialogComponent },
     { path: 'plans/:id/changesets', component: ChangesetListComponent },
     { path: 'plans/:id/changesets/:changesetId', component: ChangesetComponent },
+    { path: 'employees', component: EmployeeComponent },
 ];
 
 @NgModule({

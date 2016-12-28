@@ -48,6 +48,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChangesetItemCardComponent } from './changeset-item-card/changeset-item-card.component';
 import { ChangesetItemFocusDirective } from './changeset-item-focus.directive';
 import { MaterialModule } from '@angular/material';
+import { EmployeeComponent } from './employee/employee.component';
+import { EmployeePipe } from './employee.pipe';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { MaterialModule } from '@angular/material';
     DeskStringPipe,
     SidebarComponent,
     ChangesetItemCardComponent,
-    ChangesetItemFocusDirective
+    ChangesetItemFocusDirective,
+    EmployeeComponent,
+    EmployeePipe
   ],
   imports: [
     BrowserModule,

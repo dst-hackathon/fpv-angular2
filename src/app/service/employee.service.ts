@@ -29,7 +29,13 @@ export class EmployeeService {
   }
 
   loadAll() {
-    this.http.get(`${this.serverUrl}`).map(response => response.json()).subscribe(data => {
+    this.http.get(`${this.serverUrl}`).map(response => {
+      let list: Employee[] = [];
+      for (let item of response.json()){
+        list.push(Employee.fromJson(item));
+      }
+      return list
+    }).subscribe(data => {
       this.dataStore.employees = data;
       this._employees.next(Object.assign({}, this.dataStore).employees);
     }, error => console.log('Could not load building.'));
