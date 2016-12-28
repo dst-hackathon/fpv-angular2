@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from '../model/employee';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'employee-card',
@@ -10,7 +11,7 @@ export class EmployeeCardComponent implements OnInit {
 
   @Input() employee: Employee;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
 
