@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../service/login.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-nav',
@@ -8,10 +9,13 @@ import {LoginService} from "../service/login.service";
 })
 export class NavComponent implements OnInit{
   user
+  planId
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService,private route :ActivatedRoute) { }
 
   ngOnInit() {
     this.user = this.loginService.loginUser
+
+    this.route.params.subscribe(params=> this.planId=params['id'])
   }
 }

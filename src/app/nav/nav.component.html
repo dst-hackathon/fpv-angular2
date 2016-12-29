@@ -1,6 +1,6 @@
-<ul class="nav navbar-nav" *ngIf="user|async">
+<ul class="nav navbar-nav" *ngIf="planId && (user|async)">
   <li class="nav-item active">
-    <button md-button routerLink="/home" routerLinkActive="active">
+    <button md-button routerLink="/plans" routerLinkActive="active">
       <i class="fa fa-home" aria-hidden="true"></i> HOME
     </button>
   </li>

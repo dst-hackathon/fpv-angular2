@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {DeskAssignmentService} from "../service/desk-assignment.service";
 import {Desk} from "../model/desk";
+import {PlanService} from "../service/plan.service";
 
 @Component({
   selector: 'app-employee-detail',
@@ -17,21 +18,23 @@ export class EmployeeDetailComponent implements OnInit {
   employee: Employee
 
   desk:Desk
+  selectedPlan
 
-  constructor(private employeeService: EmployeeService
+  constructor(private planService: PlanService,private employeeService: EmployeeService
     ,private deskAssignmentService: DeskAssignmentService
     ,private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.selectedPlan = this.planService.getSelected();
+
     this.route.params.subscribe(params => {
       let empId:number = Number(params['empId']);
-      let planId:number = Number(params['id']);
 
       this.employee$ = this.employeeService.employees.map(items => items.find(item => item.id == empId));
       this.employee$.subscribe(emp => {
         this.employee = emp
 
-        this.deskAssignmentService.getDesk(empId,planId).subscribe(desk=>this.desk = desk)
+        this.deskAssignmentService.getDesk(empId,this.selectedPlan.id).subscribe(desk=>this.desk = desk)
       })
 
       this.employeeService.load(empId)

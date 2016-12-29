@@ -6,6 +6,8 @@ import {Observable} from "rxjs";
 import {Changeset} from "../model/changeset";
 import {ActivatedRoute} from "@angular/router";
 import {Desk} from "../model/desk";
+import {Plan} from "../model/plan";
+import {PlanService} from "../service/plan.service";
 
 @Component({
   selector: 'app-changeset',
@@ -17,12 +19,17 @@ export class ChangesetComponent implements OnInit {
   changesetId
   changeset:Observable<Changeset>
   changesetItemList: Observable<ChangesetItem[]>
+  selectedPlan:Observable<Plan>
 
   constructor(private route: ActivatedRoute,public changesetService: ChangesetService,
-              public changesetItemService: ChangesetItemService) { }
+              public changesetItemService: ChangesetItemService,
+              private planService: PlanService
+  ) { }
 
   ngOnInit() {
     this.changesetItemList = this.changesetItemService.changesetItems
+
+    this.selectedPlan = this.planService.selected
 
     this.route.params.subscribe(params => {
       this.changesetId = params['changesetId'];

@@ -18,7 +18,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let employee of employees|async|employee:searchText" [routerLink]="['/plans',(route.params|async).id,'employees',employee?.id]">
+    <tr *ngFor="let employee of employees|async|employee:searchText" [routerLink]="[employee?.id]">
       <td>
         <img class="avatar" [src]="employee?.getImage()">
       </td>

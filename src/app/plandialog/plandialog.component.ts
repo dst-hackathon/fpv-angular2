@@ -68,10 +68,9 @@ export class PlanDialogComponent implements OnInit {
         }
       )
 
-      this.route.params.subscribe(params => {
-        let planId = params['id'];
-        this.planService.getPlan(planId).subscribe(plan => this.plan = plan, err => console.log(err));
+      this.planService.selected.subscribe(plan=>this.plan=plan)
 
+      this.route.params.subscribe(params => {
         let floorId = Number(params['floorId']);
         let buildingId = Number(params['buildingId']);
         if(buildingId && floorId) {

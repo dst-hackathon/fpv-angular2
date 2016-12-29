@@ -15,7 +15,7 @@
     </md-card-content>
     <md-card-actions>
       <button md-button *ngIf="desk"
-        [routerLink]="['/plans',(route.params|async).id
+        [routerLink]="['/plans',selectedPlan.id
             ,'floorPlan',desk.floor.building.id
             ,desk.floor.id,'-'
             ,desk.id

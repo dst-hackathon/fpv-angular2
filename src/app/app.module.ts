@@ -51,6 +51,8 @@ import { MaterialModule } from '@angular/material';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeePipe } from './employee.pipe';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
+import { PlansComponent } from './plans/plans.component';
+import { PlanComponent } from './plans/plan/plan.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,9 @@ import { EmployeeDetailComponent } from './employee-detail/employee-detail.compo
     ChangesetItemFocusDirective,
     EmployeeComponent,
     EmployeePipe,
-    EmployeeDetailComponent
+    EmployeeDetailComponent,
+    PlansComponent,
+    PlanComponent
   ],
   imports: [
     BrowserModule,

@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   password;
   rememberMe;
   signInButtonClicked = 'none';
-  
+
   user;
 
   constructor(public loginService: LoginService, public router: Router) { }
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
           json => {
             console.log("login success" + json)
-            this.router.navigate(['home']);
+            this.router.navigate(['plans']);
           },
           err => {
               console.log(err);

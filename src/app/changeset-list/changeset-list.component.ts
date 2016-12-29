@@ -17,7 +17,7 @@ export class ChangesetListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
+    this.route.parent.params.subscribe(params => {
       this.planId = params['id'];
 
       this.changesetService.getChangesetList(this.planId)

@@ -19,7 +19,7 @@
       <td>{{changesetItem.fromDesk| deskString}}</td>
       <td>
         <button
-          [routerLink]="['/plans',(route.params|async).id
+          [routerLink]="['/plans',(selectedPlan|async)?.id
             ,'floorPlan',changesetItem.toDesk?.floor.building.id
             ,changesetItem.toDesk?.floor.id,(changeset|async)?.id
             ,'-'
