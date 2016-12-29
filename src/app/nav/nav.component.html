@@ -5,8 +5,18 @@
     </button>
   </li>
   <li class="nav-item">
-    <button md-button routerLink="/employees" routerLinkActive="active">
+    <button md-button [routerLink]="['/plans', planId,'changesets']" routerLinkActive="active">
+      <i class="fa-files-o" aria-hidden="true"></i> Changesets
+    </button>
+  </li>
+  <li class="nav-item">
+    <button md-button [routerLink]="['/plans', planId,'employees']" routerLinkActive="active">
       <i class="fa fa-users" aria-hidden="true"></i> Employees
+    </button>
+  </li>
+  <li class="nav-item">
+    <button md-button [routerLink]="['/plans', planId]" routerLinkActive="active">
+      <i class="fa  fa-desktop" aria-hidden="true"></i> Move Desk
     </button>
   </li>
 </ul>
