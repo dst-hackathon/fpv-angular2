@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../service/login.service";
 
 @Component({
-  selector: 'leftnav',
-  templateUrl: './leftnav.component.html',
-  styleUrls: ['./leftnav.component.css']
+  selector: 'app-nav',
+  templateUrl: './nav.component.html',
+  styleUrls: ['./nav.component.css']
 })
-export class LeftnavComponent implements OnInit{
+export class NavComponent implements OnInit{
   user
 
   constructor(private loginService: LoginService) { }

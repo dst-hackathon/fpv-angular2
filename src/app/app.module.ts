@@ -30,7 +30,7 @@ import { FloorComponent } from './floor/floor.component';
 import { AppRoutingModule  } from './app-routing.module';
 import { FloorMarkerComponent } from './floor-marker/floor-marker.component';
 import { PlanItemComponent } from './plan-item/plan-item.component';
-import { LeftnavComponent } from './leftnav/leftnav.component';
+import { NavComponent } from './nav/nav.component';
 import { ChangesetListComponent } from './changeset-list/changeset-list.component';
 import { DeskCreateDialogComponent } from './desk-create-dialog/desk-create-dialog.component';
 import { ChangesetService } from './service/changeset.service'
@@ -67,7 +67,7 @@ import { EmployeeDetailComponent } from './employee-detail/employee-detail.compo
     FloorComponent,
     FloorMarkerComponent,
     PlanItemComponent,
-    LeftnavComponent,
+    NavComponent,
     ChangesetListComponent,
     DeskCreateDialogComponent,
     ChangesetItemComponent,
