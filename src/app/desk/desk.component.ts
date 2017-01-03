@@ -21,10 +21,12 @@ export class DeskComponent implements OnInit {
   @Input() desk: Desk
   @Input() changeset: Changeset
 
-  deskAssignment: Observable<DeskAssignment>
-  changesetItem: Observable<ChangesetItem>
+  deskAssignment$: Observable<DeskAssignment>
+  changesetItem$: Observable<ChangesetItem>
 
-  employee: Employee;
+  deskAssignment: DeskAssignment
+  changesetItem: ChangesetItem
+
   emptyDeskUrl = '../assets/question-mark.png';
   assignedDeskUrl = '../assets/user-silhouette.png';
 
@@ -40,24 +42,24 @@ export class DeskComponent implements OnInit {
     private deskModal: NgbModal) { }
 
   ngOnInit() {
-    this.deskAssignment = this.deskAssigmentService.get(this.desk)
-    this.changesetItem = this.changesetItemService.get(this.desk)
+    this.deskAssignment$ = this.deskAssigmentService.get(this.desk)
+    this.changesetItem$ = this.changesetItemService.get(this.desk)
 
-    this.loadEmployee();
+    this.deskAssignment$.subscribe(da=> this.deskAssignment = da)
+    this.changesetItem$.subscribe(ci=> this.changesetItem= ci)
   }
 
-  private loadEmployee() {
-    this.deskAssignment.flatMap(da=> {
-      if (da) {
-        this.employee = da.employee
-      }
+  private getEmployee():Employee {
 
-      return this.changesetItem
-    }).subscribe(ci=> {
-      if (ci) {
-        this.employee = ci.employee
-      }
-    })
+    if(this.changesetItem && this.changesetItem.employee){
+      return this.changesetItem.employee
+    }
+
+    if(this.deskAssignment && this.deskAssignment.employee){
+      return this.deskAssignment.employee
+    }
+
+    return null
   }
 
   selectDesk(event){
@@ -70,13 +72,8 @@ export class DeskComponent implements OnInit {
     console.log("Drag started", event);
     console.log("Desk ID", this.desk.id);
     event.dataTransfer.setData('fromDesk', JSON.stringify(this.desk))
-    event.dataTransfer.setData('employee', JSON.stringify(this.employee))
-
-    this.changesetItem.subscribe(item=>{
-      if(item){
-        event.dataTransfer.setData('changesetItem', JSON.stringify(item))
-      }
-    })
+    event.dataTransfer.setData('employee', JSON.stringify(this.getEmployee()))
+    event.dataTransfer.setData('changesetItem', JSON.stringify(this.changesetItem||null))
   }
 
   public ondrop(event) {

@@ -1,4 +1,4 @@
-<div class="desk-position" [appChangesetItemFocus]="(changesetItem|async)"
+<div class="desk-position" [appChangesetItemFocus]="(changesetItem)"
     [style.top]="desk.y - (desk.height/2) + 'px'"
     [style.left]="desk.x + - (desk.width/2) + 'px'"
     [style.height]="desk.height + 'px'"
@@ -9,18 +9,18 @@
     placement="right" container="body"
 
     (click)="selectDesk($event)"
-    [draggable]="deskAssignment != null"
+    [draggable]="deskAssignment || changesetItem"
     (dragstart)="ondragstart($event, popoverWindow)"
     (drop)="ondrop($event)"
     (dragover)="ondragover($event)">
 
-  <span class="tag tag-pill tag-warning" *ngIf="showChangesetItem(changesetItem|async)">
-    {{(changesetItem|async)?.employee.firstname}}
+  <span class="tag tag-pill tag-warning" *ngIf="showChangesetItem(changesetItem)">
+    {{(changesetItem)?.employee.firstname}}
   </span>
-  <span class="tag tag-pill tag-primary" [class.previous-step]="showAsPreviousStep((deskAssignment|async))" *ngIf="showDeskAssignmentItem((changesetItem|async),(deskAssignment|async))">
-    {{(deskAssignment|async)?.employee.firstname}}
+  <span class="tag tag-pill tag-primary" [class.previous-step]="showAsPreviousStep(deskAssignment)" *ngIf="showDeskAssignmentItem(changesetItem,deskAssignment)">
+    {{(deskAssignment)?.employee.firstname}}
   </span>
-  <div class="deskItem" *ngIf="(changesetItem|async) == null && (deskAssignment|async) == null">
+  <div class="deskItem" *ngIf="(changesetItem) == null && (deskAssignment) == null">
     <img [src]="emptyDeskUrl" alt="empty desk">
   </div>
 
@@ -30,7 +30,7 @@
   <div (mouseenter)="enterPopoverContent()" (mouseleave)="leavePopoverContent(popoverWindow)">
     <desk-card [desk]="desk"
                [changeset]="changeset"
-               [deskAssignment]="deskAssignment"
-               [changesetItem]="changesetItem"></desk-card>
+               [deskAssignment]="deskAssignment$"
+               [changesetItem]="changesetItem$"></desk-card>
   </div>
 </template>
