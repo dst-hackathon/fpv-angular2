@@ -79,32 +79,38 @@ export class ChangesetItemService {
       return
     }
 
-    let item = new ChangesetItem();
     if(previousChangesetItem){
-      item = previousChangesetItem
-      item.status = 'DRAFT'
+      previousChangesetItem.toDesk = toDesk
+
+      this.saveItem(previousChangesetItem);
+      return
     }
 
-    if(employee){
-      item.employee= employee;
-    }
-
-    if(changeset){
-      item.changeset = changeset
-    }
-
-    if(fromDesk){
-      item.fromDesk = fromDesk
-    }
-
+    let item = new ChangesetItem();
+    item.employee= employee;
+    item.changeset = changeset
+    item.fromDesk = fromDesk
     item.toDesk = toDesk
+
+    this.saveItem(item);
+  }
+
+  private saveItem(item: ChangesetItem) {
+    item.status = 'DRAFT'
+
+    // delete item from == to desk
+    if(item.fromDesk && item.toDesk && item.fromDesk.id == item.toDesk.id){
+      this.remove(item.id)
+    }
 
     this.http.put(`${this.serverUrl}`, item)
       .map(response => ChangesetItem.fromJson(response.json())).subscribe(data => {
 
       //remove
       this.dataStore.changesetItems.forEach((t, i) => {
-        if (t.id === data.id) { this.dataStore.changesetItems.splice(i, 1); }
+        if (t.id === data.id) {
+          this.dataStore.changesetItems.splice(i, 1);
+        }
       });
 
       this.dataStore.changesetItems.push(data);
