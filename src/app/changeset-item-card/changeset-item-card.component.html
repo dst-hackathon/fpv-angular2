@@ -1,21 +1,5 @@
 <div [appChangesetItemFocus]="changesetItem" draggable="true" (dragstart)="ondragstart($event)">
   <div class="employee-card" *ngIf="employee">
-    <p style="float: left; color: red">&#8593; &nbsp;</p><p style="float: left;">Out: ({{changesetItem.fromDesk | deskString}})</p>
-    <p style="float: right;">In: ({{changesetItem.toDesk | deskString}})</p><p style="float: right; color: green">&#8595; &nbsp;<p>
-    <div class="row rowbackground">
-      <div class="col-md-6">
-        <img class="avatar" [src]="employee.getImage()" alt="Employee image">
-      </div>
-      <div class="col-md-6">
-        <img class="avatar" [src]="employee.getImage()" alt="Employee image">
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!--<div [appChangesetItemFocus]="changesetItem" draggable="true" (dragstart)="ondragstart($event)">
-  <div class="employee-card" *ngIf="employee">
     <h5>{{employee.firstname}} {{employee.lastname}} ({{employee.nickname}})</h5>
     <div class="row">
       <div class="col-sm-5">
@@ -29,4 +13,4 @@
       </div>
     </div>
   </div>
-</div>-->
+</div>
