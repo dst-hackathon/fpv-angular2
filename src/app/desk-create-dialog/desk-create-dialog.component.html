@@ -6,7 +6,7 @@
   <h4 class="modal-title" *ngIf="desk.id">Edit desk</h4>
 </div>
 <div class="modal-body">
-  Desk code : <input type="text" [(ngModel)]="desk.code"/>
+  Desk code : <input #input type="text" [(ngModel)]="desk.code"/>
 
 </div>
 <div class="modal-footer">
