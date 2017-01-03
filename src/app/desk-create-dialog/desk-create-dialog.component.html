@@ -6,8 +6,9 @@
   <h4 class="modal-title" *ngIf="desk.id">Edit desk</h4>
 </div>
 <div class="modal-body">
-  Desk code : <input #input type="text" [(ngModel)]="desk.code"/>
-
+  <form (ngSubmit)="save()">
+    Desk code : <input #input type="text" name="code" [(ngModel)]="desk.code"/>
+  </form>
 </div>
 <div class="modal-footer">
   <button *ngIf="desk.id" type="button" class="btn btn-danger" (click)="delete()">Delete Desk</button>
