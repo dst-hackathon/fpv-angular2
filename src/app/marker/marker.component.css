@@ -2,3 +2,7 @@
   position: absolute;
   background-color: rgba(105, 193, 219, 0.47);
 }
+
+.dragstart{
+  z-index: -1;
+}

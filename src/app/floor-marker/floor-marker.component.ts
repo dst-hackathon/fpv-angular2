@@ -7,6 +7,7 @@ import { DeskService } from '../service/desk.service';
 import { Floor } from '../model/floor';
 import { Desk } from '../model/desk';
 import {Changeset} from "../model/changeset";
+import {DeskCreateDialogComponent} from "../desk-create-dialog/desk-create-dialog.component";
 
 @Component({
   selector: 'floor-marker',
@@ -27,25 +28,37 @@ export class FloorMarkerComponent implements OnInit {
 
   constructor(public floorService: FloorService,
     private deskModal: NgbModal,
-    public deskService: DeskService) { }
+    public deskService: DeskService,
+    private modalService: NgbModal) { }
 
   ngOnInit() { }
 
-  markDesk($event, addContent) {
+  openDeskDialog(desk) {
+    if (desk) {
+      const modalRef = this.modalService.open(DeskCreateDialogComponent)
+      modalRef.componentInstance.desk = desk;
+
+      modalRef.result.then((result) => {
+        console.log("Modal result", result)
+      }, (reason) => {
+        console.log(`close model: ${reason}`)
+      });
+    }
+  }
+
+  markDesk($event) {
     let x = $event.offsetX
     let y = $event.offsetY
 
-    if (!this.deskService.hasSelectedDesk()) {
-      let desk = Desk.fromJson({
-        x: x,
-        y: y,
-        height: 30,
-        width: 30
-      })
-      desk.floor = this.floor
-      this.selectedDesk = desk
-      this.openModal(addContent);//open modal
-    }
+    let desk = Desk.fromJson({
+      x: x,
+      y: y,
+      height: 30,
+      width: 30
+    })
+    desk.floor = this.floor
+
+    this.openDeskDialog(desk)
   }
 
   logPoint($event,name) {

@@ -1,6 +1,17 @@
-<div *ngIf="desk">
-
+<div class="modal-header">
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 class="modal-title" *ngIf="desk.id == null">Add desk</h4>
+  <h4 class="modal-title" *ngIf="desk.id">Edit desk</h4>
+</div>
+<div class="modal-body">
   Desk code : <input type="text" [(ngModel)]="desk.code"/>
-  <!--<button type="button" class="btn btn-lg btn-primary btn-block"
-    (click)="save()">Save</button>-->
+
+</div>
+<div class="modal-footer">
+  <button *ngIf="desk.id" type="button" class="btn btn-danger" (click)="delete()">Delete Desk</button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close('cancel')">Cancel</button>
+  <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+  <br/>
 </div>

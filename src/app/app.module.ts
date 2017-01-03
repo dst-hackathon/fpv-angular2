@@ -110,7 +110,7 @@ import { PlanComponent } from './plans/plan/plan.component';
     ChangesetService,
     ChangesetItemService
   ],
-  entryComponents: [AssignDialogComponent],
+  entryComponents: [AssignDialogComponent,DeskCreateDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

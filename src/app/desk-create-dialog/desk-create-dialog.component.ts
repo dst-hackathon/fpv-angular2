@@ -2,6 +2,7 @@ import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 
 import { Desk } from '../model/desk';
 import { DeskService } from '../service/desk.service';
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'desk-create-dialog',
@@ -10,12 +11,20 @@ import { DeskService } from '../service/desk.service';
 })
 export class DeskCreateDialogComponent implements OnInit {
   @Input() desk: Desk
-  @Output() deskChange: EventEmitter<Desk> = new EventEmitter<Desk>();
 
-  constructor(public deskService: DeskService ) { }
+  constructor( private activeModal: NgbActiveModal,private deskService:DeskService) { }
 
   ngOnInit() {
   }
 
-  delete(){}
+  save(){
+    this.deskService.save(this.desk);
+    this.activeModal.close('saved')
+  }
+
+  delete(){
+    console.log("Delete desk: ", this.desk);
+    this.deskService.remove(this.desk.id)
+    this.activeModal.close("cancel")
+  }
 }

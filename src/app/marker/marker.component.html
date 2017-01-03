@@ -1,8 +1,14 @@
-<div class="desk-position" [style.top]="desk.y - (desk.height/2) + 'px'"
+<div class="desk-position"
+     [style.top]="desk.y - (desk.height/2) + 'px'"
      [style.left]="desk.x + - (desk.width/2) + 'px'"
      [style.height]="desk.height + 'px'"
      [style.width]="desk.width  + 'px'"
+     [class.dragstart]="isDragstart"
      (dragstart)="ondragstart($event)"
+     (dragenter)="ondragenter($event)"
      (click)="selectDesk($event)">
   <img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png" width="100%"/>
+  <span class="tag tag-pill tag-primary">
+    {{desk.code}}
+  </span>
 </div>

@@ -23,10 +23,4 @@ export class AssignDialogComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  deleteDesk(){
-    console.log("Delete desk: ", this.desk);
-    this.deskService.remove(this.desk.id)
-    this.activeModal.close("cancel")
-  }
 }
