@@ -17,10 +17,13 @@ export class DeskCreateDialogComponent implements OnInit,AfterViewInit {
   constructor( private activeModal: NgbActiveModal,private deskService:DeskService) { }
 
   ngOnInit() {
+    console.log("init")
   }
 
   ngAfterViewInit() {
-    this.vc.first.nativeElement.focus();
+    setTimeout(()=>{
+      this.vc.first.nativeElement.focus()
+    }, 300)
   }
 
   save(){
