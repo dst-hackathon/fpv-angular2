@@ -127,7 +127,24 @@ export class DeskComponent implements OnInit {
   }
 
   showAsPreviousStep(da: DeskAssignment){
-    return this.changesetItemService.findByFromDesk(da.desk).length > 0
+    return this.isPreviousStep(da)
+  }
+
+  isPreviousStep(da: DeskAssignment) {
+    return this.changesetItemService.findByFromDesk(da.desk).length > 0;
+  }
+
+  isNotEmptyDesk(){
+    if(this.deskAssignment && !this.isPreviousStep(this.deskAssignment)){
+      return true
+    }
+
+    if(this.changesetItem){
+      return true
+    }
+
+
+    return false
   }
 
   enterPopoverContent() {

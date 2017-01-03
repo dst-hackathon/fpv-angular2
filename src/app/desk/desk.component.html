@@ -9,11 +9,14 @@
     placement="right" container="body"
 
     (click)="selectDesk($event)"
-    [draggable]="deskAssignment || changesetItem"
+
+    [class.empty-desk]="!isNotEmptyDesk()"
+    [class.moveable]="isNotEmptyDesk()"
+
+    [draggable]="isNotEmptyDesk()"
     (dragstart)="ondragstart($event, popoverWindow)"
     (drop)="ondrop($event)"
     (dragover)="ondragover($event)">
-
   <span class="tag tag-pill tag-warning" *ngIf="showChangesetItem(changesetItem)">
     {{(changesetItem)?.employee.firstname}}
   </span>

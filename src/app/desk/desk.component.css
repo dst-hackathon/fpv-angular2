@@ -9,3 +9,10 @@
 .desk-position.highlight{
   background: rgba(243, 244, 4, 0.43);
 }
+
+.empty-desk{
+  cursor: no-drop;
+}
+.moveable{
+  cursor: pointer;
+}
