@@ -15,6 +15,8 @@ export class ActivityComponent implements OnInit {
   changeSetItems: Observable<ChangesetItem[]>
   changeset: Changeset
 
+  isDragOver:boolean = false
+
   constructor(private changesetItemService: ChangesetItemService
     ,private changesetService:ChangesetService) {
   }
@@ -31,6 +33,16 @@ export class ActivityComponent implements OnInit {
   public ondrag(event) {
     event.preventDefault()
   }
+
+  public onover(event) {
+    event.preventDefault()
+    this.isDragOver = true;
+  }
+
+  public onexit(event) {
+    this.isDragOver = false;
+  }
+
   public ondrop(event) {
     let fromDesk = JSON.parse(event.dataTransfer.getData('fromDesk'))
     let employee = JSON.parse(event.dataTransfer.getData('employee'))

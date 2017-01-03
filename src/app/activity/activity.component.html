@@ -1,7 +1,13 @@
-<ul class="list-group" (dragover)="ondrag($event)" (drop)="ondrop($event)">
-     <li class="list-group-item" *ngFor="let changeSetItem of changeSetItems|async">
-       <app-changeset-item-card [changesetItem]="changeSetItem"></app-changeset-item-card>
+<div class="activity-component" (dragover)="onover($event)" (dragleave)="onexit($event)">
+  <div class="dropzone" [class.enable]="isDragOver" (drop)="ondrop($event)">
+    <h4>Drop to unassign</h4>
+  </div>
 
-       <button type="button" class="btn btn-secondary" (click)="deleteItem(changeSetItem)">Delete</button>
-     </li>
-</ul>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let changeSetItem of changeSetItems|async">
+      <app-changeset-item-card [changesetItem]="changeSetItem"></app-changeset-item-card>
+
+      <button type="button" class="btn btn-secondary" (click)="deleteItem(changeSetItem)">Delete</button>
+    </li>
+  </ul>
+</div>
