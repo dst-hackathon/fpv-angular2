@@ -1,8 +1,11 @@
 <div *ngIf="deskAssignment|async">
-  <employee-card [employee]="(deskAssignment|async)?.employee"></employee-card>
+  <employee-card [employee]="(deskAssignment|async)?.employee">
+    <input class="btn btn-primary" (click)="openAssignDialog()" value="Assign To Desk">
+  </employee-card>
 </div>
 <div *ngIf="changesetItem|async">
   <p>Next ({{(changesetItem|async)?.changeset.effectiveDate}})</p>
-  <employee-card [employee]="(changesetItem|async)?.employee"></employee-card>
+  <employee-card [employee]="(changesetItem|async)?.employee">
+    <input class="btn btn-primary" (click)="openAssignDialog()" value="Assign To Desk">
+  </employee-card>
 </div>
-<input class="btn btn-primary" (click)="openAssignDialog()" value="Assign To Desk">

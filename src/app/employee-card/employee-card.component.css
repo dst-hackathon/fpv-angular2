@@ -26,21 +26,6 @@
   border-width: 55px 0 0 600px;
   border-color: transparent transparent transparent #141414;
 }
-.empCard .cardInfo a {
-  padding: 5px;
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  font-size: 0.7em;
-  text-transform: uppercase;
-  margin: 10px 0;
-  display: inline-block;
-  opacity: 0.65;
-  width: 47%;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
 .empCard .profile {
   border-radius: 50%;
   position: absolute;
@@ -73,4 +58,7 @@
 }
 body {
   background-color: #212121;
+}
+h4 a{
+  color: white;
 }
