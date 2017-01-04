@@ -16,6 +16,7 @@ export class EmployeeDetailComponent implements OnInit {
 
   employee$: Observable<Employee>
   employee: Employee
+  employeeId: number
 
   desk:Desk
   selectedPlan
@@ -25,20 +26,22 @@ export class EmployeeDetailComponent implements OnInit {
     ,private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.selectedPlan = this.planService.getSelected();
+    this.planService.selected.subscribe(p=>this.selectedPlan=p);
 
     this.route.params.subscribe(params => {
-      let empId:number = Number(params['empId']);
+      this.employeeId = Number(params['empId']);
 
-      this.employee$ = this.employeeService.employees.map(items => items.find(item => item.id == empId));
-      this.employee$.subscribe(emp => {
-        this.employee = emp
-
-        this.deskAssignmentService.getDesk(empId,this.selectedPlan.id).subscribe(desk=>this.desk = desk)
-      })
-
-      this.employeeService.load(empId)
+      this.employee$ = this.employeeService.employees.map(items => items.find(item => item.id == this.employeeId));
+      this.employeeService.load(this.employeeId)
     });
+
+    this.employee$.subscribe(emp => {
+      this.employee = emp
+
+      if(this.employee){
+        this.deskAssignmentService.getDesk(this.employeeId,this.selectedPlan.id).subscribe(desk=>this.desk = desk)
+      }
+    })
   }
 
 }
