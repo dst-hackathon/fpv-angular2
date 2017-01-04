@@ -8,6 +8,7 @@ import {Changeset} from "../model/changeset";
 import {Observable} from "rxjs";
 import {EmployeeService} from "../service/employee.service";
 import {ChangesetItemService} from "../service/changeset-item.service";
+import {Employee} from "../model/employee";
 
 @Component({
   selector: 'app-assign-dialog',
@@ -23,7 +24,7 @@ export class AssignDialogComponent implements OnInit {
 
   deskAssignment$:DeskAssignment
   changesetItem$:ChangesetItem
-  employee
+  employee:Employee
 
   constructor(private activeModal: NgbActiveModal,
               private deskService: DeskService,
