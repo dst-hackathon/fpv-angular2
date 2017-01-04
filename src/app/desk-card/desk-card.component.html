@@ -8,3 +8,6 @@
     <input class="btn btn-primary" (click)="openAssignDialog()" value="Assign To Desk">
   </employee-card>
 </div>
+<div *ngIf="!((deskAssignment|async) || (changesetItem|async))">
+  <input class="btn btn-primary" (click)="openAssignDialog()" value="Assign To Desk">
+</div>
