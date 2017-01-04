@@ -14,7 +14,6 @@ Desk code: {{desk.code}} <br/>
 
   <employee-card [employee]="deskAssignment?.employee"></employee-card>
   <div *ngIf="changesetItem">
-    <p>Next ({{changesetItem?.changeset?.effectiveDate}})</p>
     <employee-card [employee]="changesetItem?.employee"></employee-card>
   </div>
 
