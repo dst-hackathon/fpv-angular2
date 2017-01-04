@@ -8,7 +8,7 @@
     <p class="text-muted">Email: {{employee.email}}</p>
 
     <a class="view"
-       [routerLink]="['/plans',(route.params|async).id,'employees',employee.id]">View</a>
+       [routerLink]="['/plans',plan.id,'employees',employee.id]">View</a>
     <a class="cancel">Cancel</a>
     <ng-content></ng-content>
   </div>

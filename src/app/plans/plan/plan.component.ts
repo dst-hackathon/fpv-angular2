@@ -13,7 +13,7 @@ export class PlanComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params=>{
-      let id = params['id']
+      let id = Number.parseInt(params['id'])
 
       this.planService.get(id).subscribe(plan => {
         this.planService.setSelected(plan)
