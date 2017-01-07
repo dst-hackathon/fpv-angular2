@@ -1,25 +1,33 @@
-<a class="navbar-brand" routerLink="/plans">
-  <img src="assets/fpv-icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-</a>
-<ul class="nav navbar-nav" *ngIf="planId && (user|async)">
-  <li class="nav-item active">
-    <button md-button routerLink="/plans" routerLinkActive="active">
-      <i class="fa fa-home" aria-hidden="true"></i> HOME
-    </button>
-  </li>
-  <li class="nav-item">
-    <button md-button [routerLink]="['/plans', planId,'changesets']" routerLinkActive="active">
-      <i class="fa-files-o" aria-hidden="true"></i> Changesets
-    </button>
-  </li>
-  <li class="nav-item">
-    <button md-button [routerLink]="['/plans', planId,'employees']" routerLinkActive="active">
-      <i class="fa fa-users" aria-hidden="true"></i> Employees
-    </button>
-  </li>
-  <li class="nav-item">
-    <button md-button [routerLink]="['/plans', planId]" routerLinkActive="active">
-      <i class="fa  fa-desktop" aria-hidden="true"></i> Move Desk
-    </button>
-  </li>
-</ul>
+<nav class="navbar navbar-fixed-top" [class.navbar-small]="isShrunk">
+  <div class="collapse navbar-toggleable-md" id="navbarResponsive">
+    <a class="navbar-brand" routerLink="/plans">
+      <img src="assets/fpv-icon.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    </a>
+    <ul class="nav navbar-nav" *ngIf="planId && (user|async)">
+      <li class="nav-item active">
+        <button md-button routerLink="/plans" routerLinkActive="active">
+          <i class="fa fa-home" aria-hidden="true"></i> HOME
+        </button>
+      </li>
+      <li class="nav-item">
+        <button md-button [routerLink]="['/plans', planId,'changesets']" routerLinkActive="active">
+          <i class="fa-files-o" aria-hidden="true"></i> Changesets
+        </button>
+      </li>
+      <li class="nav-item">
+        <button md-button [routerLink]="['/plans', planId,'employees']" routerLinkActive="active">
+          <i class="fa fa-users" aria-hidden="true"></i> Employees
+        </button>
+      </li>
+      <li class="nav-item">
+        <button md-button [routerLink]="['/plans', planId]" routerLinkActive="active">
+          <i class="fa  fa-desktop" aria-hidden="true"></i> Move Desk
+        </button>
+      </li>
+    </ul>
+
+    <div class="form-inline float-lg-right">
+      <profile></profile>
+    </div>
+  </div>
+</nav>

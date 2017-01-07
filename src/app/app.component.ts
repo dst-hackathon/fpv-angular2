@@ -10,21 +10,10 @@ import {LoginService} from "./service/login.service";
 })
 export class AppComponent implements OnInit {
   user;
-  isShrunk: boolean = false;
 
   constructor(
     public loginService: LoginService,
-    public router: Router,
-    zone: NgZone) {
-      window.onscroll = () => {
-      zone.run(() => {
-        if(window.pageYOffset > 0) {
-             this.isShrunk = true;
-        } else {
-             this.isShrunk = false;
-        }
-      });
-    }
+    public router: Router) {
   }
 
   ngOnInit() {

@@ -11,3 +11,22 @@
 .nav-link {
     display: inline-block;
 }
+nav {
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+nav.navbar-small {
+  font-size: 0.8rem;
+  line-height: 1.15;
+  padding: 0 16px;
+}
+nav.navbar-small img {
+  -webkit-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  width: 20px;
+  height: 20px;
+}
+nav{
+  background: #00bcd4;
+  color: #fff;
+}
