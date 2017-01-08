@@ -227,6 +227,10 @@ export class ChangesetItemService {
 
   findByFromDesk(desk: Desk) : ChangesetItem[] {
     let list:ChangesetItem[] = []
+    if(!desk){
+      return list;
+    }
+
     this.getChangesetItems().forEach((t, i) => {
       if (t.fromDesk && t.fromDesk.id === desk.id) {
         list.push(t)
@@ -238,6 +242,10 @@ export class ChangesetItemService {
 
   findByToDesk(desk: Desk) : ChangesetItem[] {
     let list:ChangesetItem[] = []
+    if(!desk){
+      return list;
+    }
+
     this.getChangesetItems().forEach((t, i) => {
       if (t.toDesk && t.toDesk.id === desk.id) {
         list.push(t)
