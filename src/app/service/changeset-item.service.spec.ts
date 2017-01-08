@@ -156,6 +156,48 @@ describe('changeset-item.service', () => {
 
   }));
 
+  let buildEmployee = function (name:string) {
+    var employee = new Employee();
+    employee.firstname = name
+    return employee;
+  };
+
+  it('Move CI to assiged desk which contains both CI and DA should create new CI for existing CI', inject([ChangesetItemService,DeskAssignmentService], (service: ChangesetItemService,daService:DeskAssignmentService) => {
+    let employee = buildEmployee("M");
+    let fromDesk = null
+    let toDesk = buildDesk(1)
+    let previousChangesetItem = null
+    let changeset = new Changeset();
+
+    // DA (V sit at 1)
+    var da = new DeskAssignment();
+    da.employee = buildEmployee("V");
+    da.desk = toDesk
+    spyOn(daService,"findByDesk").and.returnValue([da])
+
+    // CI (Gun move from 5 to 1)
+    let existingCI = buildItem(buildDesk(5),buildDesk(1),changeset,buildEmployee("Gun"));
+    spyOn(service,"findByToDesk").and.returnValue([existingCI])
+
+    // assign (M to 1)
+    let list:ChangesetItem[] = service.build(employee,fromDesk,toDesk,changeset,previousChangesetItem)
+    expect(list).not.toBeNull()
+    expect(list.length).toEqual(2)
+
+    let expectedNewCI = list[0]
+    expect(expectedNewCI.changeset).toEqual(changeset)
+    expect(expectedNewCI.employee.firstname).toEqual("M")
+    expect(expectedNewCI.fromDesk).toEqual(null)
+    expect(expectedNewCI.toDesk.id).toEqual(1)
+
+    let expectedExistingCI = list[1]
+    expect(expectedExistingCI.changeset).toEqual(changeset)
+    expect(expectedExistingCI.employee.firstname).toEqual("Gun")
+    expect(expectedExistingCI.fromDesk.id).toEqual(5)
+    expect(expectedExistingCI.toDesk).toEqual(null)
+
+  }));
+
   it('when save CI if from or to equal to null remove it', inject([ChangesetItemService], (service: ChangesetItemService) => {
     spyOn(service, "remove");
 

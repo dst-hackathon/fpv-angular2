@@ -110,22 +110,22 @@ export class ChangesetItemService {
     list.push(item)
 
     let existingItems = this.findByToDesk(toDesk);
-    if(existingItems){
+    if(existingItems && existingItems.length != 0){
       for (let item of existingItems) {
         item.toDesk = null
         list.push(item)
       }
-    }
-
-    let existingDAList = this.deskAssignmentService.findByDesk(toDesk)
-    if(existingDAList){
-      for (let da of existingDAList) {
-        let item = new ChangesetItem();
-        item.changeset = changeset
-        item.employee = employee
-        item.fromDesk = da.desk
-        item.toDesk = null
-        list.push(item)
+    }else{
+      let existingDAList = this.deskAssignmentService.findByDesk(toDesk)
+      if(existingDAList){
+        for (let da of existingDAList) {
+          let item = new ChangesetItem();
+          item.changeset = changeset
+          item.employee = employee
+          item.fromDesk = da.desk
+          item.toDesk = null
+          list.push(item)
+        }
       }
     }
 
