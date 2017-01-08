@@ -10,6 +10,8 @@ import {Changeset} from "../model/changeset";
 import {ChangesetItem} from "../model/changeset-item";
 import {DeskAssignmentService} from "./desk-assignment.service";
 import {DeskAssignment} from "../model/desk-assignment";
+import {MdSnackBar, Overlay, OverlayContainer, ViewportRuler} from "@angular/material";
+import {OverlayPositionBuilder} from "@angular/material/core/overlay/position/overlay-position-builder";
 
 describe('changeset-item.service', () => {
   beforeEach(() => {
@@ -17,10 +19,16 @@ describe('changeset-item.service', () => {
       providers: [
         ChangesetItemService,{
           provide: Http,
-            useFactory: (mockBackend, options) => {
-              return new Http(mockBackend, options);
+          useFactory: (mockBackend, options) => {
+            return new Http(mockBackend, options);
           },
           deps: [MockBackend, BaseRequestOptions]
+        },
+        {
+          provide: MdSnackBar,
+          useFactory: () => {
+            return new MdSnackBar(null,null);
+          }
         },
         MockBackend,BaseRequestOptions,
         DeskService,DeskAssignmentService]

@@ -10,6 +10,7 @@ import {Desk} from "../model/desk";
 import {Employee} from "../model/employee";
 import {DeskAssignment} from "../model/desk-assignment";
 import {DeskAssignmentService} from "./desk-assignment.service";
+import {MdSnackBar} from "@angular/material";
 
 @Injectable()
 export class ChangesetItemService {
@@ -28,7 +29,8 @@ export class ChangesetItemService {
 
   constructor(private http: Http,
     private deskService:DeskService,
-    private deskAssignmentService:DeskAssignmentService
+    private deskAssignmentService:DeskAssignmentService,
+    private snackBar: MdSnackBar
   ) {
     this.dataStore = {changesetItems: [],focusChangesetItem:null};
     this._changesetItems = <BehaviorSubject<ChangesetItem[]>>new BehaviorSubject([]);
@@ -196,8 +198,15 @@ export class ChangesetItemService {
       });
 
       this.dataStore.changesetItems.push(data);
+      this.openSnackBar("DONE",null)
       this._changesetItems.next(Object.assign({}, this.dataStore).changesetItems);
     }, error => console.log('Could not create.'));
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   remove(id: number) {
