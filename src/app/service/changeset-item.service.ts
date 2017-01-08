@@ -8,6 +8,8 @@ import {Changeset} from "../model/changeset";
 import {DeskService} from "./desk.service";
 import {Desk} from "../model/desk";
 import {Employee} from "../model/employee";
+import {DeskAssignment} from "../model/desk-assignment";
+import {DeskAssignmentService} from "./desk-assignment.service";
 
 @Injectable()
 export class ChangesetItemService {
@@ -25,7 +27,8 @@ export class ChangesetItemService {
   focusChangesetItem: Observable<ChangesetItem>
 
   constructor(private http: Http,
-    private deskService:DeskService
+    private deskService:DeskService,
+    private deskAssignmentService:DeskAssignmentService
   ) {
     this.dataStore = {changesetItems: [],focusChangesetItem:null};
     this._changesetItems = <BehaviorSubject<ChangesetItem[]>>new BehaviorSubject([]);
@@ -114,14 +117,29 @@ export class ChangesetItemService {
       }
     }
 
+    let existingDAList = this.deskAssignmentService.findByDesk(toDesk)
+    if(existingDAList){
+      for (let da of existingDAList) {
+        let item = new ChangesetItem();
+        item.changeset = changeset
+        item.employee = employee
+        item.fromDesk = da.desk
+        item.toDesk = null
+        list.push(item)
+      }
+    }
+
     return list;
   }
 
-  private saveItem(item: ChangesetItem) {
+  public saveItem(item: ChangesetItem) {
     item.status = 'DRAFT'
 
+    let isFromAndToDeskIsNull:boolean = item.fromDesk == null && item.toDesk == null
+
     // delete item from == to desk
-    if(item.fromDesk && item.toDesk && item.fromDesk.id == item.toDesk.id){
+    var hasSameDeskId = item.fromDesk && item.toDesk && item.fromDesk.id == item.toDesk.id;
+    if(isFromAndToDeskIsNull || hasSameDeskId){
       this.remove(item.id)
     }
 

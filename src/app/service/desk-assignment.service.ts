@@ -1,15 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
-import {Observable, BehaviorSubject} from 'rxjs/Rx';
-
-import { Plan } from '../model/plan';
-import { Desk } from '../model/desk';
-import { Employee } from '../model/employee';
-import { DeskAssignment } from '../model/desk-assignment';
-
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import {Building} from "../model/building";
+import {Injectable} from "@angular/core";
+import {Http, Headers, RequestOptions} from "@angular/http";
+import {Observable, BehaviorSubject} from "rxjs/Rx";
+import {Desk} from "../model/desk";
+import {DeskAssignment} from "../model/desk-assignment";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/catch";
 
 @Injectable()
 export class DeskAssignmentService {
@@ -62,5 +57,16 @@ export class DeskAssignmentService {
 
         return Desk.fromJson(res.json())
       })
+  }
+
+  findByDesk(desk: Desk) : DeskAssignment[] {
+    let list:DeskAssignment[] = []
+    this.dataStore.deskAssignments.forEach((t, i) => {
+      if (t.desk && t.desk.id === desk.id) {
+        list.push(t)
+      }
+    });
+
+    return list;
   }
 }
