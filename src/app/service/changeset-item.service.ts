@@ -73,7 +73,7 @@ export class ChangesetItemService {
   }
 
   move(employee: Employee, fromDesk: Desk, toDesk: Desk, changeset: Changeset,previousChangesetItem: ChangesetItem) {
-    let items = this.build(employee, fromDesk, toDesk, changeset, previousChangesetItem);
+    let items = this.build(employee, toDesk, changeset);
 
     if(items){
       for (let item of items) {
@@ -82,29 +82,22 @@ export class ChangesetItemService {
     }
   }
 
-  public build(employee: Employee, fromDesk: Desk, toDesk: Desk, changeset: Changeset,previousChangesetItem: ChangesetItem) :ChangesetItem[]{
+  public build(employee: Employee, toDesk: Desk, changeset: Changeset) :ChangesetItem[]{
+    //convert emp to model
+    if(employee){
+      employee = Employee.fromJson(employee)
+    }
+
     let list = []
 
-    if((fromDesk && toDesk) && fromDesk.id == toDesk.id){
-      console.info("Unable to move employee to same desk")
-      return null
-    }
     if(!changeset){
       console.info("No change set selected")
       return null
     }
 
-    if(previousChangesetItem && previousChangesetItem.employee.id == employee.id){
-      previousChangesetItem.toDesk = toDesk
-
-      list.push(previousChangesetItem)
-      return list
-    }
-
-    let item = new ChangesetItem();
-    item.employee = employee;
+    let item = this.getChangesetItemByEmployee(employee);
+    item.employee = employee
     item.changeset = changeset
-    item.fromDesk = fromDesk
     item.toDesk = toDesk
 
     list.push(item)
@@ -112,14 +105,18 @@ export class ChangesetItemService {
     let existingItems = this.findByToDesk(toDesk);
     let hasItemOnThisDesk = existingItems && existingItems.length != 0;
     if(hasItemOnThisDesk){
+      console.log("hasItemOnThisDesk")
       for (let item of existingItems) {
-        item.toDesk = null
-        list.push(item)
+        if(item.employee.code != employee.code){
+          item.toDesk = null
+          list.push(item)
+        }
       }
     }else{
       let existingDAList = this.deskAssignmentService.findByDesk(toDesk)
       let hasItemInAnotherDesk = this.findByFromDesk(toDesk).length != 0
       if(existingDAList && !hasItemInAnotherDesk){
+        console.log("hasItemInAnotherDesk")
         for (let da of existingDAList) {
           let item = new ChangesetItem();
           item.changeset = changeset
@@ -131,7 +128,49 @@ export class ChangesetItemService {
       }
     }
 
+
+    // if((fromDesk && toDesk) && fromDesk.id == toDesk.id){
+    //   console.info("Unable to move employee to same desk")
+    //   return null
+    // }
+
+
+    // if(previousChangesetItem && previousChangesetItem.employee.id == employee.id){
+    //   previousChangesetItem.toDesk = toDesk
+    //
+    //   list.push(previousChangesetItem)
+    //   return list
+    // }
+    //
+
+    for (let item of list) {
+      console.log(item.toString())
+    }
+
     return list;
+  }
+
+  private getChangesetItemByEmployee(emp:Employee):ChangesetItem {
+    let items = this.findByEmployeeCode(emp.code);
+
+    if(items.length!=0){
+      return items[0]
+    }
+
+    let daList = this.deskAssignmentService.findByEmployeeCode(emp.code);
+    if(daList.length != 0){
+      let da = daList[0]
+
+      let item = new ChangesetItem();
+      item.fromDesk = da.desk
+
+      return item;
+    }
+
+
+    let changesetItem = new ChangesetItem();
+    changesetItem.fromDesk = null
+    return changesetItem;
   }
 
   public saveItem(item: ChangesetItem) {
@@ -175,9 +214,20 @@ export class ChangesetItemService {
     return this.changesetItems.map(list=> list.find(item => item.toDesk && item.toDesk.id === desk.id))
   }
 
+  findByEmployeeCode(code) : ChangesetItem[] {
+    let list:ChangesetItem[] = []
+    this.getChangesetItems().forEach((t, i) => {
+      if (t.employee && t.employee.code === code) {
+        list.push(t)
+      }
+    });
+
+    return list;
+  }
+
   findByFromDesk(desk: Desk) : ChangesetItem[] {
     let list:ChangesetItem[] = []
-    this.dataStore.changesetItems.forEach((t, i) => {
+    this.getChangesetItems().forEach((t, i) => {
       if (t.fromDesk && t.fromDesk.id === desk.id) {
         list.push(t)
       }
@@ -185,9 +235,10 @@ export class ChangesetItemService {
 
     return list;
   }
+
   findByToDesk(desk: Desk) : ChangesetItem[] {
     let list:ChangesetItem[] = []
-    this.dataStore.changesetItems.forEach((t, i) => {
+    this.getChangesetItems().forEach((t, i) => {
       if (t.toDesk && t.toDesk.id === desk.id) {
         list.push(t)
       }
@@ -195,9 +246,12 @@ export class ChangesetItemService {
 
     return list;
   }
-
   setFocusChangesetItem(item: ChangesetItem) {
     this.dataStore.focusChangesetItem= item;
     this._focusChangesetItem.next(Object.assign({}, this.dataStore).focusChangesetItem);
+  }
+
+  private getChangesetItems() {
+    return this.dataStore.changesetItems;
   }
 }

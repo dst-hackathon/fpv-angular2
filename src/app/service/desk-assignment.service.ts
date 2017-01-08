@@ -61,12 +61,31 @@ export class DeskAssignmentService {
 
   findByDesk(desk: Desk) : DeskAssignment[] {
     let list:DeskAssignment[] = []
-    this.dataStore.deskAssignments.forEach((t, i) => {
+    if(desk == null){
+      return list
+    }
+
+    this.getDeskAssignments().forEach((t, i) => {
       if (t.desk && t.desk.id === desk.id) {
         list.push(t)
       }
     });
 
     return list;
+  }
+
+  findByEmployeeCode(code) :DeskAssignment[]{
+    let list:DeskAssignment[] = []
+    this.getDeskAssignments().forEach((t, i) => {
+      if (t.employee && t.employee.code === code) {
+        list.push(t)
+      }
+    });
+
+    return list
+  }
+
+  private getDeskAssignments() {
+    return this.dataStore.deskAssignments;
   }
 }

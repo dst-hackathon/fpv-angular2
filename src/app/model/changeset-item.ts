@@ -26,4 +26,16 @@ export class ChangesetItem {
 
     return changesetItemsTemp
   }
+
+  toString():string{
+    let getCode = function (desk:Desk) {
+      if(!desk){
+        return "null"
+      }
+
+      return desk.code;
+    };
+
+    return `CI( ${this.employee.firstname} : ${getCode(this.fromDesk)} => ${getCode(this.toDesk)})`
+  }
 }
