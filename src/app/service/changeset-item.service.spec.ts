@@ -10,8 +10,7 @@ import {Changeset} from "../model/changeset";
 import {ChangesetItem} from "../model/changeset-item";
 import {DeskAssignmentService} from "./desk-assignment.service";
 import {DeskAssignment} from "../model/desk-assignment";
-import {MdSnackBar, Overlay, OverlayContainer, ViewportRuler} from "@angular/material";
-import {OverlayPositionBuilder} from "@angular/material/core/overlay/position/overlay-position-builder";
+import {MdSnackBar} from "@angular/material";
 
 describe('changeset-item.service', () => {
   beforeEach(() => {
