@@ -94,7 +94,7 @@ export class ChangesetItemService {
       return null
     }
 
-    if(previousChangesetItem){
+    if(previousChangesetItem && previousChangesetItem.employee.id == employee.id){
       previousChangesetItem.toDesk = toDesk
 
       list.push(previousChangesetItem)
@@ -110,18 +110,20 @@ export class ChangesetItemService {
     list.push(item)
 
     let existingItems = this.findByToDesk(toDesk);
-    if(existingItems && existingItems.length != 0){
+    let hasItemOnThisDesk = existingItems && existingItems.length != 0;
+    if(hasItemOnThisDesk){
       for (let item of existingItems) {
         item.toDesk = null
         list.push(item)
       }
     }else{
       let existingDAList = this.deskAssignmentService.findByDesk(toDesk)
-      if(existingDAList){
+      let hasItemInAnotherDesk = this.findByFromDesk(toDesk).length != 0
+      if(existingDAList && !hasItemInAnotherDesk){
         for (let da of existingDAList) {
           let item = new ChangesetItem();
           item.changeset = changeset
-          item.employee = employee
+          item.employee = da.employee
           item.fromDesk = da.desk
           item.toDesk = null
           list.push(item)
@@ -141,6 +143,7 @@ export class ChangesetItemService {
     var hasSameDeskId = item.fromDesk && item.toDesk && item.fromDesk.id == item.toDesk.id;
     if(isFromAndToDeskIsNull || hasSameDeskId){
       this.remove(item.id)
+      return
     }
 
     this.http.put(`${this.serverUrl}`, item)

@@ -125,15 +125,14 @@ describe('changeset-item.service', () => {
   }));
 
   it('Move CI to assiged desk should create new CI for existing DA', inject([ChangesetItemService,DeskAssignmentService], (service: ChangesetItemService,daService:DeskAssignmentService) => {
-    let employee = new Employee();
+    let employee =  buildEmployee("M");
     let fromDesk = null
     let toDesk = buildDesk(1)
     let previousChangesetItem = null
     let changeset = new Changeset();
 
-    let existingEmployee = new Employee();
     var da = new DeskAssignment();
-    da.employee = existingEmployee
+    da.employee =  buildEmployee("V");
     da.desk = toDesk
 
     spyOn(daService,"findByDesk").and.returnValue([da])
@@ -144,13 +143,13 @@ describe('changeset-item.service', () => {
 
     let expectedNewCI = list[0]
     expect(expectedNewCI.changeset).toEqual(changeset)
-    expect(expectedNewCI.employee).toEqual(employee)
+    expect(expectedNewCI.employee.firstname).toEqual("M")
     expect(expectedNewCI.fromDesk).toEqual(fromDesk)
     expect(expectedNewCI.toDesk).toEqual(toDesk)
 
     let expectedExistingCI = list[1]
     expect(expectedExistingCI.changeset).toEqual(changeset)
-    expect(expectedExistingCI.employee).toEqual(existingEmployee)
+    expect(expectedExistingCI.employee.firstname).toEqual("V")
     expect(expectedExistingCI.fromDesk.id).toEqual(da.desk.id)
     expect(expectedExistingCI.toDesk).toEqual(null)
 
