@@ -112,6 +112,7 @@ export class PlanDialogComponent implements OnInit {
     if (this.changesetDate) {
       this.changesetService.getChangesetByEffectiveDate(this.changesetDate).subscribe(cs=>this.changesetService.setSelectedChangeset(cs),err => {
         this.noChangeset = true;
+        this.changesetService.setSelectedChangeset(null)
       })
     }
   }
