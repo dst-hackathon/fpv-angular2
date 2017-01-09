@@ -56,4 +56,8 @@ export class ChangesetComponent implements OnInit {
     this.changesetItemService.setChangesetItemStatus(changesetItem).subscribe();
   }
 
+  print(){
+    window.print()
+  }
+
 }
