@@ -93,7 +93,8 @@ export class ChangesetItemService {
     let list = []
 
     if(!changeset){
-      console.info("No change set selected")
+      console.info("No changeset selected !!")
+      this.openSnackBar("No changeset selected !!",null)
       return null
     }
 
