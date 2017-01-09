@@ -27,6 +27,10 @@
     </ul>
 
     <div class="form-inline float-lg-right">
+      <md-input-container>
+        <input md-input type="text" [(ngModel)]="searchService.searchText" placeholder="Search" />
+      </md-input-container>
+
       <profile></profile>
     </div>
   </div>

@@ -54,6 +54,7 @@ import { PlansComponent } from './plans/plans.component';
 import { PlanComponent } from './plans/plan/plan.component';
 import { UnassignPipe } from './unassign.pipe';
 import { DeskPipe } from './desk.pipe';
+import {SearchService} from "./search.service";
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { DeskPipe } from './desk.pipe';
     BuildingService,
     DeskService,
     ChangesetService,
-    ChangesetItemService
+    ChangesetItemService,
+    SearchService
   ],
   entryComponents: [AssignDialogComponent,DeskCreateDialogComponent],
   bootstrap: [AppComponent]

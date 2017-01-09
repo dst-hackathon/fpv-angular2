@@ -2,15 +2,21 @@ import { Pipe, PipeTransform } from '@angular/core';
 import {Desk} from "./model/desk";
 import {ChangesetItemService} from "./service/changeset-item.service";
 import {DeskAssignmentService} from "./service/desk-assignment.service";
+import {SearchService} from "./search.service";
 
 @Pipe({
-  name: 'desk'
+  name: 'desk',pure:false
 })
 export class DeskPipe implements PipeTransform {
 
-  constructor(private changesetItemService : ChangesetItemService,private deskAssignmentService:DeskAssignmentService){}
+  constructor(private changesetItemService : ChangesetItemService,
+              private deskAssignmentService:DeskAssignmentService,
+              private searchService:SearchService
+              ){}
 
-  transform(desks: Desk[], searchText?: string): any {
+  transform(desks: Desk[], arg?: string): any {
+    let searchText = this.searchService.searchText
+
     if(!searchText){
       return desks
     }

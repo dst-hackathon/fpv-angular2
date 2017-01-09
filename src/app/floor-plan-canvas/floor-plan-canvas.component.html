@@ -1,12 +1,8 @@
-<md-input-container>
-  <input md-input type="text" [(ngModel)]="searchText" placeholder="Search" />
-</md-input-container>
-
 <div class="floor-canvas" style="position: relative;">
   <floor *ngIf="floor" [floor]="floor"></floor>
 
   <div *ngIf="!isPinMode()">
-    <desk *ngFor="let desk of desks|async|desk:searchText"
+    <desk *ngFor="let desk of desks|async|desk"
           [desk]="desk"
           [changeset]="changeset|async"></desk>
   </div>

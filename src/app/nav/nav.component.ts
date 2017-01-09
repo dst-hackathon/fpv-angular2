@@ -1,6 +1,7 @@
 import {Component, OnInit, NgZone} from '@angular/core';
 import {LoginService} from "../service/login.service";
 import {ActivatedRoute} from "@angular/router";
+import {SearchService} from "../search.service";
 
 @Component({
   selector: 'app-nav',
@@ -12,7 +13,7 @@ export class NavComponent implements OnInit{
   planId
   isShrunk: boolean = false;
 
-  constructor(private loginService: LoginService,private route :ActivatedRoute,zone: NgZone) {
+  constructor(private loginService: LoginService,private route :ActivatedRoute,zone: NgZone,public searchService:SearchService) {
     window.onscroll = () => {
       zone.run(() => {
         if(window.pageYOffset > 0) {
