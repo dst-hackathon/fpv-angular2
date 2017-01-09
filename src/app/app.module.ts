@@ -53,6 +53,7 @@ import { EmployeeDetailComponent } from './employee-detail/employee-detail.compo
 import { PlansComponent } from './plans/plans.component';
 import { PlanComponent } from './plans/plan/plan.component';
 import { UnassignPipe } from './unassign.pipe';
+import { DeskPipe } from './desk.pipe';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { UnassignPipe } from './unassign.pipe';
     EmployeeDetailComponent,
     PlansComponent,
     PlanComponent,
-    UnassignPipe
+    UnassignPipe,
+    DeskPipe
   ],
   imports: [
     BrowserModule,

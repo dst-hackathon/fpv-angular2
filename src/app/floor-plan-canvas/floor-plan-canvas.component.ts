@@ -16,6 +16,7 @@ export class FloorPlanCanvasComponent implements OnInit {
 
   desks: Observable<Desk[]>;
 
+  searchText
   constructor(
     private deskService:DeskService
   ){}
