@@ -1,6 +1,6 @@
 <div>
-  <h3>Changeset: {{(changeset|async)?.effectiveDate}}</h3>
-  <button *ngIf="(changesetItemList|async)?.length > 0" type="button" class="btn btn-success" (click)="approve()">Approve</button>
+  <h3>Changeset: {{(changeset|async)?.effectiveDate}} ({{(changeset|async)?.status}})</h3>
+  <button *ngIf="(changesetItemList|async)?.length > 0 && (changeset|async)?.status != 'COMPLETE'" type="button" class="btn btn-success" (click)="approve()">Approve</button>
   <button *ngIf="(changesetItemList|async)?.length == 0" type="button" class="btn btn-danger" (click)="delete()">Delete</button>
 
   <button *ngIf="(changesetItemList|async)?.length > 0" type="button" class="btn btn-primary" (click)="print()"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
@@ -31,10 +31,10 @@
       </td>
       <td>{{changesetItem.status}}</td>
       <td>
-        <div>
-          <button type="button" class="btn btn-default" (click)="updateStatus(changesetItem, 'DRAFT')">DRAFT</button>
-          <button type="button" class="btn btn-success" (click)="updateStatus(changesetItem, 'ACCEPT')">Approve</button>
-          <button type="button" class="btn btn-danger" (click)="updateStatus(changesetItem, 'DENY')">Deny</button>
+        <div *ngIf="(changeset|async)?.status != 'COMPLETE'">
+          <button type="button" class="btn btn-default" (click)="updateStatus(changesetItem, 'DRAFT')" *ngIf="changesetItem.status != 'DRAFT'">DRAFT</button>
+          <button type="button" class="btn btn-success" (click)="updateStatus(changesetItem, 'ACCEPT')" *ngIf="changesetItem.status != 'ACCEPT'">Approve</button>
+          <button type="button" class="btn btn-danger" (click)="updateStatus(changesetItem, 'DENY')" *ngIf="changesetItem.status != 'DENY'">Deny</button>
         </div>
       </td>
     </tr>
