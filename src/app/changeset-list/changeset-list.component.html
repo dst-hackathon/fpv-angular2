@@ -6,7 +6,7 @@
   <div class="list-group">
     <a href="#" class="list-group-item list-group-item-action"
        [routerLink]="['/plans',planId,'changesets',changeset.id]"
-       *ngFor="let changeset of changesetList">
+       *ngFor="let changeset of changesetList|changeset">
       <h5 class="list-group-item-heading">{{changeset.effectiveDate}}</h5>
       <p class="list-group-item-text">{{changeset.status}}</p>
     </a>
