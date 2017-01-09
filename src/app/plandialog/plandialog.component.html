@@ -9,11 +9,13 @@
       <div class="form-group" *ngIf="selectedFloor">
         <label for="changesetSelect">Effective Date</label>
         <input id="changesetSelect" class="form-control" type="date" [(ngModel)]="changesetDate" (change)="loadChangesetData()">
-        <div *ngIf="noChangeset">
-          <button class="btn btn-primary" (click)="createChangeset()">Create Changeset</button>
-        </div>
       </div>
     </div>
+
+    <div class="alert alert-info" role="alert" *ngIf="noChangeset">
+      No Changeset found. Do you want to <a href="#" (click)="createChangeset()" class="alert-link">Create a new changeset</a>
+    </div>
+
     <div class="alert alert-warning" role="alert" *ngIf="(selectedChangeset|async)?.status == 'COMPLETE'">
       <strong>Changeset status is Completed!</strong> Please select new date.
     </div>
