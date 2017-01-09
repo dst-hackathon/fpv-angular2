@@ -4,7 +4,7 @@ import {ChangesetItemService} from "./service/changeset-item.service";
 import {DeskAssignmentService} from "./service/desk-assignment.service";
 
 @Pipe({
-  name: 'desk', pure :false
+  name: 'desk'
 })
 export class DeskPipe implements PipeTransform {
 
