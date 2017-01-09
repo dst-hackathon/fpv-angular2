@@ -4,6 +4,7 @@ import {Observable, BehaviorSubject} from "rxjs/Rx";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
 import {Changeset} from "../model/changeset";
+import {MdSnackBar} from "@angular/material";
 
 @Injectable()
 export class ChangesetService {
@@ -20,7 +21,7 @@ export class ChangesetService {
     selectedChangeset: Observable<Changeset>
     changesets: Observable<Changeset[]>
 
-    constructor(private http: Http) {
+    constructor(private http: Http,private snackBar: MdSnackBar) {
       this.dataStore = {selectedChangeset: null,changesets:[]};
 
       this._selectedChangeset = <BehaviorSubject<Changeset>>new BehaviorSubject(null);
@@ -93,4 +94,24 @@ export class ChangesetService {
         .map(res => res.json())
         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
+
+  remove(id: number,callback) {
+    this.http.delete(`${this.serverUrl}/${id}`).subscribe(response => {
+      this.dataStore.changesets.forEach((t, i) => {
+        if (t.id === id) {
+          this.dataStore.changesets.splice(i, 1);
+        }
+      });
+
+      callback.call()
+      this.openSnackBar("Removed",null)
+      this._changesets.next(Object.assign({}, this.dataStore).changesets);
+    }, error => this.openSnackBar("Unable to delete",null));
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 }

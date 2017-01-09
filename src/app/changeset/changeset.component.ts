@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {ChangesetItemService} from "../service/changeset-item.service";
 import {ChangesetService} from "../service/changeset.service";
 import {ChangesetItem} from "../model/changeset-item";
 import {Observable} from "rxjs";
 import {Changeset} from "../model/changeset";
 import {ActivatedRoute} from "@angular/router";
-import {Desk} from "../model/desk";
 import {Plan} from "../model/plan";
 import {PlanService} from "../service/plan.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-changeset',
@@ -21,7 +21,7 @@ export class ChangesetComponent implements OnInit {
   changesetItemList: Observable<ChangesetItem[]>
   selectedPlan:Observable<Plan>
 
-  constructor(private route: ActivatedRoute,public changesetService: ChangesetService,
+  constructor(private route: ActivatedRoute,private _location: Location,public changesetService: ChangesetService,
               public changesetItemService: ChangesetItemService,
               private planService: PlanService
   ) { }
@@ -42,6 +42,12 @@ export class ChangesetComponent implements OnInit {
   approve(){
     this.changesetService.approve(this.changesetId).subscribe(cs=>{
       console.log("COMPLETE approve process",cs)
+    })
+  }
+
+  delete(){
+    this.changesetService.remove(this.changesetId,()=>{
+      this._location.back()
     })
   }
 
