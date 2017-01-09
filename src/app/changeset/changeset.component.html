@@ -12,12 +12,13 @@
         <th>Code</th>
         <th>From</th>
         <th>To</th>
+        <th>Work</th>
         <th>Status</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let changesetItem of changesetItemList|async">
+    <tr *ngFor="let changesetItem of changesetItemList|async|changesetitem">
       <td>{{changesetItem.employee?.firstname}} {{changesetItem.employee?.lastname}}</td>
       <td>{{changesetItem.employee?.code}}</td>
       <td>{{changesetItem.fromDesk| deskString}}</td>
@@ -29,6 +30,7 @@
             ,'-'
             ]" type="button" class="btn btn-link printable">{{changesetItem.toDesk |deskString}}</button>
       </td>
+      <td>{{changesetItem.employee?.work}}</td>
       <td>{{changesetItem.status}}</td>
       <td>
         <div *ngIf="(changeset|async)?.status != 'COMPLETE'">

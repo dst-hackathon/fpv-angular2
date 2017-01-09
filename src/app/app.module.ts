@@ -56,6 +56,7 @@ import { UnassignPipe } from './unassign.pipe';
 import { DeskPipe } from './desk.pipe';
 import {SearchService} from "./search.service";
 import { ChangesetPipe } from './changeset.pipe';
+import { ChangesetitemPipe } from './changesetitem.pipe';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { ChangesetPipe } from './changeset.pipe';
     PlanComponent,
     UnassignPipe,
     DeskPipe,
-    ChangesetPipe
+    ChangesetPipe,
+    ChangesetitemPipe
   ],
   imports: [
     BrowserModule,
