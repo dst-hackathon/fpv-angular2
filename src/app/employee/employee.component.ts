@@ -13,8 +13,6 @@ export class EmployeeComponent implements OnInit {
 
   employees: Observable<Employee[]>
 
-  searchText
-
   constructor(private employeeService: EmployeeService,private route: ActivatedRoute) { }
 
   ngOnInit() {

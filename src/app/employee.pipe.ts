@@ -1,12 +1,17 @@
 import {Pipe, PipeTransform} from "@angular/core";
 import {Employee} from "./model/employee";
+import {SearchService} from "./search.service";
 
 @Pipe({
-  name: 'employee'
+  name: 'employee',pure:false
 })
 export class EmployeePipe implements PipeTransform {
 
-  transform(items: Employee[], searchText?: string): any {
+  constructor(private searchService:SearchService){}
+
+  transform(items: Employee[], arg?: string): any {
+    let searchText = this.searchService.searchText
+
     if(!searchText){
       return items
     }
