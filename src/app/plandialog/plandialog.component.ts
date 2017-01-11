@@ -12,6 +12,7 @@ import {FloorService} from "../service/floor.service";
 import {Floor} from "../model/floor";
 import {Building} from "../model/building";
 import {Changeset} from "../model/changeset";
+import {MdSnackBar} from "@angular/material";
 
 @Component({
   selector: 'plan-dialog',
@@ -39,6 +40,7 @@ export class PlanDialogComponent implements OnInit {
     public changesetItemService: ChangesetItemService,
     public buildingService: BuildingService,
     public floorService: FloorService,
+    private snackBar: MdSnackBar,
 
     private route: ActivatedRoute
   ) {}
@@ -124,6 +126,9 @@ export class PlanDialogComponent implements OnInit {
       this.changesetService.save(changeset).subscribe(cs=> {
         this.changesetService.setSelectedChangeset(cs)
         this.noChangeset = false;
+        this.snackBar.open("Created", null, {
+          duration: 2000,
+        });
       })
     }
   }

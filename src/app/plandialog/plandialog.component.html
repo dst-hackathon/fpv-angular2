@@ -13,7 +13,7 @@
     </div>
 
     <div class="alert alert-info" role="alert" *ngIf="noChangeset">
-      No Changeset found. Do you want to <a href="#" (click)="createChangeset()" class="alert-link">Create a new changeset</a>
+      No Changeset found. Do you want to <a md-raised-button (click)="createChangeset(event)">Create a new changeset</a>
     </div>
 
     <div class="alert alert-warning" role="alert" *ngIf="(selectedChangeset|async)?.status == 'COMPLETE'">
