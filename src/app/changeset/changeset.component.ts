@@ -8,6 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Plan} from "../model/plan";
 import {PlanService} from "../service/plan.service";
 import {Location} from "@angular/common";
+import {MdSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-changeset',
@@ -23,7 +24,7 @@ export class ChangesetComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,private _location: Location,public changesetService: ChangesetService,
               public changesetItemService: ChangesetItemService,
-              private planService: PlanService
+              private planService: PlanService,private snackBar: MdSnackBar
   ) { }
 
   ngOnInit() {
@@ -42,7 +43,14 @@ export class ChangesetComponent implements OnInit {
   approve(){
     this.changesetService.approve(this.changesetId).subscribe(cs=>{
       console.log("COMPLETE approve process",cs)
+      this.openSnackBar("COMPLETE approve process",null)
     })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
   delete(){
